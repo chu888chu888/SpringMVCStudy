@@ -12,3 +12,4 @@
    * [1.基于MAVEN的环境搭建](Content/JFinal/chapter2001.md)
    * [2.基于Gradle的环境搭建](Content/JFinal/chapter2002.md)
    * [3.基于Gradle的环境搭建](Content/JFinal/chapter2002.md)
+* [附录 IDEA开发工具使用参考](Content/IDEA/chapter0001.md)
