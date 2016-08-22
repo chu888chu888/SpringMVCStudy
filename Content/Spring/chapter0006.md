@@ -28,15 +28,15 @@ Query OK, 0 rows affected (0.01 sec)
 MariaDB [sampledb]> insert into t_user(user_name,password) values('admin','123456');
 Query OK, 1 row affected (0.00 sec)
 ```
-## 创建工程
+## 3 创建工程
 
 ![](../../images/Spring/00001.png)
 
-##完整的项目工程目录
+## 4 完整的项目工程目录
 
 ![](../../images/Spring/000023.png)
 
-## DAO层相关代码
+## 5 DAO层相关代码
 
 ```
 package com.chu.dao;
@@ -126,7 +126,7 @@ public class UserDao {
 
 ```
 
-##DOMAIN相关代码
+## DOMAIN相关代码
 
 ```
 package com.chu.domain;
