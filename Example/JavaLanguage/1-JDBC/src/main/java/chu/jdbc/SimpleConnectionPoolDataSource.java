@@ -17,13 +17,13 @@ public class SimpleConnectionPoolDataSource implements DataSource {
 
     public SimpleConnectionPoolDataSource()
             throws IOException, ClassNotFoundException {
-        this("resources/jdbc.properties");
+        this("/jdbc.properties");
     }
 
     public SimpleConnectionPoolDataSource(String configFile)
             throws IOException, ClassNotFoundException {
         props = new Properties();
-        props.load(new FileInputStream(configFile));
+        props.load(this.getClass().getResourceAsStream(configFile));
 
         url = props.getProperty("cc.openhome.url");
         user = props.getProperty("cc.openhome.user");
