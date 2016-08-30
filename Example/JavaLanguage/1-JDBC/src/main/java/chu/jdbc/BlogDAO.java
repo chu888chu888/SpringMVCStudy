@@ -4,25 +4,24 @@ package chu.jdbc;
  * Created by chuguangming on 16/8/26.
  */
 
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
 
 
 public class BlogDAO {
-    private String url;
-    private String user;
-    private String passwd;
+    private DataSource dataSource;
 
-    public BlogDAO(String url, String user, String passwd) {
-        this.url = url;
-        this.user = user;
-        this.passwd = passwd;
+    public BlogDAO(DataSource dataSource) {
+        this.dataSource=dataSource;
     }
 
     public void add(Blog blog) {
         try {
-            Connection conn = DriverManager.getConnection(url, user, passwd);
+            Connection conn = dataSource.getConnection();
 
 //            Statement statement=conn.createStatement();
 //            String sql=String.format("insert into user(username,password) values('%s','%s')",
@@ -42,7 +41,7 @@ public class BlogDAO {
     public List<Blog> get() {
         List<Blog> blogs = new ArrayList<>();
         try {
-            Connection connection = DriverManager.getConnection(url, user, passwd);
+            Connection connection = dataSource.getConnection();
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select * from user ");
             while (resultSet.next()) {

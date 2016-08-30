@@ -25,7 +25,7 @@ public class TestBlog {
         //打开数据库
         try
         {
-            BlogDAO dao=new BlogDAO(url,user,password);
+            BlogDAO dao=new BlogDAO(new SimpleConnectionPoolDataSource());
             dao.add(new Blog("楚广明","123456"));
 
         } catch (Exception e)
@@ -40,7 +40,7 @@ public class TestBlog {
         //打开数据库
         try
         {
-            BlogDAO dao=new BlogDAO(url,user,password);
+            BlogDAO dao=new BlogDAO(new SimpleConnectionPoolDataSource());
             for(Blog tmp:dao.get())
             {
                 System.out.printf("username:%s password:%s \n",tmp.getUsername(),tmp.getPassword());
