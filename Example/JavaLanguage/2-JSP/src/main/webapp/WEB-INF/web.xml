@@ -24,4 +24,21 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
         <url-pattern>/GetHeaderInfo</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Encoding</servlet-name>
+        <servlet-class>com.chu.EncodingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Encoding</servlet-name>
+        <url-pattern>/Encoding</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Upload</servlet-name>
+        <servlet-class>com.chu.UploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Upload</servlet-name>
+        <url-pattern>/Upload</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -223,3 +223,198 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
 ```
 
+## 5 提交表单
+
+**表单**
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GET请求</title>
+</head>
+<body>
+<form method="get" action="/Encoding">
+    名称:<input type="text" name="nameGet"><br/>
+    <button>送出GET请求</button>
+</form>
+</body>
+</html>
+```
+
+
+**Servlet**
+
+```
+package com.chu;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
+/**
+ * Created by chuguangming on 16/8/31.
+ */
+@WebServlet(name = "GetHeaderInfo")
+public class EncodingServlet extends javax.servlet.http.HttpServlet {
+    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+            throws javax.servlet.ServletException, java.io.IOException {
+
+    }
+
+    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+            throws javax.servlet.ServletException, java.io.IOException {
+        request.setCharacterEncoding("UTF-8");
+        String name=request.getParameter("nameGet");
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out=response.getWriter();
+        out.println(name);
+    }
+}
+
+```
+
+**web.xml**
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>SimpleServlet</servlet-name>
+        <servlet-class>SimpleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimpleServlet</servlet-name>
+        <url-pattern>/demo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetHeaderInfo</servlet-name>
+        <servlet-class>com.chu.GetHeaderInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetHeaderInfo</servlet-name>
+        <url-pattern>/GetHeaderInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Encoding</servlet-name>
+        <servlet-class>com.chu.EncodingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Encoding</servlet-name>
+        <url-pattern>/Encoding</url-pattern>
+    </servlet-mapping>
+</web-app>
+
+```
+
+
+## 6 文件上传
+
+**Servlet** 
+
+```
+package com.chu;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.*;
+import java.util.Enumeration;
+
+/**
+ * Created by chuguangming on 16/8/31.
+ */
+@MultipartConfig
+@WebServlet(name = "Upload")
+public class UploadServlet extends javax.servlet.http.HttpServlet {
+    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+            throws javax.servlet.ServletException, java.io.IOException {
+
+        /*
+        Part part=request.getPart("photo");
+        String filename=getFilename(part);
+        writeTo(filename,part);
+        System.out.println(filename);
+        */
+        request.setCharacterEncoding("UTF-8");
+        Part part=request.getPart("photo");
+        String filename=getFilename(part);
+        part.write(filename);
+
+
+    }
+
+    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response)
+            throws javax.servlet.ServletException, java.io.IOException {
+
+    }
+
+    private String getFilename(Part part)
+    {
+        String header=part.getHeader("Content-Disposition");
+        String filename=header.substring(header.indexOf("filename=\"")+10,header.lastIndexOf("\""));
+        return filename;
+    }
+
+    private void writeTo(String filename,Part part) throws IOException,FileNotFoundException
+    {
+        InputStream in=part.getInputStream();
+        OutputStream out=new FileOutputStream(filename);
+        byte [] buffer =new byte[1024];
+        int length=-1;
+        while ((length=in.read(buffer))!=-1)
+        {
+            out.write(buffer,0,length);
+        }
+        in.close();
+        out.close();
+    }
+
+}
+
+```
+
+
+**Html**
+
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传Demo</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+</head>
+<body>
+    <form action="Upload" method="post" enctype="multipart/form-data">
+        上传照片:<input type="file" name="photo" /><br><br>
+        <input type="submit" value="上传" name="upload">
+    </form>
+</body>
+</html>
+```
+
+
+## 7 使用RequestDispatcher调派请求
+
+在WEB应用程序中,经常需要多个Servlet来完成请求.例如,将别一个Servlet的请求处理流程包含进来,或将请求转发(Forward)给别的Servlet处理.如果有这类的需求,可以使用HttpServletRequest的getRequestDispatcher()方法取得RequestDispatcher接口的实现对象实例,调用时指定转发或包含的相对URL网址.
+
