@@ -418,3 +418,72 @@ public class UploadServlet extends javax.servlet.http.HttpServlet {
 
 在WEB应用程序中,经常需要多个Servlet来完成请求.例如,将别一个Servlet的请求处理流程包含进来,或将请求转发(Forward)给别的Servlet处理.如果有这类的需求,可以使用HttpServletRequest的getRequestDispatcher()方法取得RequestDispatcher接口的实现对象实例,调用时指定转发或包含的相对URL网址.
 
+
+## 8 过滤器
+
+PerformanceFilter.java
+
+```
+package com.chu;
+
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
+
+@WebFilter(filterName = "performance", urlPatterns = {"/*"})
+public class PerformanceFilter implements Filter {
+    private FilterConfig config;
+
+    @Override
+    public void init(FilterConfig config) throws ServletException {
+        this.config = config;
+    }
+
+    @Override
+    public void doFilter(ServletRequest request,
+                         ServletResponse response,
+                         FilterChain chain)
+            throws IOException, ServletException {
+        long begin = System.currentTimeMillis();
+        chain.doFilter(request, response);
+        config.getServletContext().log("Request process in " +
+                (System.currentTimeMillis() - begin) + " milliseconds");
+        System.out.println("Request process in " +
+                (System.currentTimeMillis() - begin) + " milliseconds");
+    }
+
+    @Override
+    public void destroy() {
+    }
+}
+
+```
+
+web.xml
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4"
+         xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>Archetype Created Web Application</display-name>
+
+    <filter>
+        <filter-name>performance</filter-name>
+        <filter-class>com.chu.PerformanceFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>performance</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
+
+```
