@@ -9,6 +9,7 @@ Maven的好处在于可以将项目过程规范化、自动化、高效化以及
 
 ![](../../images/20/maven/1.png)
 
+
 ###2. 将下载后的压缩文件解压到任意目录，这里选择解压到 D:\Program Files目录下，并配置其环境变量（参考配置 JDK的环境变量）
 配置 Maven环境变量前，先确认 “JAVA_HOME”这个环境变量是对应于JDK的安装目录。
 ![](../../images/20/maven/2.png)
@@ -53,6 +54,8 @@ Maven的好处在于可以将项目过程规范化、自动化、高效化以及
 ![](../../images/20/idea/7.png)
 
 设置 Maven的安装目录、settings.xml的文件位置和本地仓库的位置等信息。  
+
+archetypeCatalog:internal
 ![](../../images/20/idea/8.png)
 
 设置项目名称。  
