@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<display-name>SHOP++</display-name>
+	<description>SHOP++网上商城系统</description>
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>accessDeniedFilter</filter-name>
+		<filter-class>net.shopxx.filter.AccessDeniedFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>*.jsp</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>/install/data/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>/install/sample/*</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>*.properties</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>accessDeniedFilter</filter-name>
+		<url-pattern>*.conf</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
+	</listener>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>
