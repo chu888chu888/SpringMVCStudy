@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://my.oschina.net/gaussik/blog/513444 -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="Content-Language" content="zh-CN">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Gaussic,gaussik">
+            <meta name="keywords" content="Gaussic,gaussik,开源中国博客">
+                <meta name="description" itemprop="description" content="讲解在IntelliJ IDEA中，如何进行Mysql数据库的配置">
+        <title>使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://my.oschina.net/img/favicon.ico?t=1451961935000">
+
+                        <meta itemprop="name" content="使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区">
+<meta itemprop="image" content="https://www.oschina.net/img/logo_s2.png">
+
+
+            <link type="text/css" href="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/icon-svg.min.css" rel="stylesheet">
+                    <link type="text/css" href="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/blog.min.css" rel="stylesheet">
+            
+            <script src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/share.js"></script><script src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/share.js"></script><link rel="stylesheet" href="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/share_style0_16.css"></head><body youdao="bind"><val data-name="isMobileDevice" data-value="false"></val>
+    
+    <x-foo-define data-define="blog_detail"></x-foo-define>
+    <val data-name="owner_id" data-value="2287879"></val>
+    <val data-name="owner_home_url" data-value="https://my.oschina.net/gaussik"></val>
+    <val data-name="this_page" data-value="https%3A%2F%2Fmy.oschina.net%2Fgaussik%2Fblog%2F513444"></val>
+
+            <val data-name="g_user_login" data-value="false"></val>
+        <val data-name="goto_this_page" data-value="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fgaussik%2Fblog%2F513444"></val>
+        <val data-name="is_owner" data-value="false"></val>
+            <val data-name="blog_id" data-value="513444"></val>
+                    
+
+            <header class="header-navbar">
+    <div class="layout-flex top-banner">
+        <div class="flex-grow">
+            <a href="https://www.oschina.net/" class="osc-logo"></a>
+            <div class="menus sm-hide">
+               <a class="menu-item" href="https://www.oschina.net/">首页</a>
+               <div class="menu-item menu-drop">
+                   <a href="https://www.oschina.net/project" class="project">
+                       开源项目
+                       <i class="icon-svg icon-arr-down-white"></i>
+                   </a>
+                   <div class="menu-drop-down">
+                       <ul class="drop-list">
+                           <li><a href="https://www.oschina.net/project/zh">国产开源项目</a></li>
+                           <li><a href="https://www.oschina.net/project/tags">项目分类</a></li>
+                           <li><a href="https://www.oschina.net/project/list?sort=time">最新收录项目</a></li>
+                           <li class="split"></li>
+                           <li><a href="https://www.oschina.net/project/lang/19/java">Java 开源软件</a></li>
+                           <li><a href="https://www.oschina.net/project/lang/194/csharp">C# 开源软件</a></li>
+                           <li><a href="https://www.oschina.net/project/lang/22/php">PHP 开源软件</a></li>
+                           <li><a href="https://www.oschina.net/project/lang/21/c">C/C++ 开源软件</a></li>
+                           <li><a href="https://www.oschina.net/project/lang/26/ruby">Ruby 开源软件</a></li>
+                           <li><a href="https://www.oschina.net/project/lang/25/python">Python 开源软件</a></li>
+                           <li><a href="https://www.oschina.net/project/lang/358/go">Go开源软件</a></li>
+                           <li><a href="https://www.oschina.net/project/lang/28/javascript">JS开源软件</a></li>
+                       </ul>
+                   </div>
+               </div>
+               <div class="menu-item menu-drop">
+                   <a href="https://www.oschina.net/question" class="question">
+                       问答
+                       <i class="icon-svg icon-arr-down-white"></i>
+                   </a>
+                   <div class="menu-drop-down">
+                       <ul class="drop-list">
+                           <li><a href="https://www.oschina.net/question?catalog=1"> 技术问答</a></li>
+                           <li><a href="https://www.oschina.net/question?catalog=2"> 技术分享</a></li>
+                           <li><a href="https://www.oschina.net/question?catalog=3"> IT大杂烩</a></li>
+                           <li><a href="https://www.oschina.net/question?catalog=100"> 职业生涯</a></li>
+                           <li><a href="https://www.oschina.net/question?catalog=4"> 站务/建议</a></li>
+                           <li><a href="https://www.oschina.net/alipay"> 支付宝专区</a></li>
+                           <li><a href="https://www.oschina.net/mopaas"> MoPaaS专区</a></li>
+                           <li><a href="https://www.oschina.net/hardware"> 开源硬件专区</a></li>
+                       </ul>
+                   </div>
+               </div>
+               <a href="https://www.oschina.net/tweets" class="menu-item tweets">动弹</a>
+               <a href="https://www.oschina.net/blog" class="menu-item blog">博客</a>
+               <a href="https://www.oschina.net/translate" class="menu-item tran">翻译</a>
+               <a href="https://www.oschina.net/news" class="menu-item news">资讯</a>
+               <div class="menu-item menu-drop">
+                   <a href="https://www.oschina.net/android" class="mobile">
+                       专题
+                       <i class="icon-svg icon-arr-down-white"></i>
+                   </a>
+                   <div class="menu-drop-down">
+                       <ul class="drop-list drop-list-inline">
+                           <li><a href="https://www.oschina.net/events" class="font-red">源创会</a> <a href="https://www.oschina.net/video">视频</a></li>
+                           <li><a href="https://www.oschina.net/question/tag/%E9%AB%98%E6%89%8B%E9%97%AE%E7%AD%94">高手问答</a> <a href="https://www.oschina.net/question/tag/%E5%BC%80%E6%BA%90%E8%AE%BF%E8%B0%88">访谈</a></li>
+                           <li><a href="https://www.oschina.net/question/tag/%E5%BC%80%E6%BA%90%E5%91%A8%E5%88%8A">周刊</a> <a href="https://my.oschina.net/xxiaobian/blog?catalog=547834">乱弹</a></li>
+                           <li><a href="https://www.oschina.net/company">公司开源导航页</a></li>
+                       </ul>
+                       <div class="split"></div>
+                       <ul class="drop-list mobile">
+                           <li class="android"><a href="https://www.oschina.net/android">Android开发专区</a></li>
+                           <li class="ios"><a href="https://www.oschina.net/ios/home">iOS开发专区</a></li>
+                           <li class="ios"><a href="https://www.oschina.net/ios/codingList">iOS代码库</a></li>
+                           <li class="wp7"><a href="https://www.oschina.net/wp">Windows Phone</a></li>
+                       </ul>
+                   </div>
+               </div>
+                               <div class="menu-item menu-drop">
+                   <a id="MyCities" href="https://city.oschina.net/">
+                       城市圈
+                       <i class="icon-svg icon-arr-down-white"></i>
+                   </a>
+                   <div class="menu-drop-down">
+                                               <ul class="drop-list city-all">
+                           <li><a href="https://city.oschina.net/">全部城市圈</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+
+        </div>
+        <div class="user-bar">
+            <div class="user-info">
+                                                    [ <a href="https://www.oschina.net/home/login?goto_page=https%3A%2F%2Fmy.oschina.net%2Fgaussik%2Fblog%2F513444">登录</a> | <a href="https://www.oschina.net/home/reg">注册</a> ]
+                            </div>
+        </div>
+    </div>
+</header>    <div>
+                        
+
+
+<val data-name="is_login" data-value="false"></val>
+<val data-name="hljs_js_url" data-value="/dist/www/vendor/highlight/9.5.0/highlight.js?t=1475078300000"></val>
+<val data-name="hljs_css_url" data-value="/build/www/vendor/highlight/9.4.0/styles/zenburn.css?t=1474299593000"></val>
+
+<val data-name="atwho_js_url" data-value="/dist/www/vendor/jquery.atwho/jquery.atwho.js?t=1475078300000"></val>
+<val data-name="atwho_css_url" data-value="/dist/www/vendor/jquery.atwho/jquery.atwho.css?t=1471280191000"></val>
+<val data-name="user_follow_url" data-value="/action/user/follow"></val>
+<val data-name="user_unfollow_url" data-value="/action/user/unfollow"></val>
+
+<!-- content     -->
+<div class="blog blog-article">
+    <div class="">
+        <!-- 侧边栏-目录 -->
+                                <div class="blog-wrapper">
+                <div class="sidebar md-hide">
+                    <div class="catalogWrap" id="catalogWrap">
+                        <span class="sidebar-scrollbar"></span>
+                        <ul class="anchor-content" id="catalogWrapMenu">
+                                                    </ul>
+                    </div>
+                </div>
+            </div>
+                            <div class="blog-wrapper">
+            <div class="back-list">
+                <a href="https://my.oschina.net/gaussik/blog" class="font-green">Gaussic的博客</a> &gt; 详情
+            </div>
+        </div>
+
+        <!-- 广告 -->
+                <div class="blog-title-ad">
+            <div class="blog-wrapper">
+                
+<!--<p style="margin:0 0 10px 0;"><a style="color:#A00;font-weight:bold;" href="http://www.oschina.net/events" target="_blank">盛夏7月，OSC源创会走进济南青岛~！ &gt;&gt;&gt;</a>&nbsp;&nbsp;<img src="http://my.oschina.net/img/hot3.png" align="absmiddle"></p>-->
+
+<!--<a href="http://click.aliyun.com/m/6857/" target="_blank">
+<img src="http://static.oschina.net/uploads/space/2016/1018/111014_CqGM_2702053.jpg" style="width:800px;"></a>-->
+
+<div id="blog-title-ad" data-traceid="blog_ali" data-tracepid="blogup" style=""></div>
+<script>
+    function success_jsonpCallback(data) {
+        var obj = eval(data);
+        if( obj.success ){
+            var contents = eval(obj.data[0].content);
+            if(contents.length > 0){
+                var content = contents[0];
+                $('#blog-title-ad').prepend("<a  href='"+ content.url +"' target='_blank' style='max-width:780px;'><img src='"+content.img+"'/></a>");
+                $('#blog-title-ad').show();
+            }
+            
+        }else {
+            $('#blog-title-ad').hide();
+        }
+    }
+    window.addEventListener("load", function() {
+         var url="https://promotion.aliyun.com/promotion/adv/getAliyunAdv.htm?cback=success_jsonpCallback&s=9cd174d9efd443e3982131f97b07e70f&p=page_1470989078421&pin=pos_1475239274174";
+        $.ajax({
+            type: 'POST',
+            url: url,
+            jsonp: "callback",
+            dataType: 'jsonp',
+            jsonpCallback: 'success_jsonpCallback',
+            contentType: "application/json; charset=utf-8",
+            success: function( response ) {
+                // do in callback
+            },
+            error:function(){
+                $('#blog-title-ad').hide();
+            }
+        });
+    }, false);
+</script>            </div>
+        </div>
+                <div class="float-heading">
+            <div class="blog-wrapper">
+                <div class="layout-flex">
+                    <div class="flex-grow">
+                        <div class="heading">使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置</div>
+                        <div class="data-info">
+                            <a href="https://my.oschina.net/gaussik/home" class="link-blue" target="_blank">Gaussic</a>
+                            发表于1年前
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="opr-btn">
+                            <div class="opr-btn-blog btn-reward-blog ">
+                                <a href="javascript:void(0)" data-popupbox-model="reward">
+                                    <i class="icon-svg icon-reward-blog"></i>
+                                </a>
+                            </div>
+                            <!-- 点赞 -->
+                            <div class="opr-btn-blog btn-like-blog ">
+                                                                <a href="javascript:void(0);" class="" onclick="page.vote(513444);">
+                                    <i class="icon-svg icon-thumbs-o-up-blog"></i>
+                                </a>
+                            </div>
+                                                            <!-- 收藏 -->
+                                <div class="opr-btn-blog btn-favor-blog  hover">
+                                    <a href="javascript:void(0);" class=" " data-blogid="513444" data-blogtype="3" data-userid="" data-thispage="https://my.oschina.net/gaussik/blog/513444">
+                                        <i class="icon-svg icon-star-blog"></i>
+                                     
+                                    </a>
+                                                                    </div>
+
+                                                        <!-- 分享 -->
+                            <div class="opr-btn-blog btn-share-blog hover">
+                                <a href="javascript:void(0);" class="">
+                                    <i class="icon-svg icon-share-o-blog"></i>
+                                </a>
+                                <div class="operate-dropdown share-dropdown">
+                                    <span class="share-title">分享到：</span>
+                                    <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1478497923182">
+                                        <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享">一键分享</a>
+                                        <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+                                        <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+                                        <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+                                        <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+                                        <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友">QQ好友</a>
+                                        <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记">有道云笔记</a>
+                                    </div>
+                                    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","weixin","tqq","sqq"],"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/bdshare_api/share.js?t=1466497475000'];</script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 文章内容 -->
+        <div class="blog-content">
+            <!-- 标题 -->
+            <div class="blog-heading">
+                <div class="title">
+                    <span class="status-tag original" title="原创博客">原</span>                                                                                使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置
+                </div>
+                <div class="info-opr layout">
+                    <div class="layout-right">
+                                                    
+                                                                <!-- 收藏 -->
+                                <div class="opr-btn-blog btn-favor-blog favor hover">
+                                    <a href="javascript:void(0);" class="btn btn-black-blog " data-blogid="513444" data-blogtype="3" data-userid="" data-thispage="https://my.oschina.net/gaussik/blog/513444">
+                                        <i class="icon-svg icon-star-blog"></i>
+                                     <span id="" class="operate_title">
+                                                                                    收藏
+                                                                             </span>
+                                    </a>
+                                                                    </div>
+                                                                        </div>
+                    <div class="layout-column">
+                        <div class="user-info">
+                                                                                                                <div class="name">
+                                <a href="https://my.oschina.net/gaussik/home" target="_blank">Gaussic</a>
+                            </div>
+                        </div>
+                        <div class="data-info text-gary">
+                            <ul>
+                                <li class="time">发表于 <span id="">1年前</span></li>
+                                <li class="read">阅读 <span id="read">20318</span></li>
+                                <li class="favor">收藏 <span id="">23</span></li>
+                                <li class="vote">点赞 <span id="">6</span></li>
+                                <li class="comment">
+                                    <a href="https://my.oschina.net/gaussik/blog/513444#comment-list" data-href="#comment-list" class="link-blue">
+                                        评论 <span id="comment">61</span>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                        
+                </div>
+            </div>
+            <!-- 摘要 -->
+                            <div class="blog-abstract">
+                    摘要: 讲解在IntelliJ IDEA中，如何进行Mysql数据库的配置
+                </div>
+                        <!-- 正文 -->
+            <div class="blog-body" id="blogBody">
+                                    <val data-name="blog_content_type" data-value="richtext"></val>
+                    <div class="BlogContent">
+                        <p>转载请注明出处：<a href="http://my.oschina.net/gaussik/blog" target="_self" rel="nofollow">Gaussic（一个致力于AI研究却不得不兼顾项目的研究生</a>）。</p> 
+<p>注：在阅读本文前，请先阅读：</p> 
+<p><a href="http://my.oschina.net/gaussik/blog/385697" target="_self" rel="nofollow">使用IntelliJ IDEA开发SpringMVC网站（一）开发环境</a></p> 
+<p><a href="http://my.oschina.net/gaussik/blog/513353" target="_self" rel="nofollow">使用IntelliJ IDEA开发SpringMVC网站（二）框架配置</a></p> 
+<p>访问GitHub下载最新源码：<a href="https://github.com/gaussic/SpringMVCDemo" target="_blank" rel="nofollow">https://github.com/gaussic/SpringMVCDemo</a></p> 
+<span id="OSC_h4_1"></span>
+<h4><span style="color:rgb(255,0,0)">文章已针对IDEA 15做了一定的更新，部分更新较为重要，请重新阅读文章并下载最新源码。</span></h4> 
+<span id="OSC_h3_2"></span>
+<h3>六、数据库配置</h3> 
+<p>&nbsp; &nbsp; &nbsp; 下面，就要通过一个简单的例子，来介绍SpringMVC如何集成Spring Data JPA（由 Hibernate JPA 提供），来进行强大的数据库访问，并通过本章节的讲解，更加深刻地认识Controller是如何进行请求处理的，相信看完这一章节，你就可以开始你的开发工作了。</p> 
+<p><span style="color:rgb(84,141,212)">准备工作：</span></p> 
+<p><span style="color:rgb(84,141,212)">&nbsp;&nbsp;&nbsp;&nbsp;在src\main\java中新建两个包：com.gaussic.model、com.gaussic.repository，将在后面用上，如下图所示：</span></p> 
+<p><span style="color:rgb(84,141,212)"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/140541_vzfm_2287879.png"></span></p> 
+<span id="OSC_h4_3"></span>
+<h4>1、创建Mysql数据库</h4> 
+<p>&nbsp; &nbsp; &nbsp; 本文的讲解使用Mysql数据库，如果使用其它数据库的读者，可以去网上参考其他的配置教程，在此不做太多的叙述。数据库是一个底层的东西，底层的细节对上层的抽象并没有太大的影响，因此，只要配置好数据库，本章的内容仍然是适用于所有数据库的（貌似如此）。</p> 
+<p>&nbsp; &nbsp; &nbsp; 假设我们现在要建立一个小小的博客系统，其数据库ER图如下所示（当然这只是一个小小的例子，真实的博客系统比这要复杂的多）：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/165825_C5z3_2287879.png"></p> 
+<p>&nbsp; &nbsp; 新建一个数据库springdemo，在数据库中，有两张表：</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;（1）用户表user：用户登录信息，<span style="color:rgb(255,0,0)">主键id设为自增</span>；</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;（2）博文表blog：储存用户发表的博文，<span style="color:rgb(255,0,0)">主键id设为自增</span>，其中有一个外键user_id链接到user表。</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;详细表结构如下图所示：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/154242_uNGE_2287879.png"></p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/165707_Xx0o_2287879.png"></p> 
+<p>使用MySQL Workbench添加外键流程：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/154625_EKjj_2287879.png"></p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/170158_DzeJ_2287879.png"></p> 
+<p><span style="color:rgb(255,0,0)">注意</span>：在添加外键时，应该根据需求设置，例如右边红框中的Foreign Key Options，默认在Delete时是NO ACTION，说明在删除一个用户时，如果数据库中存在该用户的文章，那么就无法删除该用户，也无法删除该用户的所有文章，而如果将该选项改为CASCADE，那么删除该用户，就会同时删除该用户所有的文章。通常后者是不太可取的，因为如果发生了删除用户的误操作，很有可能该用户的内容被连带删除，且不可逆，这也是实现真实系统时需要考虑的原因之一。</p> 
+<span id="OSC_h4_4"></span>
+<h4>2、IntelliJ IDEA导入数据库</h4> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;对于此前所接触的一些常用的框架中，一张数据表往往对应一个Java Bean。在SpringMVC中，这个Java Bean相当于model。那么，这个类是否需要自己来写呢？不需要，利用IntelliJ IDEA可以帮我们自动的生成这些JavaBean。</p> 
+<p>&nbsp; &nbsp; 首先，右键项目，选择Add Framework Support：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/161733_veHn_2287879.png"></p> 
+<p>下拉选择JavaEE Persistence，右边provider选择Hibernate：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/191503_1Qcl_2287879.png"></p> 
+<p><span style="color:#FF0000">注：这一部分有一点过时，更新的项目中直接把数据库的配置放在了mvc-dispatcher-servlet.xml中，但依然要做这一步的操作，为了这一步可以使用Persistence的工具。</span></p> 
+<p><span style="color:#FF0000">关于新的配置，可以翻到博客底部。</span></p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在这一步结束后，我们可以发现，在resources里面生成了persistence.xml配置文件，左边栏出现了一个Persistence标题（若没有请点击左下角那个灰框）：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/191743_X28m_2287879.png"></p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;persistemce.xml具体如下：</p> 
+<pre><code>&lt;?xml&nbsp;version="1.0"&nbsp;encoding="UTF-8"?&gt;
+&lt;persistence&nbsp;xmlns="http://java.sun.com/xml/ns/persistence"&nbsp;version="2.0"&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;persistence-unit&nbsp;name="NewPersistenceUnit"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;provider&gt;org.hibernate.ejb.HibernatePersistence&lt;/provider&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;properties&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.url"&nbsp;value=""/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.driver_class"&nbsp;value=""/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.username"&nbsp;value=""/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.password"&nbsp;value=""/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.archive.autodetection"&nbsp;value="class"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.show_sql"&nbsp;value="true"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.format_sql"&nbsp;value="true"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hbm2ddl.auto"&nbsp;value="update"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/properties&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/persistence-unit&gt;
+&lt;/persistence&gt;</code></pre> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;我们先不着急填写这个配置文件。点开左边栏的Persistence，显示如下图所示：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/191844_e9cw_2287879.png"></p> 
+<p>右键项目名，选择Generate Persistence Mapping，再选择By Database Schema：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/191911_tyeY_2287879.png"></p> 
+<p>出现如下界面，其主要需要配置的地方如下图红框所示：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/163428_RxJL_2287879.png"></p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;点击Choose Data Source右边的三个点选择数据源，在弹出的界面左上角选择“+”，选择Mysql：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/163618_u1DC_2287879.png"></p> 
+<p>在如下界面填写主机、端口号、数据库名、用户名、密码，如果驱动丢失点击下面的Download可以下载驱动，点击 Test Connection可以测试数据库是否连接成功：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/163808_eb51_2287879.png"></p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;在以上界面配置完成后，点OK，第一次使用需要Setup Master Password：</p> 
+<p>&nbsp; &nbsp;&nbsp;<img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/164622_rs6v_2287879.png"></p> 
+<p>&nbsp; &nbsp; 回到如下页面，package填写model包（1），勾选Prefer primitive type使用原始数据类型（2），勾选Show default relationships以显示所有数据库关系（3），再点击刷新按钮（4），将会找到数据库中的两个表，勾选两个数据表（5），再勾选Generate Column Defination以生成每一列的描述信息（6）。选中blog表然后点击“+”号按钮，添加外键关系（7）。</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/205813_NmEP_2287879.png"></p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/210658_pKKH_2287879.png"></p> 
+<p>&nbsp; &nbsp; 点击OK后，在Database Schema Mapping中可以发现多出了两个关系，如图所示：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/210911_nFZM_2287879.png"></p> 
+<p>&nbsp; &nbsp;再点击OK，稍后，打开model包，可以看到生成了两个Java Bean，在SpringMVC中称为两个实体，它们对应了数据库的两张表：</p> 
+<p><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/170744_KzXw_2287879.png"></p> 
+<p>BlogEntity如下所示（<span style="color:rgb(255,192,0)">注意把java.sql.Date改为java.util.Date</span>）：</p> 
+<pre><code>package&nbsp;com.gaussic.model;
+
+import&nbsp;javax.persistence.*;
+import&nbsp;java.util.Date;
+
+/**
+&nbsp;*&nbsp;Created&nbsp;by&nbsp;dzkan&nbsp;on&nbsp;2016/3/8.
+&nbsp;*/
+@Entity
+@Table(name&nbsp;=&nbsp;"blog",&nbsp;schema&nbsp;=&nbsp;"springdemo",&nbsp;catalog&nbsp;=&nbsp;"")
+public&nbsp;class&nbsp;BlogEntity&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;title;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;content;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Date&nbsp;pubDate;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;UserEntity&nbsp;userByUserId;
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Id
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"id",&nbsp;nullable&nbsp;=&nbsp;false)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;int&nbsp;getId()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setId(int&nbsp;id)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.id&nbsp;=&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Basic
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"title",&nbsp;nullable&nbsp;=&nbsp;false,&nbsp;length&nbsp;=&nbsp;100)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getTitle()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;title;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setTitle(String&nbsp;title)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.title&nbsp;=&nbsp;title;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Basic
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"content",&nbsp;nullable&nbsp;=&nbsp;true,&nbsp;length&nbsp;=&nbsp;255)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getContent()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;content;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setContent(String&nbsp;content)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.content&nbsp;=&nbsp;content;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Basic
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"pub_date",&nbsp;nullable&nbsp;=&nbsp;false)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Date&nbsp;getPubDate()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;pubDate;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setPubDate(Date&nbsp;pubDate)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.pubDate&nbsp;=&nbsp;pubDate;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;boolean&nbsp;equals(Object&nbsp;o)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this&nbsp;==&nbsp;o)&nbsp;return&nbsp;true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(o&nbsp;==&nbsp;null&nbsp;||&nbsp;getClass()&nbsp;!=&nbsp;o.getClass())&nbsp;return&nbsp;false;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BlogEntity&nbsp;that&nbsp;=&nbsp;(BlogEntity)&nbsp;o;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(id&nbsp;!=&nbsp;that.id)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(title&nbsp;!=&nbsp;null&nbsp;?&nbsp;!title.equals(that.title)&nbsp;:&nbsp;that.title&nbsp;!=&nbsp;null)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(content&nbsp;!=&nbsp;null&nbsp;?&nbsp;!content.equals(that.content)&nbsp;:&nbsp;that.content&nbsp;!=&nbsp;null)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(pubDate&nbsp;!=&nbsp;null&nbsp;?&nbsp;!pubDate.equals(that.pubDate)&nbsp;:&nbsp;that.pubDate&nbsp;!=&nbsp;null)&nbsp;return&nbsp;false;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;true;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;int&nbsp;hashCode()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;result&nbsp;=&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;31&nbsp;*&nbsp;result&nbsp;+&nbsp;(title&nbsp;!=&nbsp;null&nbsp;?&nbsp;title.hashCode()&nbsp;:&nbsp;0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;31&nbsp;*&nbsp;result&nbsp;+&nbsp;(content&nbsp;!=&nbsp;null&nbsp;?&nbsp;content.hashCode()&nbsp;:&nbsp;0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;31&nbsp;*&nbsp;result&nbsp;+&nbsp;(pubDate&nbsp;!=&nbsp;null&nbsp;?&nbsp;pubDate.hashCode()&nbsp;:&nbsp;0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;result;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@ManyToOne
+&nbsp;&nbsp;&nbsp;&nbsp;@JoinColumn(name&nbsp;=&nbsp;"user_id",&nbsp;referencedColumnName&nbsp;=&nbsp;"id",&nbsp;nullable&nbsp;=&nbsp;false)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;UserEntity&nbsp;getUserByUserId()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;userByUserId;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setUserByUserId(UserEntity&nbsp;userByUserId)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.userByUserId&nbsp;=&nbsp;userByUserId;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</code></pre> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;再看UserEntity：</p> 
+<pre><code>package&nbsp;com.gaussic.model;
+
+import&nbsp;javax.persistence.*;
+import&nbsp;java.util.Collection;
+
+/**
+&nbsp;*&nbsp;Created&nbsp;by&nbsp;dzkan&nbsp;on&nbsp;2016/3/8.
+&nbsp;*/
+@Entity
+@Table(name&nbsp;=&nbsp;"user",&nbsp;schema&nbsp;=&nbsp;"springdemo",&nbsp;catalog&nbsp;=&nbsp;"")
+public&nbsp;class&nbsp;UserEntity&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;int&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;nickname;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;password;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;firstName;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;String&nbsp;lastName;
+&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;Collection&lt;BlogEntity&gt;&nbsp;blogsById;
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Id
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"id",&nbsp;nullable&nbsp;=&nbsp;false)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;int&nbsp;getId()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setId(int&nbsp;id)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.id&nbsp;=&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Basic
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"nickname",&nbsp;nullable&nbsp;=&nbsp;false,&nbsp;length&nbsp;=&nbsp;45)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getNickname()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;nickname;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setNickname(String&nbsp;nickname)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.nickname&nbsp;=&nbsp;nickname;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Basic
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"password",&nbsp;nullable&nbsp;=&nbsp;false,&nbsp;length&nbsp;=&nbsp;45)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getPassword()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;password;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setPassword(String&nbsp;password)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.password&nbsp;=&nbsp;password;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Basic
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"first_name",&nbsp;nullable&nbsp;=&nbsp;true,&nbsp;length&nbsp;=&nbsp;45)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getFirstName()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;firstName;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setFirstName(String&nbsp;firstName)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.firstName&nbsp;=&nbsp;firstName;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Basic
+&nbsp;&nbsp;&nbsp;&nbsp;@Column(name&nbsp;=&nbsp;"last_name",&nbsp;nullable&nbsp;=&nbsp;true,&nbsp;length&nbsp;=&nbsp;45)
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;String&nbsp;getLastName()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;lastName;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setLastName(String&nbsp;lastName)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.lastName&nbsp;=&nbsp;lastName;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;boolean&nbsp;equals(Object&nbsp;o)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this&nbsp;==&nbsp;o)&nbsp;return&nbsp;true;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(o&nbsp;==&nbsp;null&nbsp;||&nbsp;getClass()&nbsp;!=&nbsp;o.getClass())&nbsp;return&nbsp;false;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UserEntity&nbsp;that&nbsp;=&nbsp;(UserEntity)&nbsp;o;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(id&nbsp;!=&nbsp;that.id)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(nickname&nbsp;!=&nbsp;null&nbsp;?&nbsp;!nickname.equals(that.nickname)&nbsp;:&nbsp;that.nickname&nbsp;!=&nbsp;null)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(password&nbsp;!=&nbsp;null&nbsp;?&nbsp;!password.equals(that.password)&nbsp;:&nbsp;that.password&nbsp;!=&nbsp;null)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(firstName&nbsp;!=&nbsp;null&nbsp;?&nbsp;!firstName.equals(that.firstName)&nbsp;:&nbsp;that.firstName&nbsp;!=&nbsp;null)&nbsp;return&nbsp;false;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(lastName&nbsp;!=&nbsp;null&nbsp;?&nbsp;!lastName.equals(that.lastName)&nbsp;:&nbsp;that.lastName&nbsp;!=&nbsp;null)&nbsp;return&nbsp;false;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;true;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@Override
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;int&nbsp;hashCode()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;result&nbsp;=&nbsp;id;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;31&nbsp;*&nbsp;result&nbsp;+&nbsp;(nickname&nbsp;!=&nbsp;null&nbsp;?&nbsp;nickname.hashCode()&nbsp;:&nbsp;0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;31&nbsp;*&nbsp;result&nbsp;+&nbsp;(password&nbsp;!=&nbsp;null&nbsp;?&nbsp;password.hashCode()&nbsp;:&nbsp;0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;31&nbsp;*&nbsp;result&nbsp;+&nbsp;(firstName&nbsp;!=&nbsp;null&nbsp;?&nbsp;firstName.hashCode()&nbsp;:&nbsp;0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;31&nbsp;*&nbsp;result&nbsp;+&nbsp;(lastName&nbsp;!=&nbsp;null&nbsp;?&nbsp;lastName.hashCode()&nbsp;:&nbsp;0);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;result;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;@OneToMany(mappedBy&nbsp;=&nbsp;"userByUserId")
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;Collection&lt;BlogEntity&gt;&nbsp;getBlogsById()&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;blogsById;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;void&nbsp;setBlogsById(Collection&lt;BlogEntity&gt;&nbsp;blogsById)&nbsp;{
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.blogsById&nbsp;=&nbsp;blogsById;
+&nbsp;&nbsp;&nbsp;&nbsp;}
+}</code></pre> 
+<span id="OSC_h4_5"></span>
+<h4>3、配置数据库</h4> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;既然数据库已经导入了，那么前期准备工作基本完成，还需要进行最终的配置。</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;首先，打开mvc-dispatcher-servlet.xml，添加下列配置（如果某些地方报错，请选中并按Alt + Insert补全配置）：</p> 
+<pre><code>&lt;!--&nbsp;表示JPA&nbsp;Repository所在的包&nbsp;--&gt;
+&lt;jpa:repositories&nbsp;base-package="com.gaussic.repository"/&gt;
+
+&lt;!--&nbsp;链接到persistence.xml&nbsp;--&gt;
+&lt;bean&nbsp;id="entityManagerFactory"&nbsp;class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="persistenceUnitName"&nbsp;value="defaultPersistenceUnit"/&gt;
+&lt;/bean&gt;
+
+&lt;!--&nbsp;事务管理&nbsp;--&gt;
+&lt;bean&nbsp;id="transactionManager"&nbsp;class="org.springframework.orm.jpa.JpaTransactionManager"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="entityManagerFactory"&nbsp;ref="entityManagerFactory"/&gt;
+&lt;/bean&gt;
+
+&lt;!--&nbsp;开启事务管理注解&nbsp;--&gt;
+&lt;tx:annotation-driven&nbsp;transaction-manager="transactionManager"/&gt;</code></pre> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;讲解：</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;（1） jpa:repositories：这一部分涉及到数据库的接口，将在后面详解；</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;（2）entityManagerFactory：实体管理器工厂，读取persistence.xml配置；</p> 
+<p>&nbsp; &nbsp; （3）transactionManager：事务管理器，利用entityManager进行事务管理；</p> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;（4）tx:annotation-driven：打开事务管理器的注解驱动，可以使用注解的方法操纵数据库。</p> 
+<p>整体如下所示：</p> 
+<pre><code>&lt;?xml&nbsp;version="1.0"&nbsp;encoding="UTF-8"?&gt;
+&lt;beans&nbsp;xmlns="http://www.springframework.org/schema/beans"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:context="http://www.springframework.org/schema/context"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:mvc="http://www.springframework.org/schema/mvc"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xmlns:tx="http://www.springframework.org/schema/tx"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xsi:schemaLocation="http://www.springframework.org/schema/beans&nbsp;http://www.springframework.org/schema/beans/spring-beans.xsd
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/context&nbsp;http://www.springframework.org/schema/context/spring-context.xsd
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/mvc&nbsp;http://www.springframework.org/schema/mvc/spring-mvc.xsd
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/data/jpa&nbsp;http://www.springframework.org/schema/data/jpa/spring-jpa.xsd&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://www.springframework.org/schema/tx&nbsp;http://www.springframework.org/schema/tx/spring-tx.xsd"&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--指明&nbsp;controller&nbsp;所在包，并扫描其中的注解--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;context:component-scan&nbsp;base-package="com.gaussic.controller"/&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;静态资源(js、image等)的访问&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;mvc:default-servlet-handler/&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;开启注解&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;mvc:annotation-driven/&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--ViewResolver&nbsp;视图解析器--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--用于支持Servlet、JSP视图解析--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;bean&nbsp;id="jspViewResolver"&nbsp;class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="viewClass"&nbsp;value="org.springframework.web.servlet.view.JstlView"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="prefix"&nbsp;value="/WEB-INF/pages/"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="suffix"&nbsp;value=".jsp"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/bean&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;表示JPA&nbsp;Repository所在的包&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;jpa:repositories&nbsp;base-package="com.gaussic.repository"/&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;链接到persistence.xml&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;bean&nbsp;id="entityManagerFactory"&nbsp;class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="persistenceUnitName"&nbsp;value="defaultPersistenceUnit"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/bean&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;事务管理&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;bean&nbsp;id="transactionManager"&nbsp;class="org.springframework.orm.jpa.JpaTransactionManager"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="entityManagerFactory"&nbsp;ref="entityManagerFactory"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/bean&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;开启事务管理注解&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;tx:annotation-driven&nbsp;transaction-manager="transactionManager"/&gt;
+&lt;/beans&gt;</code></pre> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;下面，填充persistence.xml，<em><strong><span style="color:#ff0000">将persistence-unit的name改为 defaultPersistenceUnit</span></strong></em>。在下面的文件中，我添加了一些更为详细的配置：</p> 
+<pre><code>&lt;?xml&nbsp;version="1.0"&nbsp;encoding="UTF-8"?&gt;
+&lt;persistence&nbsp;xmlns="http://java.sun.com/xml/ns/persistence"&nbsp;version="2.0"&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;persistence-unit&nbsp;name="defaultPersistenceUnit"&nbsp;&nbsp;transaction-type="RESOURCE_LOCAL"&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;provider&gt;org.hibernate.ejb.HibernatePersistence&lt;/provider&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;properties&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;使用MySQL方言&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.dialect"&nbsp;value="org.hibernate.dialect.MySQL5Dialect"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;数据库连接的URL地址&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.url"
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value="jdbc:mysql://localhost:3306/springdemo"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;数据库连接的驱动&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.driver_class"&nbsp;value="com.mysql.jdbc.Driver"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;数据库连接的用户名&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.username"&nbsp;value="root"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;数据库连接的密码&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.password"&nbsp;value="111111"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;显示SQL语句&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.show_sql"&nbsp;value="true"/&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.useUnicode"&nbsp;value="true"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.characterEncoding"&nbsp;value="UTF-8"/&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;在显示SQL语句时格式化语句&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.format_sql"&nbsp;value="true"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.use_sql_comments"&nbsp;value="false"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;自动输出schema创建DDL语句&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.hbm2ddl.auto"&nbsp;value="update"/&gt;
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!--&nbsp;数据库连接超时后自动重连&nbsp;--&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="hibernate.connection.autoReconnect"&nbsp;value="true"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="connection.autoReconnectForPools"&nbsp;value="true"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;property&nbsp;name="connection.is-connection-validation-required"&nbsp;value="true"/&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/properties&gt;
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/persistence-unit&gt;
+&lt;/persistence&gt;</code></pre> 
+<p>&nbsp;&nbsp;&nbsp;&nbsp;现在，重新启动tomcat，如果没有报错，说明数据库已经配置完成了，接下来就要讲解数据库的相关开发工作。</p> 
+<p>&nbsp;</p> 
+<span id="OSC_h3_6"></span>
+<h3><span style="color:rgb(255,0,0)">更新：</span></h3> 
+<p>&nbsp; &nbsp; &nbsp; 阅读评论发现许多同学的persistence.xml出现了问题，因为出现问题的原因可能有很多，如果没有完全的报错以及代码的话，我这边很难解决问题，一个办法就是在<a href="https://github.com/gaussic/SpringMVCDemo/issues" target="_blank" rel="nofollow">GitHub Issues</a>上面提问并贴出代码，我这边尽量解答。另一个办法就是下载最新的代码运行看有没有什么问题。</p> 
+<p>&nbsp; &nbsp; &nbsp; &nbsp;最后一个办法，尝试另外一种配置方法，无需persistence.xml，直接在mvc-dispatcher-servlet.xml中配置数据库，如下所示：</p> 
+<pre><code class="language-xml">    &lt;bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"&gt;
+        &lt;property name="persistenceUnitName" value="defaultPersistenceUnit"/&gt;
+        &lt;property name="packagesToScan" value="com.gaussic.model" /&gt;
+        &lt;property name="jpaVendorAdapter"&gt;
+            &lt;bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/&gt;
+        &lt;/property&gt;
+        &lt;property name="jpaProperties"&gt;
+            &lt;props&gt;
+                &lt;prop key="hibernate.connection.driver_class"&gt;com.mysql.jdbc.Driver&lt;/prop&gt;
+                &lt;prop key="hibernate.connection.url"&gt;jdbc:mysql://localhost:3306/springdemo?useSSL=false&lt;/prop&gt;
+                &lt;prop key="hibernate.connection.username"&gt;root&lt;/prop&gt;
+                &lt;prop key="hibernate.connection.password"&gt;111111&lt;/prop&gt;
+                &lt;prop key="hibernate.show_sql"&gt;false&lt;/prop&gt;
+                &lt;prop key="hibernate.connection.useUnicode"&gt;true&lt;/prop&gt;
+                &lt;prop key="hibernate.connection.characterEncoding"&gt;UTF-8&lt;/prop&gt;
+                &lt;prop key="hibernate.format_sql"&gt;true&lt;/prop&gt;
+                &lt;prop key="hibernate.use_sql_comments"&gt;true&lt;/prop&gt;
+                &lt;prop key="hibernate.hbm2ddl.auto"&gt;update&lt;/prop&gt;
+                &lt;prop key="hibernate.connection.autoReconnect"&gt;true&lt;/prop&gt;
+                &lt;prop key="hibernate.dialect"&gt;org.hibernate.dialect.MySQL5Dialect&lt;/prop&gt;
+                &lt;prop key="connection.autoReconnectForPools"&gt;true&lt;/prop&gt;
+                &lt;prop key="connection.is-connection-validation-required"&gt;true&lt;/prop&gt;
+
+                &lt;prop key="hibernate.c3p0.validate"&gt;true&lt;/prop&gt;
+                &lt;prop key="hibernate.connection.provider_class"&gt;org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider&lt;/prop&gt;
+                &lt;prop key="hibernate.c3p0.min_size"&gt;5&lt;/prop&gt;
+                &lt;prop key="hibernate.c3p0.max_size"&gt;600&lt;/prop&gt;
+                &lt;prop key="hibernate.c3p0.timeout"&gt;1800&lt;/prop&gt;
+                &lt;prop key="hibernate.c3p0.max_statements"&gt;50&lt;/prop&gt;
+                &lt;prop key="hibernate.c3p0.preferredTestQuery"&gt;SELECT 1;&lt;/prop&gt;
+                &lt;prop key="hibernate.c3p0.testConnectionOnCheckout"&gt;true&lt;/prop&gt;
+                &lt;prop key="hibernate.c3p0.idle_test_period"&gt;3000&lt;/prop&gt;
+            &lt;/props&gt;
+        &lt;/property&gt;
+    &lt;/bean&gt;</code></pre> 
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 删除persistence.xml，直接修改entityManagerFactory bean为如上图所示。这个方法可以摆脱persistence.xml的困扰，但是有一个小小的问题，如果之前没有添加Java EE Persistence这个框架的，文中的Persistence工具栏将不会显示。一个解决办法就是，先修改mvc-dispatcher-servlet，然后再添加Java EE Persistence框架，等能够看到Persistence工具栏后，删除persistence.xml，余下的步骤可以继续操作。</p> 
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 转载请注明出处：<a href="http://my.oschina.net/gaussik/blog" target="_self" rel="nofollow">Gaussic（一个致力于AI研究却不得不兼顾项目的研究生</a>）。</p>
+                    </div>
+                            </div>
+            <div class="blog-opr">
+                <!-- 版权 -->
+                <div class="blog-copyright">
+                                            <span title="OSCHINA 博客文章版权属于作者，受法律保护。未经作者同意不得转载。">© 著作权归作者所有</span>
+                                    </div>
+                <!-- 分类、标签、字数 -->
+                <div class="related-info">
+                    <ul>
+                                                    <li class="classify">分类：<span id="classify"><a href="https://my.oschina.net/gaussik/blog?catalog=589117">知识总结</a></span></li>
+                                                <li class="Words">字数：<span id="Words">2956</span></li>
+                                            </ul>
+                </div>
+                <div class="tags">
+                                    </div>
+            </div>
+            <!-- 赞、收藏、分享 -->
+            <div class="operate">
+                <ul>
+                                                            <val data-name="isAllowBlogDonate" data-value="true"></val>
+                                        <!-- 打賞 -->
+                    <li class="opr-btn-blog btn-reward-blog ">
+                        <a href="javascript:void(0);" data-popupbox-model="reward" class="btn btn-black-blog">
+                            <i class="icon-svg icon-reward-blog"></i>
+                             <span id="" class="operate_title">
+                                打赏
+                             </span>
+                        </a>
+                    </li>
+                                        <!-- 点赞 -->
+                    <li class="opr-btn-blog btn-like-blog ">
+                                                <a href="javascript:void(0);" class="btn btn-black-blog" onclick="page.vote(513444);">
+                            <i class="icon-svg icon-thumbs-o-up-blog"></i>
+                             <span id="" class="operate_title">
+                                                                    点赞
+                                                             </span>
+                        </a>
+                    </li>
+                                            <!-- 收藏 -->
+                        <li class="opr-btn-blog btn-favor-blog hover">
+                            <a href="javascript:void(0);" class="btn btn-black-blog " data-blogid="513444" data-blogtype="3" data-userid="" data-thispage="https://my.oschina.net/gaussik/blog/513444">
+                                <i class="icon-svg icon-star-blog"></i>
+                             <span id="" class="operate_title">
+                                                                    收藏
+                                                             </span>
+                            </a>
+                                                    </li>
+
+                                        <!-- 分享 -->
+                    <li class="opr-btn-blog btn-share-blog hover">
+                        <a href="javascript:void(0);" class="btn btn-black-blog">
+                            <i class="icon-svg icon-share-o-blog"></i>
+                            分享
+                        </a>
+                        <div class="operate-dropdown share-dropdown">
+                            <span class="share-title">分享到：</span>
+                            <div class="bdsharebuttonbox bdshare-button-style0-16" data-bd-bind="1478497923182">
+                                <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_mshare" data-cmd="mshare" title="分享到一键分享">一键分享</a>
+                                <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间">QQ空间</a>
+                                <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_weixin" data-cmd="weixin" title="分享到微信">微信</a>
+                                <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博">腾讯微博</a>
+                                <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博">新浪微博</a>
+                                <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友">QQ好友</a>
+                                <a href="https://my.oschina.net/gaussik/blog/513444#" class="bds_youdao" data-cmd="youdao" title="分享到有道云笔记">有道云笔记</a>
+                            </div>
+                            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":["mshare","qzone","tsina","weixin","tqq","sqq"],"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/js/bdshare_api/share.js?t=1466497475000'];</script>
+                        </div>
+                    </li>
+                </ul>
+                <div data-type="tip" data-tip-type="fixed">
+                    <div class="tooltips" id="error_tip"></div>
+                </div>
+
+            </div>
+                        <div class="reward-list hide">
+                <div class="reward-list-title">
+                    共有 <span id="reward-num"></span>  人打赏支持<span id="donate_money"></span>
+                </div>
+                                <div class="donate-user-list" id="donate_user_list">
+                    <p></p>
+                </div>
+            </div>
+                    </div>
+
+        <!-- 个人名片 -->
+        <div class="user-card">
+            <div class="blog-wrapper">
+                <div class="layout-flex">
+                    <div class="flex-grow">
+                        <div class="layout-flex">
+                            <div class="flex-left">
+                                <div class="user-info">
+                                    <div class="icon">
+                                        <a href="https://my.oschina.net/gaussik/home" class="article_editor_head_img" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2287879_100.jpg" align="absmiddle" alt="Gaussic" title="Gaussic" class="LargePortrait"></a>
+                                    </div>
+                                    <div class="follow-status">
+                                                                                    
+                                            <span class="btn btn-green btn-follow " data-follow-value="1" data-follow="btn" data-fansid="2287879"> + 关注 </span>
+                                                                            </div>
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+
+                                <div class="opus-info">
+                                    <div class="title">
+                                        <a href="https://my.oschina.net/gaussik/home" class="name" target="_blank">Gaussic
+                                        </a>
+                                        <div class="medal medal-osc">
+                                                                                                                                                                            </div>
+                                    </div>
+                                    <div class="card-post-info">
+                                                                                                                        <span class="card-address">
+                                             <i class="icon-svg icon-address-blog"></i>
+                                             宝山
+                                        </span>
+                                                                            </div>
+                                    <div class="opus-opr">
+                                        <div class="opus-opr-item">粉丝 <span>172</span></div>
+                                        <div class="opus-opr-item">博文 <span>25</span></div>
+                                        <div class="opus-opr-item">码字总数 <span>56288 </span></div>
+                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-right">
+                        <!-- 技能雷达 -->
+                        <div class="user-radar hide" data-user="2287879">
+                            <div id="radar-skill" style="width: 200px;height: 120px; margin: auto;" data-detail="https://www.oschina.net/radar/gaussik">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 相关博客 -->
+                        <div class="blog-related">
+            <div class="blog-wrapper">
+                 <div class="panel panel-related" id="blog-related">
+                     <div class="panel-heading">
+                          相关博客
+                     </div>
+                     <div class="panel-body">
+                         <div class="related-blogs-list flex-item">
+                                                                                            <div class="blog-item">
+                                    <div class="layout-flex">
+                                                                              <div class="flex-grow">
+                                            <a href="https://my.oschina.net/lhplj/blog/149384" class="title" title="IntelliJ IDEA" target="_self">
+                                                IntelliJ IDEA
+                                            </a>
+                                            <div class="author-info">
+                                                <span class="icon">
+                                                    <img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/1167544_50.png">
+                                                </span>
+                                                木子丰
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="relation-data text-right">
+                                        <span class="view data-item"><i class="icon-svg icon-eye"></i>747</span>
+                                        <a class="reply data-item" href="http://my.oschina.com:8888/J25/blog/190490#comment-list" target="_blank"><i class="icon-svg icon-reply"></i>1</a>
+                                    </div>
+                                </div>
+                                                                                                                            <div class="blog-item">
+                                    <div class="layout-flex">
+                                                                                  <span class="img">
+                                                <img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/211301_8urh_140593.jpg">
+                                           </span>
+                                                                              <div class="flex-grow">
+                                            <a href="https://my.oschina.net/lujianing/blog/177042" class="title" title="Intellij IDEA 的使用" target="_self">
+                                                Intellij IDEA 的使用
+                                            </a>
+                                            <div class="author-info">
+                                                <span class="icon">
+                                                    <img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/140593_50.jpg">
+                                                </span>
+                                                蛙牛
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="relation-data text-right">
+                                        <span class="view data-item"><i class="icon-svg icon-eye"></i>34808</span>
+                                        <a class="reply data-item" href="http://my.oschina.com:8888/J25/blog/190490#comment-list" target="_blank"><i class="icon-svg icon-reply"></i>11</a>
+                                    </div>
+                                </div>
+                                                                                                                            <div class="blog-item">
+                                    <div class="layout-flex">
+                                                                              <div class="flex-grow">
+                                            <a href="https://my.oschina.net/imcf/blog/646948" class="title" title="Intellij IDEA整理" target="_self">
+                                                Intellij IDEA整理
+                                            </a>
+                                            <div class="author-info">
+                                                <span class="icon">
+                                                    <img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/1464273_50.jpg">
+                                                </span>
+                                                jaffa
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="relation-data text-right">
+                                        <span class="view data-item"><i class="icon-svg icon-eye"></i>576</span>
+                                        <a class="reply data-item" href="http://my.oschina.com:8888/J25/blog/190490#comment-list" target="_blank"><i class="icon-svg icon-reply"></i>2</a>
+                                    </div>
+                                </div>
+                                                                                     </div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+                <!-- 评论 -->
+        <div class="blog-comments">
+            <div class="blog-wrapper">
+                <div class="panel panel-comments" id="comment-list">
+                    <div class="panel-heading" id="blog-comments-list">评论
+                        <em>
+                            (<span class="reply_count">61</span>)
+                        </em>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel-comment-form">
+                            <!-- 发表评论表单 -->
+                                                            <!--  -->
+<val data-name="emoji_js_url" data-value="/build/www/vendor/emoji/emoji_github.js?t=1471884352000"></val>
+<val data-name="emoji_css_url" data-value="/build/www/vendor/emoji/emoji.min.css?t=1471884352000"></val>
+<div class="SpaceList">
+    <a name="comments" id="postform"></a>
+        <div class="layout BlogCommentForm blog-comment-form comment-emoji">
+                    <form id="form_comment" action="https://my.oschina.net/action/blog/add_comment?blog=513444" method="POST">
+                                                                                                <div class="comment_form layout-column">
+                    <textarea name="content" id="wmd-input" placeholder=""></textarea>
+                    <div class="layout">
+                        <div class="layout-right">
+                            <span class="text-muted">
+                                Ctrl+Enter
+                            </span>
+                            <button type="submit" class="btn btn-green blg_submit_btn">发表评论</button>
+                        </div>
+                        <div class="layout-column">
+                            <a href="javascript:;" class="blog_emotion">
+                                <i class="icon-svg icon-emotions-hollow-gray"></i>
+                                <div data-emoji="wrapper">
+                                    <ul data-emoji="nav">
+                                        <li data-emoji-nav="People" class="active">People</li>
+                                        <li data-emoji-nav="Nature">Nature</li>
+                                        <li data-emoji-nav="Objects">Objects</li>
+                                        <li data-emoji-nav="Places">Places</li>
+                                        <li data-emoji-nav="Symbols">Symbols</li>
+                                    </ul>
+                                    <div data-emoji="panel">
+                                        <div data-emoji-item="People" class="active"></div>
+                                        <div data-emoji-item="Nature"></div>
+                                        <div data-emoji-item="Objects"></div>
+                                        <div data-emoji-item="Places"></div>
+                                        <div data-emoji-item="Symbols"></div>
+                                    </div>
+                                </div>
+                            </a>
+                            <a href="javascript:page.insert_projects();" class="blog_soft">
+                                <i class="icon-svg icon-project-hollow-gray"></i>
+                            </a>
+                            <span class="NoData" id="cmt_tip"></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+                                                    </div>
+    </div>
+<div id="inline_reply_editor" style="display:none;">
+    <div class="BlogCommentForm blog-comment-form">
+        <form id="form_inline_comment" action="https://my.oschina.net/action/blog/add_comment?blog=513444" method="POST">
+          <input type="hidden" id="inline_reply_id" name="reply_id" value="">
+          <textarea name="content" id="ccom_content" onkeydown="if((event.metaKey || event.ctrlKey)&amp;&amp;event.keyCode==13){$(&#39;#form_inline_comment&#39;).submit();}"></textarea>
+          <div class="layout">
+              <div class="layout-right">
+                <input type="button" value="关闭" class="btn btn-text" id="btn_close_inline_reply">
+                <input type="submit" value="回复" id="btn_comment" class="btn btn-green"> 
+              </div>
+              <div class="layout-column">
+                  插入：
+                    <a href="javascript:;" class="blog_emotion">
+                        <i class="icon-svg icon-emotions-hollow-gray"></i>
+                        <div data-emoji="wrapper">
+                            <ul data-emoji="nav">
+                                <li data-emoji-nav="People" class="active">People</li>
+                                <li data-emoji-nav="Nature">Nature</li>
+                                <li data-emoji-nav="Objects">Objects</li>
+                                <li data-emoji-nav="Places">Places</li>
+                                <li data-emoji-nav="Symbols">Symbols</li>
+                            </ul>
+                            <div data-emoji="panel">
+                                <div data-emoji-item="People" class="active"></div>
+                                <div data-emoji-item="Nature"></div>
+                                <div data-emoji-item="Objects"></div>
+                                <div data-emoji-item="Places"></div>
+                                <div data-emoji-item="Symbols"></div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="javascript:page.insert_projects_c();" class="blog_soft">
+                        <i class="icon-svg icon-project-hollow-gray"></i>
+                    </a>
+                    <span class="NoData" id="ficmp_msg" style="color:#F00"></span>
+              </div>
+          </div>
+        </form>
+    </div>
+</div>                                                    </div>
+                        <div class="panel-list" id="BlogComments">
+                                                            
+                    <div class="comment-item comment-emoji" id="cmt_513444_130566_289549162">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/idufei" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/130566_50.jpg" align="absmiddle" alt="Minho" title="Minho" class="SmallPortrait" user="130566"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/idufei" target="_blank" name="rpl_289549162" class="user">Minho</a></div>
+                            <div class="user-info"><span>1</span>楼 2015/11/17 15:36</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        按照配置完，运行项目结果报错：org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0': Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in ServletContext resource [/WEB-INF/mvc-dispatcher-servlet.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: No Persistence provider for EntityManager named defaultPersistenceUnit
+                    </div>
+                    <div id="inline_reply_of_513444_130566_289549162" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2526299_289586978">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/2526299" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/portrait.gif" align="absmiddle" alt="我不哇哈哈" title="我不哇哈哈" class="SmallPortrait" user="2526299"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/2526299" target="_blank" name="rpl_289586978" class="user">我不哇哈哈</a></div>
+                            <div class="user-info"><span>2</span>楼 2015/11/19 20:08</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><h4>引用来自“Minho”的评论</h4>按照配置完，运行项目结果报错：org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0': Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in ServletContext resource [/WEB-INF/mvc-dispatcher-servlet.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: No Persistence provider for EntityManager named defaultPersistenceUnit</div> servlet 里有这么一段
+    
+        
+    
+persistence.xml 里有
+   
+value和name 是对应的 ，不对应就报这个错，别问我这么知道的<img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/4.gif" alt="">
+                    </div>
+                    <div id="inline_reply_of_513444_2526299_289586978" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2533715_289705285">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/2533715" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/portrait.gif" align="absmiddle" alt="amoyone" title="amoyone" class="SmallPortrait" user="2533715"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/2533715" target="_blank" name="rpl_289705285" class="user">amoyone</a></div>
+                            <div class="user-info"><span>3</span>楼 2015/11/26 16:27</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        您好，请教两个问题：<br>1.您的数据库ER图是用什么工具显示出来的？<br>2.我用navicat增加了外键，但是在Database Schema Mapping 中看不到那两个外键的复选框，这是什么原因？
+                    </div>
+                    <div id="inline_reply_of_513444_2533715_289705285" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2287879_289705554">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/gaussik" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2287879_50.jpg" align="absmiddle" alt="Gaussic" title="Gaussic" class="SmallPortrait" user="2287879"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/gaussik" target="_blank" name="rpl_289705554" class="user">Gaussic</a></div>
+                            <div class="user-info"><span>4</span>楼 2015/11/26 16:49</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><h4>引用来自“amoyone”的评论</h4>您好，请教两个问题：<br>1.您的数据库ER图是用什么工具显示出来的？<br>2.我用navicat增加了外键，但是在Database Schema Mapping 中看不到那两个外键的复选框，这是什么原因？</div>1、ER图用的是mysql workbench，navicat应该也能显示ER图吧，而且应该比Workbench操作起来要简便一点。你在navicat的菜单栏选查看试试
+2、你先看看外键有没有添加成功，再看看Show default relationships有没有勾选上。
+                    </div>
+                    <div id="inline_reply_of_513444_2287879_289705554" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2533715_289706087">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/2533715" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/portrait.gif" align="absmiddle" alt="amoyone" title="amoyone" class="SmallPortrait" user="2533715"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/2533715" target="_blank" name="rpl_289706087" class="user">amoyone</a></div>
+                            <div class="user-info"><span>5</span>楼 2015/11/26 17:33</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><div class="ref"><h4>引用来自“amoyone”的评论</h4>您好，请教两个问题：<br>1.您的数据库ER图是用什么工具显示出来的？<br>2.我用navicat增加了外键，但是在Database Schema Mapping 中看不到那两个外键的复选框，这是什么原因？</div><h4>引用来自“gaussic”的评论</h4>1、ER图用的是mysql workbench，navicat应该也能显示ER图吧，而且应该比Workbench操作起来要简便一点。你在navicat的菜单栏选查看试试
+2、你先看看外键有没有添加成功，再看看Show default relationships有没有勾选上。</div>您好，我这边用mysql workbench查看，跟你的截图是一样的，另外，确定Show default relationships有勾选上，能否把设置外键的方式告诉我一下，我按照您的方式试试。
+                    </div>
+                    <div id="inline_reply_of_513444_2533715_289706087" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2287879_289706359">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/gaussik" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2287879_50.jpg" align="absmiddle" alt="Gaussic" title="Gaussic" class="SmallPortrait" user="2287879"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/gaussik" target="_blank" name="rpl_289706359" class="user">Gaussic</a></div>
+                            <div class="user-info"><span>6</span>楼 2015/11/26 17:56</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><div class="ref"><div class="ref"><h4>引用来自“amoyone”的评论</h4>您好，请教两个问题：<br>1.您的数据库ER图是用什么工具显示出来的？<br>2.我用navicat增加了外键，但是在Database Schema Mapping 中看不到那两个外键的复选框，这是什么原因？</div><h4>引用来自“gaussic”的评论</h4>1、ER图用的是mysql workbench，navicat应该也能显示ER图吧，而且应该比Workbench操作起来要简便一点。你在navicat的菜单栏选查看试试
+2、你先看看外键有没有添加成功，再看看Show default relationships有没有勾选上。</div><h4>引用来自“amoyone”的评论</h4>您好，我这边用mysql workbench查看，跟你的截图是一样的，另外，确定Show default relationships有勾选上，能否把设置外键的方式告诉我一下，我按照您的方式试试。</div>你好，文中加了两张图，请查看
+                    </div>
+                    <div id="inline_reply_of_513444_2287879_289706359" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2533715_289718030">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/2533715" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/portrait.gif" align="absmiddle" alt="amoyone" title="amoyone" class="SmallPortrait" user="2533715"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/2533715" target="_blank" name="rpl_289718030" class="user">amoyone</a></div>
+                            <div class="user-info"><span>7</span>楼 2015/11/27 10:09</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><div class="ref"><div class="ref"><div class="ref"><h4>引用来自“amoyone”的评论</h4>您好，请教两个问题：<br>1.您的数据库ER图是用什么工具显示出来的？<br>2.我用navicat增加了外键，但是在Database Schema Mapping 中看不到那两个外键的复选框，这是什么原因？</div><h4>引用来自“gaussic”的评论</h4>1、ER图用的是mysql workbench，navicat应该也能显示ER图吧，而且应该比Workbench操作起来要简便一点。你在navicat的菜单栏选查看试试
+2、你先看看外键有没有添加成功，再看看Show default relationships有没有勾选上。</div><h4>引用来自“amoyone”的评论</h4>您好，我这边用mysql workbench查看，跟你的截图是一样的，另外，确定Show default relationships有勾选上，能否把设置外键的方式告诉我一下，我按照您的方式试试。</div><h4>引用来自“gaussic”的评论</h4>你好，文中加了两张图，请查看</div>您好，按您的方式加还是不行，最后点击 Database Schema Mapping下面的"+"号，自己添加上去解决了。谢谢！
+                    </div>
+                    <div id="inline_reply_of_513444_2533715_289718030" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_575954_290153596">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/575954" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/575954_50.jpg" align="absmiddle" alt="虞峭峭" title="虞峭峭" class="SmallPortrait" user="575954"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/575954" target="_blank" name="rpl_290153596" class="user">虞峭峭</a></div>
+                            <div class="user-info"><span>8</span>楼 2015/12/22 15:06</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        我构建的时候，出现<br>&lt;!-- 表示JPA Repository所在的包 --&gt;<br>&lt;jpa:repositories base-package="com.gaussic.repository"/&gt;<br>这段代码的com..gaussic.repository中的repository报红，请问这个会是什么原因造成的
+                    </div>
+                    <div id="inline_reply_of_513444_575954_290153596" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_575954_290153651">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/575954" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/575954_50.jpg" align="absmiddle" alt="虞峭峭" title="虞峭峭" class="SmallPortrait" user="575954"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/575954" target="_blank" name="rpl_290153651" class="user">虞峭峭</a></div>
+                            <div class="user-info"><span>9</span>楼 2015/12/22 15:10</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        是我搞错了，你的没问题
+                    </div>
+                    <div id="inline_reply_of_513444_575954_290153651" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_575954_290154097">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/575954" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/575954_50.jpg" align="absmiddle" alt="虞峭峭" title="虞峭峭" class="SmallPortrait" user="575954"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/575954" target="_blank" name="rpl_290154097" class="user">虞峭峭</a></div>
+                            <div class="user-info"><span>10</span>楼 2015/12/22 15:48</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><h4>引用来自“Minho”的评论</h4>按照配置完，运行项目结果报错：org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0': Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in ServletContext resource [/WEB-INF/mvc-dispatcher-servlet.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: No Persistence provider for EntityManager named defaultPersistenceUnit</div>我和你的问题一样，你最后是怎么解决的，可以说下吗，谢谢
+                    </div>
+                    <div id="inline_reply_of_513444_575954_290154097" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_575954_290154104">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/575954" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/575954_50.jpg" align="absmiddle" alt="虞峭峭" title="虞峭峭" class="SmallPortrait" user="575954"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/575954" target="_blank" name="rpl_290154104" class="user">虞峭峭</a></div>
+                            <div class="user-info"><span>11</span>楼 2015/12/22 15:48</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><h4>引用来自“gaussic”的评论</h4><div class="ref"><h4>引用来自“Minho”的评论</h4><p>按照配置完，运行项目结果报错：org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor#0': Initialization of bean failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in ServletContext resource [/WEB-INF/mvc-dispatcher-servlet.xml]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: No Persistence provider for EntityManager named defaultPersistenceUnit</p></div>说明数据库配置还是出了点问题，建立直接下载已配置好的项目：<a href="https://github.com/Cenyol/SpringMVC.git" rel="nofollow" target="_blank">https://github.com/Cenyol/SpringMVC.git</a></div>数据库配置出问题会出现在什么地方呢
+                    </div>
+                    <div id="inline_reply_of_513444_575954_290154104" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_575954_290189882">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/575954" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/575954_50.jpg" align="absmiddle" alt="虞峭峭" title="虞峭峭" class="SmallPortrait" user="575954"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/575954" target="_blank" name="rpl_290189882" class="user">虞峭峭</a></div>
+                            <div class="user-info"><span>12</span>楼 2015/12/24 17:30</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        我终于知道错在哪里了,折腾了2天.
+                    </div>
+                    <div id="inline_reply_of_513444_575954_290189882" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2605067_290408739">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/2605067" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/portrait.gif" align="absmiddle" alt="luozhazha" title="luozhazha" class="SmallPortrait" user="2605067"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/2605067" target="_blank" name="rpl_290408739" class="user">luozhazha</a></div>
+                            <div class="user-info"><span>13</span>楼 2016/01/06 09:28</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        请问，我的咋没有紫色框内的内容呢<img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/6.gif" alt="6"><br>如下图：<br>http://img1.ph.126.net/vA93YmTfHcKxynpgqdbS5w==/6631200806609023147.jpg
+                    </div>
+                    <div id="inline_reply_of_513444_2605067_290408739" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2287879_290409793">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/gaussik" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2287879_50.jpg" align="absmiddle" alt="Gaussic" title="Gaussic" class="SmallPortrait" user="2287879"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/gaussik" target="_blank" name="rpl_290409793" class="user">Gaussic</a></div>
+                            <div class="user-info"><span>14</span>楼 2016/01/06 10:56</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><h4>引用来自“luozhazha”的评论</h4>请问，我的咋没有紫色框内的内容呢<img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/6.gif" alt="6"><br>如下图：<br>http://img1.ph.126.net/vA93YmTfHcKxynpgqdbS5w==/6631200806609023147.jpg</div>你好，关于外键，在文中暂时没有提及，可以不使用。
+                    </div>
+                    <div id="inline_reply_of_513444_2287879_290409793" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2605067_290409887">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/u/2605067" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/portrait.gif" align="absmiddle" alt="luozhazha" title="luozhazha" class="SmallPortrait" user="2605067"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/u/2605067" target="_blank" name="rpl_290409887" class="user">luozhazha</a></div>
+                            <div class="user-info"><span>15</span>楼 2016/01/06 11:03</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        14楼问题已解决：我也用8楼的办法，自己加进去了
+                    </div>
+                    <div id="inline_reply_of_513444_2605067_290409887" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2622285_290789976">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/isaacyoung" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2622285_50.jpg" align="absmiddle" alt="849611785" title="849611785" class="SmallPortrait" user="2622285"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/isaacyoung" target="_blank" name="rpl_290789976" class="user">849611785</a></div>
+                            <div class="user-info"><span>16</span>楼 2016/01/28 10:58</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><h4>引用来自“虞峭峭”的评论</h4>我终于知道错在哪里了,折腾了2天.</div>你好，这个错在哪里呀，蛋疼好几天了~~！
+                    </div>
+                    <div id="inline_reply_of_513444_2622285_290789976" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2651969_291277823">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/pointerexception" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2651969_50.jpg" align="absmiddle" alt="_HGR" title="_HGR" class="SmallPortrait" user="2651969"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/pointerexception" target="_blank" name="rpl_291277823" class="user">_HGR</a></div>
+                            <div class="user-info"><span>17</span>楼 2016/02/25 16:31</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        1楼问题的解决方案：<br>    把dependency里的hibernate-jpa-2.0 -api改成hibernate-jpa-2.1-api，如果还有问题的话把META-INF文件夹拖到WEB-INF/classes下面
+                    </div>
+                    <div id="inline_reply_of_513444_2651969_291277823" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2287879_291491376">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/gaussik" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2287879_50.jpg" align="absmiddle" alt="Gaussic" title="Gaussic" class="SmallPortrait" user="2287879"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/gaussik" target="_blank" name="rpl_291491376" class="user">Gaussic</a></div>
+                            <div class="user-info"><span>18</span>楼 2016/03/09 01:08</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><h4>引用来自“_HGR”的评论</h4>1楼问题的解决方案：<br>    把dependency里的hibernate-jpa-2.0 -api改成hibernate-jpa-2.1-api，如果还有问题的话把META-INF文件夹拖到WEB-INF/classes下面</div>这个方法最好不要用，其实persistence.xml可以不要，直接把数据库的配置写在mvc-dispatcher-servlet.xml里面也是可以的，这点就不详谈了。<img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/0.gif" alt="">
+                    </div>
+                    <div id="inline_reply_of_513444_2287879_291491376" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2287879_291491387">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/gaussik" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2287879_50.jpg" align="absmiddle" alt="Gaussic" title="Gaussic" class="SmallPortrait" user="2287879"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/gaussik" target="_blank" name="rpl_291491387" class="user">Gaussic</a></div>
+                            <div class="user-info"><span>19</span>楼 2016/03/09 01:08</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        <div class="ref"><div class="ref"><h4>引用来自“虞峭峭”的评论</h4>我终于知道错在哪里了,折腾了2天.</div><h4>引用来自“849611785”的评论</h4>你好，这个错在哪里呀，蛋疼好几天了~~！</div>你看看persistence.xml里面的名字是否改为了defaultPeisitenceUnit
+                    </div>
+                    <div id="inline_reply_of_513444_2287879_291491387" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+                            <div class="comment-item comment-emoji" id="cmt_513444_2669436_291645006">
+            <div class="layout">
+                <div class="layout-left">
+                    <!-- 头像 -->
+                    <div class="icon">
+                        <a href="https://my.oschina.net/tydfc" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/portrait.gif" align="absmiddle" alt="藤原豆腐车" title="藤原豆腐车" class="SmallPortrait" user="2669436"></a>
+                    </div>
+                </div>
+                <div class="layout-column right">
+                    <div class="layout">
+                                                <div class="layout-column">
+                            <div class="user-name"><a href="https://my.oschina.net/tydfc" target="_blank" name="rpl_291645006" class="user">藤原豆腐车</a></div>
+                            <div class="user-info"><span>20</span>楼 2016/03/17 22:30</div>
+                        </div>
+                    </div>
+
+                    <!-- 评论内容 -->
+                    <div class="comment-content" data-emoji-render="true">
+                        楼主，（2）的问题已经解决，现在又碰到和1楼相同的问题，想这个defaultPersistenceUnit改了但是没效果，请问该如何处理，Cenyol在（3）处没问题，但到了（4）有报错了，所以我想先把（3）的问题解决一下
+                    </div>
+                    <div id="inline_reply_of_513444_2669436_291645006" class="inline_reply"></div>
+                </div>
+            </div>
+        </div>
+            <div class="pages sm-hide">
+                                                                                    <ul>
+                        <li class="active"><a href="https://my.oschina.net/gaussik/blog/513444?p=1">1</a></li>            <li><a href="https://my.oschina.net/gaussik/blog/513444?p=2">2</a></li>            <li><a href="https://my.oschina.net/gaussik/blog/513444?p=3">3</a></li>            <li><a href="https://my.oschina.net/gaussik/blog/513444?p=4">4</a></li>            <li><a href="https://my.oschina.net/gaussik/blog/513444?p=2">下一页</a></li>        </ul>
+            </div>                                                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 微信分享二维码 -->
+       <!--  <div class="float-share md-hide">
+            <div class="weixin-share" id="weixin-share">
+            </div>
+            <span>微信分享</span>
+        </div> -->
+
+        <!-- 右侧工具条 -->
+        <div class="tool-bar blog-tool-bar md-hide">
+            <div class="item tool-top">
+                <a href="javascript:void(0)" class="over">
+                    <div class="icon">
+                        <i class="icon-svg icon-go-top"></i>
+                    </div>
+                    <div class="txt">顶部</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="reward-popups" data-popups-for="reward">
+    <span data-popups-close="true">×</span>
+    <div data-popups="body">
+        <form action="https://my.oschina.net/gaussik/blog/513444" method="post" id="blog_donate_form">
+            <div class="form-wapper">
+                <div class="blogger-info text-center">
+                    <span class="icon">
+                        <a href="https://my.oschina.net/gaussik/home" class="article_editor_head_img" target="_blank"><img src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/2287879_100.jpg" align="absmiddle" alt="Gaussic" title="Gaussic" class="LargePortrait"></a>
+                    </span>
+                    <div class="text">
+                        如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作！
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="form-label">
+                        <span class="font-red">*</span>
+                        金额(元)
+                    </div>
+                    <div class="form-ctrl">
+                        <div>
+                            <input name="payMoney" value="2" type="text" placeholder="请输入金额￥">
+                            <input name="money" value="2" type="hidden" placeholder="请输入金额￥">
+                        </div>
+                        <div class="reward-money-box">
+                            <span data-value="1" class="reward-money">￥1</span>
+                            <span data-value="5" class="reward-money">￥5</span>
+                            <span data-value="10" class="reward-money">￥10</span>
+                            <span data-value="20" class="reward-money">￥20</span>
+                            <span data-value="" class="reward-money other-money active">其他金额</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="form-label">
+                        打赏人
+                    </div>
+                    <div class="form-ctrl">
+                        <input type="text" name="donaterName" maxlength="100" value="" placeholder="请输入姓名/昵称/邮箱">
+                    </div>
+                </div>
+                <div class="form-item items-center">
+                    <div class="form-label">
+                        留言
+                    </div>
+                    <div class="form-ctrl">
+                        <textarea maxlength="100" name="message" id="" cols="30" rows="3" placeholder="你想对TA说"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-item items-center">
+                    <div class="form-label">
+                        <span class="font-red">*</span>
+                        支付类型
+                    </div>
+                    <div class="form-ctrl">
+                        <div class="reward-way form-radios reward-alipay">
+                            <input type="radio" value="alipay" id="rewardAliPay" checked="checked" name="reward-way">
+                            <label for="rewardAliPay">
+                                <span class="hide">支付宝支付</span>
+                            </label>
+                        </div>
+                        <div class="reward-way form-radios reward-wechat">
+                            <input type="radio" value="wepay" id="rewardWechat" name="reward-way">
+                            <label for="rewardWechat">
+                                <i class="icon-svg icon-wechat"></i>
+                                <span class="">微信支付</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                                <div class="hide">
+                    <input name="objType" type="hidden" value="16344358">
+                    <input name="objId" type="hidden" value="513444">
+                    <input name="donater" type="hidden" value="0">
+                    <input name="subject" maxlength="50" type="hidden" value="使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置">
+                    <input name="author" type="hidden" value="2287879">
+                    <input name="returnUrl" maxlength="900" type="hidden" value="https://my.oschina.net/gaussik/blog/513444">
+                    <input name="notifyUrl" maxlength="900" type="hidden" value="https://my.oschina.net/action/blog/paySuccess">
+                    <input name="sign" type="hidden" value="">
+                </div>
+                <div class="form-button text-right">
+                    <input type="button" class="btn btn-orange" value="打赏" id="blog_donate_button">
+                </div>
+            </div>
+
+            <div class="reward-status reward-wechat-box text-center">
+                <span class="wechat-qr">
+                    <i class="icon-svg icon-scan-green"></i>
+                    微信扫码支付
+                </span>
+                <div class="wepay-amount">
+                    打赏金额: <span class="h1 font-green">￥<em id="wepayAmount"></em></span>
+                </div>
+                <span class="wechat-qr-img" id="result_area">
+                </span>
+            </div>
+
+            <div class="reward-status reward-success text-center">
+                <span class="wechat-qr">
+                    <i class="icon-svg icon-wechat"></i>
+                    已支付成功
+                </span>
+                <div>
+                    打赏金额: <span class="h1 font-green">￥<em id="wepayAmount"></em></span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div data-popups="mask">
+
+</div>
+    <script type="text/javascript" src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/blog" defer="defer"></script>
+    <script type="text/javascript" src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/space"></script>
+
+<val data-name="radar_chart_js_url" data-value="/dist/www/vendor/radarChart/radarChart.js?t=1475078300000"></val>
+<script>
+    window.addEventListener("load", function() {
+        var radarChartJsUrl = $("val[data-name=radar_chart_js_url]").data("value");
+        if(radarChartJsUrl) {
+            require.requireJS(radarChartJsUrl, function() {
+                // 雷达图配置选项
+                function getRadarOption(skills, values, maxLevel) {
+                    var radarChartOptions = {},
+                        skillArr = skills ? skills : [],
+                        valuesArr = values ? values : [],
+                        maxLevelArr = [];
+                        valuesArr.forEach(function(element, index) {
+                            maxLevelArr.push(maxLevel);
+                        });
+
+                    radarChartOptions.data = {
+                        maxValue: maxLevelArr,
+                        value: valuesArr,
+                        description: skillArr
+                    };
+                    radarChartOptions.config = {
+                        scale: 0.9,
+                        dataFill: {
+                            fillStyle: "rgba(24, 236, 111, .4)"
+                        },
+                        bg: {
+                            layer: 4,
+                            evenFillStyle: "#828282",
+                            oddFillStyle: "#828282",
+                            evenStrokeStyle: "#ccc",
+                            oddStrokeStyle: "#ccc"
+                        },
+                        dataCircle: {
+                            r: 1,
+                            strokeStyle: "#18ec6f",
+                            fillStyle: "#18ec6f",
+                            lineWidth: 0.5
+                        },
+                        dataLine: {
+                            strokeStyle: "#18ec6f",
+                            lineWidth: 2
+                        },
+                        font: {
+                            fontColor: "#eee"
+                        }
+                    };
+                    return radarChartOptions;
+                }
+                var sendRequest = function () {
+                    var user_id = $("val[data-name='owner_id']").attr("data-value");
+                    $.ajax({
+                        type: "POST",
+                        url: "/action/radar/searchUserRadarMap",
+                        data: {user_id: user_id},
+                        dataType: "json",
+                        success: function (msg) {
+                            if (msg.result) {
+                                // 显示雷达面板
+                                $(".user-radar").show();
+                                radarChart.init(document.querySelector("#radar-skill"), getRadarOption(msg.data.skills, msg.data.skillsLevel, msg.data.maxSkillLevel));
+                                // 打开雷达详情页
+                                var radarDetailLink = $('#radar-skill').data("detail");
+                                if (radarDetailLink) {
+                                    $('#radar-skill').on('click', function (params) {
+                                        window.open(radarDetailLink);
+                                    });
+                                }
+                            }
+                        }
+                    });
+                }
+                sendRequest();
+            });
+        }
+    }, false);
+</script>
+
+            <script>
+        window.addEventListener("load", function() {
+            (function(){
+                var bp = document.createElement('script');
+                var curProtocol = window.location.protocol.split(':')[0];
+                if (curProtocol === 'https') {
+                    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                }
+                else {
+                    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                }
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(bp, s);
+            })();
+        });
+    </script>
+    <script type="text/javascript">
+     (function (ww, dt) {
+         ww.__gac = {
+             domain: 'www.oschina.net'
+         };
+         if(!(/\/marketing\/ad-slice/.test(location.href))){
+             var script = dt.createElement('script');
+             script.setAttribute('type', 'text/javascript');
+             script.setAttribute('src', '//www.oschina.net/public/javascripts/cjl/ga.js?t=20160926');
+             dt.body.appendChild(script);
+         }
+     } (window, window.document));
+ </script>
+            </div><script type="text/javascript" src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/ga.js"></script>
+                        <script type="text/javascript" src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/common.min.js"></script>
+            <script type="text/javascript" src="./使用IntelliJ IDEA开发SpringMVC网站（三）数据库配置 - God is a programmer! - 开源中国社区_files/blog.min.js"></script>
+                <div class="footer">
+    <div class="container">
+        <div class="layout">
+            <div class="layout-right">
+                <div class="oscapp">
+                    <span>开源中国手机客户端：</span>
+                    <a href="https://www.oschina.net/app" class="android" title="Android客户端">Android</a>
+                    <a href="https://www.oschina.net/app" class="iphone" title="iPhone 客户端">iPhone</a>
+                    <a href="https://www.oschina.net/app" class="wp7" title="Windows Phone 客户端">WP7</a>
+                </div>
+            </div>
+            <div class="layout-column">
+                <div>
+                    © 开源中国(OSChina.NET) | <a href="https://www.oschina.net/home/aboutosc">关于我们</a> | <a href="mailto:market@oschina.cn">广告联系</a> | <a href="http://weibo.com/oschina2010" target="_blank">@新浪微博</a> | <a href="https://m.oschina.net/">开源中国手机版</a> | <a href="http://www.miitbeian.gov.cn/" target="_blank" style="color:#737573;text-decoration:none;">粤ICP备12009483号-3</a></div>
+                 <div>开源中国社区(OSChina.net)是工信部 <a href="http://www.copu.org.cn/" target="_blank">开源软件推进联盟</a> 指定的官方社区</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    
+<!-- Generated by OsChina.NET (init:1[ms],page:95[ms],ip:221.224.121.154) --></body></html>
