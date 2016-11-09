@@ -1,0 +1,103 @@
+html,body{
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+    font-size: 15px;
+}
+.middle-css{
+    margin-top:14%;
+}
+
+.hr-1{
+    clear: both;
+    height: 10px;
+}
+.panel-bg{
+    background: url(/img/nav_bg.gif) repeat top;
+    font-size: 16px;
+}
+.list-group-item{
+    border: 0;
+    display: block;
+    background: url(/img/line_1.gif) repeat-x bottom!important;
+}
+.hr{
+    height: 20px;
+    background: url(/img/line_1.gif) repeat-x bottom!important;
+}
+.panel-body{
+    padding-top: 0;
+}
+.title-a{
+    color: #000;
+}
+.title-a:hover {
+    color: #666;
+    text-decoration: none;
+}
+.list-group-item a:hover {
+    color: #666;
+    text-decoration: none;
+}
+.link, #link a:link, #link a:visited {
+    color: #999999;
+}
+.link {
+    border-top: 2px groove #505050;
+    /*border-bottom: 2px groove #505050;*/
+}
+.footer{
+    background: #363636;
+    overflow: hidden;
+    border-top: 1px solid #f0f0f0;
+    position: relative;
+    clear: both;
+    bottom: 0;
+    min-height: 100px;
+    padding-top: 20px;
+    color: #CCCCCC;
+}
+.footer a{
+    text-decoration: none;
+    /*display: block;*/
+    height: 20px;
+    font-size: 14px;
+    color: #CCCCCC;
+    /*font-family: 'Microsoft Yahei';*/
+}
+.footer a:hover {
+    color: white;
+    text-decoration: none;
+}
+.footer .list-inline li{
+    margin-right: 20px;
+}
+/*.navbar-inverse{*/
+    /*background-color: #48525e;*/
+/*}*/
+/*.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {*/
+    /*color: #fff;*/
+    /*background-color: #080808;*/
+/*}*/
+.article-li li{
+    padding-left: 0;
+    padding-right: 0;
+}
+p{
+    word-wrap: break-word;
+}
+.container-fluid{
+    background: url(/img/head_bg.jpg) no-repeat center top;
+}
+body{
+    background: url(/img/body_bg.jpg) top;
+}
+img{
+    max-width: 100%!important;
+    display: block;
+    margin: 0 auto;
+}
+.content-div {
+    font-size: 120%!important;
+}
+.and{
+    margin-top: 20px;
+}

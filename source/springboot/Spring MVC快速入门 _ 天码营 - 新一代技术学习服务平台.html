@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://www.tianmaying.com/tutorial/spring-mvc-quickstart -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spring MVC快速入门 | 天码营 - 新一代技术学习服务平台</title>
+
+<meta name="description" content="今天给大家介绍一下Spring MVC，让我们学习一下如何利用Spring MVC快速的搭建一个简单的web应用。 更深入地学习Spring MVC，请大家参考 Spring MVC实战入门训练 。 环境准备 一个称手的文本编辑器（例如Vim、Emacs、...">
+<meta name="keywords" content="java,spring-mvc,springboot ,天码营, 在线编程训练营, 编程训练营, Java Web, spring, springboot, spring boot, spring mvc, nodejs,Leetcode">
+
+<meta name="author" content="TMY">
+<link rel="shortcut icon" href="https://oc5je3pwu.qnssl.com/favicon.ico">
+
+<link rel="stylesheet" href="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/tmy.f2f121cb062a364dca3ced4befffabe2.css">
+
+<script src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/push.js"></script><script type="text/javascript" async="" src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/vds.js"></script><script async="" src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/analytics.js"></script><script src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/tmy.936b78927210cd1f75527e34941ee3ac.js"></script>
+
+
+</head>
+
+<body youdao="bind">
+
+<div class="wrapper">
+
+  <div class="navbar navbar-inverse navbar-static-top ng-scope" data-app="utils" id="tmy-navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tmy-main-navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://www.tianmaying.com/"><img src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/logo.png">天码营</a>
+      </div>
+      <div class="navbar-collapse collapse" id="tmy-main-navbar">
+        <ul class="nav navbar-nav">
+          <li><a href="https://course.tianmaying.com/all">课程</a></li>
+          <li class="active"><a href="https://www.tianmaying.com/tutorials">文章</a></li>
+          <li><a href="https://www.tianmaying.com/topics">动态</a></li>
+          <li><a href="https://www.tianmaying.com/qas">问答</a></li>
+          <li><a href="https://www.tianmaying.com/snippets">代码</a></li>
+          <li><a href="http://preview.tianmaying.com/">工具</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+                      <li><a href="https://www.tianmaying.com/account/login?next=%2Ftutorial%2Fspring-mvc-quickstart">登录</a></li>
+  <li><a href="https://www.tianmaying.com/account/register?next=%2Ftutorial%2Fspring-mvc-quickstart">注册</a></li>
+        </ul>
+        <form class="navbar-form navbar-right ng-pristine ng-valid" action="https://www.tianmaying.com/search" method="get">
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" name="key" placeholder="搜索">
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+    <div id="tutorial">
+    
+
+  <div class="container item-page" data-js="tutorial/item">
+
+    <input id="tutorial-name" type="hidden" value="spring-mvc-quickstart">
+
+    <ol class="breadcrumb">
+      <li><a href="https://www.tianmaying.com/">首页</a></li>
+      <li><a href="https://www.tianmaying.com/tutorials">文章</a></li>
+      <li class="active">Spring MVC快速入门</li>
+    </ol>
+
+    <div class="row content-row">
+        <div class="col-md-9">
+          <div class="tmy-panel tmy-panel-bordered tutorial-content">
+
+            <div class="options">
+
+                <a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart/repo" class="pull-right btn btn-primary btn-xs">参考代码</a>
+            </div>
+
+            <div class="page-header">
+              <h1 id="tutorial-title">Spring MVC快速入门</h1>
+                <small class="text-muted post-meta">
+                  <span class="item"><a target="_blank" class="user-link tmy-link" href="https://www.tianmaying.com/user/luoruici">Ricky</a> 发布于 1 年前</span>
+                  <a class="item" href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#comment-list">3评论</a>
+                  <span class="item">16740浏览</span>
+
+                <span class="pull-right">
+                  <a href="https://www.tianmaying.com/tag/java" target="_blank" class="label label-default">java</a><a href="https://www.tianmaying.com/tag/spring-mvc" target="_blank" class="label label-default">spring-mvc</a><a href="https://www.tianmaying.com/tag/springboot" target="_blank" class="label label-default">springboot</a>
+                  
+<a class="btn-vote btn btn-default btn-xs" data-js="utils/vote" data-id="8ab3eda84f02a10f014f03fe82010035" data-type="tutorial" data-username="">
+
+  <span class="vote-count">0</span>
+  <i class="fa fa-thumbs-o-up"></i>
+
+</a>                  <a class="btn-star btn btn-default btn-xs" data-js="utils/star" data-id="8ab3eda84f02a10f014f03fe82010035" data-type="tutorial" data-username="">
+
+  <span class="star-count">6</span>
+  <i class="fa fa-star"></i>
+
+</a>                </span>
+                </small>
+            </div>
+
+            <div class="md" id="content">
+              <p>今天给大家介绍一下Spring MVC，让我们学习一下如何利用Spring MVC快速的搭建一个简单的web应用。</p><p>更深入地学习Spring MVC，请大家参考<a href="https://course.tianmaying.com/spring-mvc">Spring MVC实战入门训练</a>。</p><h2 id="0">环境准备</h2><ul><li>一个称手的文本编辑器（例如Vim、Emacs、Sublime Text）或者IDE（Eclipse、Idea Intellij）</li><li>Java环境（JDK 1.7或以上版本）</li><li>Maven 3.0+（Eclipse和Idea IntelliJ内置，如果使用IDE并且不使用命令行工具可以不安装）</li></ul><h2 id="1">一个最简单的Web应用</h2><p>使用Spring Boot框架可以大大加速Web应用的开发过程，首先在Maven项目依赖中引入<code>spring-boot-starter-web</code>：</p><p><code>pom.xml</code></p><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+
+  &lt;groupId&gt;com.tianmaying&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-web-demo&lt;/artifactId&gt;
+  &lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;
+  &lt;packaging&gt;jar&lt;/packaging&gt;
+
+  &lt;name&gt;spring-web-demo&lt;/name&gt;
+  &lt;description&gt;Demo project for Spring WebMvc&lt;/description&gt;
+
+  &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.2.5.RELEASE&lt;/version&gt;
+    &lt;relativePath/&gt;
+  &lt;/parent&gt;
+
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;java.version&gt;1.8&lt;/java.version&gt;
+  &lt;/properties&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+
+&lt;/project&gt;
+</code></pre><p>接下来创建<code>src/main/java/Application.java</code>:</p><pre><code>import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@RestController
+public class Application {
+
+    @RequestMapping("/")
+    public String greeting() {
+        return "Hello World!";
+    }
+
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+</code></pre><p>运行应用：<code>mvn spring-boot:run</code>或在IDE中运行<code>main()</code>方法，在浏览器中访问<a href="http://localhost:8080/" rel="nofollow">http://localhost:8080</a>，<code>Hello World!</code>就出现在了页面中。只用了区区十几行Java代码，一个Hello World应用就可以正确运行了，那么这段代码究竟做了什么呢？我们从程序的入口<code>SpringApplication.run(Application.class, args);</code>开始分析：</p><ol><li><p><code>SpringApplication</code>是Spring Boot框架中描述Spring应用的类，它的<code>run()</code>方法会创建一个Spring应用上下文（Application Context）。另一方面它会扫描当前应用类路径上的依赖，例如本例中发现<code>spring-webmvc</code>（由 <code>spring-boot-starter-web</code>传递引入）在类路径中，那么Spring Boot会判断这是一个Web应用，并启动一个内嵌的Servlet容器（默认是Tomcat）用于处理HTTP请求。</p></li><li><p>Spring WebMvc框架会将Servlet容器里收到的HTTP请求根据路径分发给对应的<code>@Controller</code>类进行处理，<code>@RestController</code>是一类特殊的<code>@Controller</code>，它的返回值直接作为HTTP Response的Body部分返回给浏览器。</p></li><li><p><code>@RequestMapping</code>注解表明该方法处理那些URL对应的HTTP请求，也就是我们常说的URL路由（routing)，请求的分发工作是有Spring完成的。例如上面的代码中<a href="http://localhost:8080/" rel="nofollow">http://localhost:8080/</a> 根路径就被路由至<code>greeting()</code>方法进行处理。如果访问<a href="http://localhost:8080/hello" rel="nofollow">http://localhost:8080/hello</a> ，则会出现 404 Not Found<code>错误，因为我们并没有编写任何方法来处理</code>/hello`请求。</p></li></ol><h2 id="2">使用<code>@Controller</code>实现URL路由</h2><p>现代Web应用往往包括很多页面，不同的页面也对应着不同的URL。对于不同的URL，通常需要不同的方法进行处理并返回不同的内容。</p><h3 id="3">匹配多个URL</h3><pre><code>@RestController
+public class Application {
+
+    @RequestMapping("/")
+    public String index() {
+        return "Index Page";
+    }
+
+    @RequestMapping("/hello")
+    public String hello() {
+        return "Hello World!";
+    }
+}
+</code></pre><p><code>@RequestMapping</code>可以注解<code>@Controller</code>类：</p><pre><code>@RestController
+@RequestMapping("/classPath")
+public class Application {
+    @RequestMapping("/methodPath")
+    public String method() {
+        return "mapping url is /classPath/methodPath";
+    }
+}
+</code></pre><p><code>method</code>方法匹配的URL是<code>/classPath/methodPath"</code>。</p><p>提示</p><p>可以定义多个<code>@Controller</code>将不同URL的处理方法分散在不同的类中。</p><h3 id="4">URL中的变量——PathVariable</h3><p>在Web应用中URL通常不是一成不变的，例如微博两个不同用户的个人主页对应两个不同的URL: <a href="http://weibo.com/user1" rel="nofollow">http://weibo.com/user1</a> 和 <a href="http://weibo.com/user2%E3%80%82" rel="nofollow">http://weibo.com/user2。</a> 我们不可能对于每一个用户都编写一个被<code>@RequestMapping</code>注解的方法来处理其请求，Spring MVC提供了一套机制来处理这种情况：</p><pre><code>@RequestMapping("/users/{username}")
+public String userProfile(@PathVariable("username") String username) {
+    return String.format("user %s", username);
+}
+
+@RequestMapping("/posts/{id}")
+public String post(@PathVariable("id") int id) {
+    return String.format("post %d", id);
+}
+</code></pre><p>在上述例子中，URL中的变量可以用<code>{variableName}</code>来表示，同时在方法的参数中加上<code>@PathVariable("variableName")</code>，那么当请求被转发给该方法处理时，对应的URL中的变量会被自动赋值给被<code>@PathVariable</code>注解的参数（能够自动根据参数类型赋值，例如上例中的<code>int</code>）。</p><h3 id="5">支持HTTP方法</h3><p>对于HTTP请求除了其URL，还需要注意它的方法（Method）。例如我们在浏览器中访问一个页面通常是GET方法，而表单的提交一般是POST方法。<code>@Controller</code>中的方法同样需要对其进行区分：</p><pre><code>@RequestMapping(value = "/login", method = RequestMethod.GET)
+public String loginGet() {
+    return "Login Page";
+}
+
+@RequestMapping(value = "/login", method = RequestMethod.POST)
+public String loginPost() {
+    return "Login Post Request";
+}
+</code></pre><p>Spring MVC最新的版本中提供了一种更加简洁的配置HTTP方法的方式，增加了四个标注：</p><ul><li><code>@PutMapping</code></li><li><code>@GetMapping</code></li><li><code>@PostMapping</code></li><li><code>@DeleteMapping</code></li></ul><p>在Web应用中常用的HTTP方法有四种：</p><ul><li>PUT方法用来添加的资源</li><li>GET方法用来获取已有的资源</li><li>POST方法用来对资源进行状态转换</li><li>DELETE方法用来删除已有的资源</li></ul><p>这四个方法可以对应到CRUD操作（Create、Read、Update和Delete），比如博客的创建操作，按照REST风格设计URL就应该使用PUT方法，读取博客使用GET方法，更新博客使用POST方法，删除博客使用DELETE方法。</p><p>每一个Web请求都是属于其中一种，在Spring MVC中如果不特殊指定的话，默认是GET请求。</p><p>比如<code>@RequestMapping("/")</code>和<code>@RequestMapping("/hello")</code>和对应的Web请求是：</p><ul><li>GET <code>/</code></li><li>GET <code>/hello</code></li></ul><p>实际上<code>@RequestMapping("/")</code>是<code>@RequestMapping("/", method = RequestMethod.GET)</code>的简写，即可以通过<code>method</code>属性，设置请求的HTTP方法。</p><p>比如PUT <code>/hello</code>请求，对应于<code>@RequestMapping("/hello", method = RequestMethod.PUT)</code></p><p>基于新的标注<code>@RequestMapping("/hello", method = RequestMethod.PUT)</code>可以简写为<code>@PutMapping("/hello")</code>。<code>@RequestMapping("/hello")</code>与<code>GetMapping("/hello")</code>等价。</p><h2 id="6">模板渲染</h2><p>在之前所有的<code>@RequestMapping</code>注解的方法中，返回值字符串都被直接传送到浏览器端并显示给用户。但是为了能够呈现更加丰富、美观的页面，我们需要将HTML代码返回给浏览器，浏览器再进行页面的渲染、显示。</p><p>一种很直观的方法是在处理请求的方法中，直接返回HTML代码，但是这样做的问题在于——一个复杂的页面HTML代码往往也非常复杂，并且嵌入在Java代码中十分不利于维护。更好的做法是将页面的HTML代码写在模板文件中，渲染后再返回给用户。为了能够进行模板渲染，需要将<code>@RestController</code>改成<code>@Controller</code>：</p><pre><code>import org.springframework.ui.Model;
+
+@Controller
+public class HelloController {
+
+    @RequestMapping("/hello/{name}")
+    public String hello(@PathVariable("name") String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello"
+    }
+}
+</code></pre><p>在上述例子中，返回值<code>"hello"</code>并非直接将字符串返回给浏览器，而是寻找名字为<code>hello</code>的模板进行渲染，我们使用<a href="http://www.thymeleaf.org/" rel="nofollow">Thymeleaf</a>模板引擎进行模板渲染，需要引入依赖：</p><pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre><p>接下来需要在默认的模板文件夹<code>src/main/resources/templates/</code>目录下添加一个模板文件<code>hello.html</code>：</p><pre><code>&lt;!DOCTYPE HTML&gt;
+&lt;html xmlns:th="http://www.thymeleaf.org"&gt;
+&lt;head&gt;
+    &lt;title&gt;Getting Started: Serving Web Content&lt;/title&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p th:text="'Hello, ' + ${name} + '!'" /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><code>th:text="'Hello, ' + ${name} + '!'"</code>也就是将我们之前在<code>@Controller</code>方法里添加至<code>Model</code>的属性<code>name</code>进行渲染，并放入<code>&lt;p&gt;</code>标签中（因为<code>th:text</code>是<code>&lt;p&gt;</code>标签的属性）。模板渲染还有更多的用法，请参考<a href="http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html" rel="nofollow">Thymeleaf官方文档</a>。</p><h2 id="7">处理静态文件</h2><p>浏览器页面使用HTML作为描述语言，那么必然也脱离不了CSS以及JavaScript。为了能够浏览器能够正确加载类似<code>/css/style.css</code>, <code>/js/main.js</code>等资源，默认情况下我们只需要在<code>src/main/resources/static</code>目录下添加<code>css/style.css</code>和<code>js/main.js</code>文件后，Spring MVC能够自动将他们发布，通过访问<code>/css/style.css</code>, <code>/js/main.js</code>也就可以正确加载这些资源。</p><h2 id="8">拦截器Interceptor</h2><p>Spring MVC框架中的Interceptor，与Servlet API中的Filter十分类似，用于对Web请求进行预处理/后处理。通常情况下这些预处理/后处理逻辑是通用的，可以被应用于所有或多个Web请求，例如：</p><ul><li>记录Web请求相关日志，可以用于做一些信息监控、统计、分析</li><li>检查Web请求访问权限，例如发现用户没有登录后，重定向到登录页面</li><li>打开/关闭数据库连接——预处理时打开，后处理关闭，可以避免在所有业务方法中都编写类似代码，也不会忘记关闭数据库连接</li></ul><h3 id="9">Spring MVC请求处理流程</h3><p><a data-lightbox="true" href="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/dbd1017dffce1d08e653d05baa1e4934.png"><img src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/dbd1017dffce1d08e653d05baa1e4934.png" alt="1.png"></a></p><p>上图是Spring MVC框架处理Web请求的基本流程，请求会经过<code>DispatcherServlet</code>的分发后，会按顺序经过一系列的<code>Interceptor</code>并执行其中的预处理方法，在请求返回时同样会执行其中的后处理方法。</p><p>在<code>DispatcherServlet</code>和<code>Controller</code>之间哪些竖着的彩色细条，是拦截请求进行额外处理的地方，所以命名为<strong>拦截器</strong>（<strong>Interceptor</strong>）。</p><h3 id="10">HandlerInterceptor接口</h3><p>Spring MVC中拦截器是实现了<code>HandlerInterceptor</code>接口的Bean：</p><pre><code>public interface HandlerInterceptor {
+    boolean preHandle(HttpServletRequest request, 
+                      HttpServletResponse response, 
+                      Object handler) throws Exception;
+
+    void postHandle(HttpServletRequest request, 
+                    HttpServletResponse response, 
+                    Object handler, ModelAndView modelAndView) throws Exception;
+
+    void afterCompletion(HttpServletRequest request, 
+                         HttpServletResponse response, 
+                         Object handler, Exception ex) throws Exception;
+}
+</code></pre><ul><li><code>preHandle()</code>：预处理回调方法，若方法返回值为<code>true</code>，请求继续（调用下一个拦截器或处理器方法）；若方法返回值为<code>false</code>，请求处理流程中断，不会继续调用其他的拦截器或处理器方法，此时需要通过<code>response</code>产生响应；</li><li><code>postHandle()</code>：后处理回调方法，实现处理器的后处理（但在渲染视图之前），此时可以通过<code>ModelAndView</code>对模型数据进行处理或对视图进行处理</li><li><code>afterCompletion()</code>：整个请求处理完毕回调方法，即在视图渲染完毕时调用</li></ul><p><code>HandlerInterceptor</code>有三个方法需要实现，但大部分时候可能只需要实现其中的一个方法，<code>HandlerInterceptorAdapter</code>是一个实现了<code>HandlerInterceptor</code>的抽象类，它的三个实现方法都为空实现（或者返回<code>true</code>），继承该抽象类后可以仅仅实现其中的一个方法：</p><pre><code>public class Interceptor extends HandlerInterceptorAdapter {
+
+    public boolean preHandle(HttpServletRequest request,
+                             HttpServletResponse response,
+                             Object handler) throws Exception {
+        // 在controller方法调用前打印信息
+        System.out.println("This is interceptor.");
+        // 返回true，将强求继续传递（传递到下一个拦截器，没有其它拦截器了，则传递给Controller）
+        return true;
+    }
+}
+</code></pre><h3 id="11">配置Interceptor</h3><p>定义<code>HandlerInterceptor</code>后，需要创建<code>WebMvcConfigurerAdapter</code>在MVC配置中将它们应用于特定的URL中。一般一个拦截器都是拦截特定的某一部分请求，这些请求通过URL模型来指定。</p><p>下面是一个配置的例子：</p><pre><code>@Configuration
+public class WebConfig extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LocaleInterceptor());
+        registry.addInterceptor(new ThemeInterceptor()).addPathPatterns("/**").excludePathPatterns("/admin/**");
+        registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/secure/*");
+    }
+}
+</code></pre><h2 id="12">进一步阅读</h2><ul><li><p><a href="https://course.tianmaying.com/spring-mvc">Spring MVC实战入门训练</a></p></li><li><p><a href="https://course.tianmaying.com/spring-mvc-mybatis-qa" target="_blank">开发问答网站：基于MyBatis和Spring MVC</a><br></p></li><li><p><a href="https://www.tianmaying.com/tutorial/spring-mvc-DispatcherServlet">Spring MVC DispatcherServlet详解</a></p></li><li><p><a href="https://www.tianmaying.com/tutorial/websocket-chatroom">基于Spring MVC的 Websocket在线聊天室</a></p></li><li><p><a href="https://www.tianmaying.com/tutorial/spring-jpa-page-sort">整合Spring Data JPA与Spring MVC: 分页和排序</a></p></li><li><p><a href="https://www.tianmaying.com/tutorial/spring-jpa-query">整合Spring Data JPA与Spring MVC：使用@Query标注自定义查询语句</a></p></li><li><p><a href="https://www.tianmaying.com/tutorial/cross-origin-rest-service">基于Spring和Spring MVC实现可跨域访问的REST服务</a></p></li><li><p><a href="https://www.tianmaying.com/tutorial/spring-mvc-interceptor">Spring MVC拦截器</a></p></li><li><p><a href="https://www.tianmaying.com/tutorial/spring-mvc-thymeleaf">Spring MVC中使用Thymeleaf模板引擎</a></p></li></ul>
+            </div>
+
+              <section class="related">
+                <header>版权声明</header>
+                本文由<a target="_blank" class="user-link tmy-link" href="https://www.tianmaying.com/user/luoruici">Ricky</a>创作，转载需署名作者且注明文章出处
+              </section>
+
+            <section class="related">
+              <header>参考代码</header>
+              要获取本文的参考代码，请访问：<a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart/repo">
+                http://tianmaying.com/tutorial/spring-mvc-quickstart/repo
+              </a>
+            </section>
+            <div class="row">
+                <div class="col-md-6">
+                  <section class="related">
+                    <header>相关文章</header>
+                    <ul>
+                        <li><a href="https://www.tianmaying.com/tutorial/OAuth-login-QQ">基于Spring的QQ第三方登录实现</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/OAuth-login-weixin">基于Spring的微信第三方登录实现</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/OAuth-login-weibo">基于Spring的新浪微博第三方登录实现</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/content-for-multiple-device">基于Spring提供支持不同设备的页面</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/spring-boot-intro">Spring Boot应用开发初探与示例</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/spring-data-rest">基于Spring Boot为关系型数据库构建REST访问接口</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/deploy-spring-boot-application">部署Spring Boot应用</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/spring-mvc-testing">测试Spring MVC应用</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/spring-boot-docker">在Docker容器中运行Spring Boot应用</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/spring-boot-overview">Spring Boot——开发新一代Spring Java应用</a></li>
+                    </ul>
+                  </section>
+                </div>
+
+                  <div class="col-md-6">
+                  <section class="related random-tutorials">
+                    <header>其他文章</header>
+                    <ul>
+                        <li><a href="https://www.tianmaying.com/tutorial/maven-basic">Maven入门：Maven的基本概念</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/html-form-controls">JSP表单输入控件</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/spring-scheduling-task">基于Spring  Boot 实现定时任务</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/LC87">LeetCode题解 #87 Scramble String</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/LC8">LeetCode题解 #8 String to Integer (atoi)</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/search-engine-with-heritrix-and-lucene">搜索引擎搭建：heritrix+lucene</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/java_lambda">Java8新特性之Lambda表达式</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/http-protocol">HTTP协议解析</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/exception-handling-in-spring-mvc">Spring MVC异常处理</a></li>
+                        <li><a href="https://www.tianmaying.com/tutorial/git-basics">Git快速入门</a></li>
+                    </ul>
+                  </section>
+                </div>
+
+            </div>
+
+
+          </div>
+
+          
+            <div class="comment-panel" id="comment-list">
+              <div class="page-header">
+                <div class="pull-right">
+                  <a class="btn btn-xs btn-primary" href="https://www.tianmaying.com/qas/create?respondent=luoruici&amp;tutorial=8ab3eda84f02a10f014f03fe82010035">向作者提问</a>
+                  <div class="tmy-social-share" data-js="utils/tmy-social-share" data-title="【Spring MVC快速入门】| 天码营-新一代技术学习服务平台 - &lt;p&gt;今天给大家介绍一下Spring MVC，让我们学习一下如何利用Spring MVC快速的搭建一个简单的web应用。&lt;/p&gt;&lt;p&gt;更深入地学习Spring MVC，请大家参考&lt;a href=&quot;https://course.tianmaying.com/spring-mvc&quot;&gt;Spring MVC实战入门训练&lt;/a&gt;。&lt;/p&gt;&lt;h2&gt;环境准备&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;一个称手的文本编辑器（例如Vim、Emacs、Sublime Text）或者IDE（Eclipse、Idea Intellij）&lt;/li&gt;&lt;li&gt;Java环境（JDK 1.7或以上版本）&lt;/li&gt;&lt;li&gt;Maven 3.0+（Eclipse和Idea IntelliJ内置，如果使用IDE并且不使用命令行工具可以不安装）&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;一个最简单的Web应用&lt;/h2&gt;&lt;p&gt;使用Spring Boot框架可以大大加速Web应用的开发过程，首先在Maven项目依赖中引入&lt;code&gt;spring-boot-starter-web&lt;/code&gt;：&lt;/p&gt;&lt;p&gt;&lt;code&gt;pom.xml&lt;/code&gt;&lt;/p&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;..." data-url="" data-size="xs">
+<ul class="list-unstyled social-share social-share-xs"><li class="social-share-item weibo"><a href="http://v.t.sina.com.cn/share/share.php?title=%E3%80%90Spring+MVC%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E3%80%91%7C+%E5%A4%A9%E7%A0%81%E8%90%A5-%E6%96%B0%E4%B8%80%E4%BB%A3%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0+-+%3Cp%3E%E4%BB%8A%E5%A4%A9%E7%BB%99%E5%A4%A7%E5%AE%B6%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8BSpring+MVC%EF%BC%8C%E8%AE%A9%E6%88%91%E4%BB%AC%E5%AD%A6%E4%B9%A0%E4%B8%80%E4%B8%8B%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Spring+MVC%E5%BF%AB%E9%80%9F%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84web%E5%BA%94%E7%94%A8%E3%80%82%3C%2Fp%3E%3Cp%3E%E6%9B%B4%E6%B7%B1%E5%85%A5%E5%9C%B0%E5%AD%A6%E4%B9%A0Spring+MVC%EF%BC%8C%E8%AF%B7%E5%A4%A7%E5%AE%B6%E5%8F%82%E8%80%83%3Ca+href%3D%22https%3A%2F%2Fcourse.tianmaying.com%2Fspring-mvc%22%3ESpring+MVC%E5%AE%9E%E6%88%98%E5%85%A5%E9%97%A8%E8%AE%AD%E7%BB%83%3C%2Fa%3E%E3%80%82%3C%2Fp%3E%3Ch2%3E%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87%3C%2Fh2%3E%3Cul%3E%3Cli%3E%E4%B8%80%E4%B8%AA%E7%A7%B0%E6%89%8B%E7%9A%84%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8%EF%BC%88%E4%BE%8B%E5%A6%82Vim%E3%80%81Emacs%E3%80%81Sublime+Text%EF%BC%89%E6%88%96%E8%80%85IDE%EF%BC%88Eclipse%E3%80%81Idea+Intellij%EF%BC%89%3C%2Fli%3E%3Cli%3EJava%E7%8E%AF%E5%A2%83%EF%BC%88JDK+1.7%E6%88%96%E4%BB%A5%E4%B8%8A%E7%89%88%E6%9C%AC%EF%BC%89%3C%2Fli%3E%3Cli%3EMaven+3.0%2B%EF%BC%88Eclipse%E5%92%8CIdea+IntelliJ%E5%86%85%E7%BD%AE%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%BD%BF%E7%94%A8IDE%E5%B9%B6%E4%B8%94%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%E5%8F%AF%E4%BB%A5%E4%B8%8D%E5%AE%89%E8%A3%85%EF%BC%89%3C%2Fli%3E%3C%2Ful%3E%3Ch2%3E%E4%B8%80%E4%B8%AA%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84Web%E5%BA%94%E7%94%A8%3C%2Fh2%3E%3Cp%3E%E4%BD%BF%E7%94%A8Spring+Boot%E6%A1%86%E6%9E%B6%E5%8F%AF%E4%BB%A5%E5%A4%A7%E5%A4%A7%E5%8A%A0%E9%80%9FWeb%E5%BA%94%E7%94%A8%E7%9A%84%E5%BC%80%E5%8F%91%E8%BF%87%E7%A8%8B%EF%BC%8C%E9%A6%96%E5%85%88%E5%9C%A8Maven%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96%E4%B8%AD%E5%BC%95%E5%85%A5%3Ccode%3Espring-boot-starter-web%3C%2Fcode%3E%EF%BC%9A%3C%2Fp%3E%3Cp%3E%3Ccode%3Epom.xml%3C%2Fcode%3E%3C%2Fp%3E%3Cpre%3E%3Ccode%3E%26lt%3B%3Fxml+version%3D%221.0%22+encoding%3D%22UTF-8%22%3F%26gt%3B...&amp;url=https%3A%2F%2Fwww.tianmaying.com%2Ftutorial%2Fspring-mvc-quickstart&amp;appid=1502829444" target="_blank"><i class="fa fa-weibo"></i></a></li><li class="social-share-item wechat"><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart"><i class="fa fa-wechat"></i></a></li></ul></div>
+                </div>
+                <h4>评论</h4>
+              </div>
+              <div class="comment-list" data-js="comment/list" data-type="tutorial" data-id="8ab3eda84f02a10f014f03fe82010035">
+
+    <p>登录发表评论
+      <a class="btn btn-default btn-sm btn-login">登录</a>
+      <a class="btn btn-success btn-sm" href="https://www.tianmaying.com/account/register?next=%2Ftutorial%2Fspring-mvc-quickstart" target="_blank">注册</a>
+    </p>
+
+  <div class="alert alert-info alert-empty" style="display: none;">还没有人发布过评论，赶快发布一个吧！</div>
+
+
+    <div class="comment-list-item-wrapper tmy-panel">
+      <div class="comment-list-item" data-username="david" data-name="David" data-id="3da17136-258a-4bc4-b0dc-0ceeb3ff1c10">
+
+  <a href="https://www.tianmaying.com/user/david" class="no-underline avatar">
+  <img class="avatar-img" src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/7fe6686341261fdb7bebca2727ff1761_l.jpg" onerror="this.src=&#39;https://tmy-assets.oss-cn-beijing.aliyuncs.com/img/default-avatar.png&#39;" title="" data-toggle="tooltip" alt="David" data-original-title="David">
+</a>
+  <div class="body">
+    <div class="title">
+      <span class="text-muted"><a target="_blank" class="user-link tmy-link" href="https://www.tianmaying.com/user/david">David</a> 于 <a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart/comments/3da17136-258a-4bc4-b0dc-0ceeb3ff1c10">2 个月前</a></span>
+    </div>
+    <div class="md"><p>Spring MVC最新的版本中提供了一种更加简洁的配置HTTP方法的方式，增加了四个标注：</p><ul><li><code>@PutMapping</code></li><li><code>@GetMapping</code></li><li><code>@PostMapping</code></li><li><code>@DeleteMapping</code></li></ul><p>对应于Web应用中常用的HTTP方法有四种：</p><ul><li>PUT方法用来添加的资源</li><li>GET方法用来获取已有的资源</li><li>POST方法用来对资源进行状态转换</li><li>DELETE方法用来删除已有的资源</li></ul></div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>
+<div class="comment-list-item" data-username="luoruici" data-name="Ricky" data-id="8ab3eda84f494107014f4fd916cd0226">
+
+  <a href="https://www.tianmaying.com/user/luoruici" class="no-underline avatar">
+  <img class="avatar-img" src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/75603e54269c92309832051085f35cac_l.jpg" onerror="this.src=&#39;https://tmy-assets.oss-cn-beijing.aliyuncs.com/img/default-avatar.png&#39;" title="" data-toggle="tooltip" alt="Ricky" data-original-title="Ricky">
+</a>
+  <div class="body">
+    <div class="title">
+      <span class="text-muted"><a target="_blank" class="user-link tmy-link" href="https://www.tianmaying.com/user/luoruici">Ricky</a> 于 <a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart/comments/8ab3eda84f494107014f4fd916cd0226">1 年前</a></span>
+    </div>
+    <div class="md"><p>已添加</p></div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>
+<div class="comment-list-item" data-username="david" data-name="David" data-id="8ab3eda84f494107014f4ea1329b01c3">
+
+  <a href="https://www.tianmaying.com/user/david" class="no-underline avatar">
+  <img class="avatar-img" src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/7fe6686341261fdb7bebca2727ff1761_l.jpg" onerror="this.src=&#39;https://tmy-assets.oss-cn-beijing.aliyuncs.com/img/default-avatar.png&#39;" title="" data-toggle="tooltip" alt="David" data-original-title="David">
+</a>
+  <div class="body">
+    <div class="title">
+      <span class="text-muted"><a target="_blank" class="user-link tmy-link" href="https://www.tianmaying.com/user/david">David</a> 于 <a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart/comments/8ab3eda84f494107014f4ea1329b01c3">1 年前</a></span>
+    </div>
+    <div class="md"><p>能把代码贴上来吗？ 参考代码是空的啊！</p></div>
+  </div>
+
+  <div class="clearfix"></div>
+</div>
+
+    </div>
+
+</div>
+            </div>
+        </div>
+
+      <div class="col-md-3 visible-lg visible-md">
+        <div class="side-toc affix" id="toc-wrapper">
+          <div class="sidebar" data-clampedwidth=".item-page .row .col-md-3" style="width: 262px;">
+            <a class="sidebar-link" href="https://www.tianmaying.com/tutorial/snake-activities/">
+  <img src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/java-snake.png" alt="Spring MVC实战入门训练">
+</a>
+<a class="sidebar-link" href="http://course.tianmaying.com/spring-mvc">
+  <img src="./Spring MVC快速入门 _ 天码营 - 新一代技术学习服务平台_files/spring-link.gif" alt="Spring MVC实战入门训练">
+</a>
+
+          <ul class="nav level-0 sidenav"><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#0">环境准备</a></li><li class="active"><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#1">一个最简单的Web应用</a></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#2">使用@Controller实现URL路由</a><ul class="nav level-1"><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#3">匹配多个URL</a></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#4">URL中的变量——PathVariable</a></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#5">支持HTTP方法</a></li></ul></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#6">模板渲染</a></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#7">处理静态文件</a></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#8">拦截器Interceptor</a><ul class="nav level-1"><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#9">Spring MVC请求处理流程</a></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#10">HandlerInterceptor接口</a></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#11">配置Interceptor</a></li></ul></li><li class=""><a href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart#12">进一步阅读</a></li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+</div>
+
+  <script id="websocket" type="text/plain">https://www.tianmaying.com</script>
+
+<footer class="credit text-muted  ng-scope" data-app="utils">
+  <div id="footer-content" class="container">
+    <span>Copyright Tianmaying © 2015</span>
+    <span class="hidden-xs">
+      |
+      <span>京ICP备15008133号-1</span>
+      |
+      <a data-container="body" data-toggle="popover" data-html="true" data-placement="top" data-trigger="hover" class="link" data-content="
+           &lt;div&gt;
+             &lt;img src=&quot;https://tmy-assets.oss-cn-beijing.aliyuncs.com/img/qrcode-winxin.jpg&quot;
+               style=&quot;width:150px;height:150px;&quot;&gt;
+           &lt;/div&gt;
+         " data-original-title="" title="">
+        <i class="fa fa-wechat"></i>
+        TMY-EDU
+      </a>
+      |
+      <a href="http://shang.qq.com/wpa/qunwpa?idkey=6cbe9f8835aa1aa6c62f4bceb585d415b9a7f710c4e7f0b20e424905cf3f7e27" data-container="body" data-toggle="popover" data-html="true" data-placement="top" data-trigger="hover" class="link" data-content="
+           &lt;div&gt;
+             &lt;img style=&quot;width: 150px; height: 150px;&quot; src=&quot;https://tmy-assets.oss-cn-beijing.aliyuncs.com/img/qrcode-qq.png&quot;/&gt;
+           &lt;/div&gt;
+         " data-original-title="" title="">
+        <i class="fa fa-qq"></i>
+        231216939
+      </a>
+      |
+      <a href="http://weibo.com/u/5623427244" target="_blank" class="link">
+        <i class="fa fa-weibo"></i>
+        天码营
+      </a>
+      |
+      <a href="https://www.tianmaying.com/terms-of-service" target="_blank" class="link">服务条款</a>
+      |
+      <a href="https://www.tianmaying.com/blog" target="_blank" class="link">官方博客</a>
+      |
+      <a href="https://www.tianmaying.com/shares" target="_blank" class="link">分享</a>
+        |
+        <a href="https://www.tianmaying.com/coders" target="_blank" class="link">TCoder</a>
+      |
+      <a class="link" href="https://www.tianmaying.com/links" target="_blank">友情链接</a>
+    </span>
+  </div>
+
+
+</footer>
+
+
+<div class="bottom-div">
+  
+  <div class="bottom-control" data-toggle="modal" data-target="#feedback" style="opacity: 1; display: inline-block;">反馈意见</div>
+  <div class="bottom-control scroll-to-top" style="opacity: 1; display: inline-block;"><i class="fa fa-chevron-up"></i></div>
+</div>
+
+<div class="modal fade ng-scope" id="feedback" ng-controller="feedbackCtrl" ng-app="utils">
+  <div class="modal-dialog">
+    <form class="modal-content ng-pristine ng-invalid ng-invalid-required ng-valid-email" name="feedbackForm">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span>×</span></button>
+        <h4 class="modal-title">反馈意见</h4>
+      </div>
+      <div class="modal-body">
+        <div ng-class="{&#39;has-error&#39;: feedbackForm.content.$invalid}" class="has-error">
+          <textarea name="content" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" rows="5" ng-model="content" autofocus="" required="" placeholder="请填写反馈意见"></textarea>
+        </div>
+        <div ng-class="{&#39;has-error&#39;: feedbackForm.email.$invalid}">
+          <input name="email" class="form-control ng-pristine ng-untouched ng-valid ng-valid-email" placeholder="您的邮箱" type="email" style="margin-top:10px;" ng-model="email">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-sm btn-wide" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary btn-sm btn-wide" ng-disabled="feedbackForm.$invalid" ng-click="sendFeedback()" disabled="disabled">提交
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+<script id="wx-share-msg" type="text/plain">Ricky在天码营分享了文章：Spring MVC快速入门</script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+          }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+          m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-58871862-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+  <script>
+    var _vds = _vds || [];
+    window._vds = _vds;
+    (function(){
+      _vds.push(['setAccountId', '73bcd6f434fb451f99f5b6abbf964d7f']);
+
+      var username = $('#username').val();
+      if(username){
+        _vds.push(['setCS1', 'username', username]);
+      }
+
+      (function() {
+        var vds = document.createElement('script');
+        vds.type='text/javascript';
+        vds.async = true;
+        vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(vds, s);
+      })();
+    })();
+  </script>
+
+  <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+<div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="https://www.tianmaying.com/tutorial/spring-mvc-quickstart"><div class="lb-nav"><a class="lb-prev" href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart"></a><a class="lb-next" href="https://www.tianmaying.com/tutorial/spring-mvc-quickstart"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>
