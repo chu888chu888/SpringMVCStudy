@@ -25,7 +25,7 @@ public class IndexController {
     @Value(value="${chu.secret}")
     private String SecretValue;
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         return "hello world!";
     }
