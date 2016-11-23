@@ -1,0 +1,93 @@
+2016-11-17 14:08:02.276 |-INFO  [restartedMain] com.chu.DemoApplication [48] -| Starting DemoApplication on LAPTOP-HET34L8E with PID 12056 (C:\Users\P70\Desktop\demo\target\classes started by P70 in C:\Users\P70\Desktop\demo)
+2016-11-17 14:08:02.276 |-INFO  [restartedMain] com.chu.DemoApplication [665] -| The following profiles are active: test
+2016-11-17 14:08:02.510 |-INFO  [background-preinit] org.hibernate.validator.internal.util.Version [30] -| HV000001: Hibernate Validator 5.2.4.Final
+2016-11-17 14:08:02.573 |-INFO  [restartedMain] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext [582] -| Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@74838e4: startup date [Thu Nov 17 14:08:02 CST 2016]; root of context hierarchy
+2016-11-17 14:08:04.151 |-INFO  [restartedMain] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [325] -| Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e58d27f5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-17 14:08:04.697 |-INFO  [restartedMain] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [87] -| Tomcat initialized with port(s): 9090 (http)
+2016-11-17 14:08:04.712 |-INFO  [restartedMain] org.apache.catalina.core.StandardService [179] -| Starting service Tomcat
+2016-11-17 14:08:04.712 |-INFO  [restartedMain] org.apache.catalina.core.StandardEngine [179] -| Starting Servlet Engine: Apache Tomcat/8.5.6
+2016-11-17 14:08:04.806 |-INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [179] -| Initializing Spring embedded WebApplicationContext
+2016-11-17 14:08:04.806 |-INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader [276] -| Root WebApplicationContext: initialization completed in 2233 ms
+2016-11-17 14:08:04.962 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean [190] -| Mapping servlet: 'dispatcherServlet' to [/]
+2016-11-17 14:08:04.962 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean [190] -| Mapping servlet: 'webServlet' to [/h2-console/*]
+2016-11-17 14:08:04.962 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-11-17 14:08:04.962 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-11-17 14:08:04.962 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-11-17 14:08:04.962 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'requestContextFilter' to: [/*]
+2016-11-17 14:08:05.375 |-INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [349] -| Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-11-17 14:08:05.391 |-INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper [31] -| HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-11-17 14:08:05.469 |-INFO  [restartedMain] org.hibernate.Version [37] -| HHH000412: Hibernate Core {5.0.11.Final}
+2016-11-17 14:08:05.469 |-INFO  [restartedMain] org.hibernate.cfg.Environment [213] -| HHH000206: hibernate.properties not found
+2016-11-17 14:08:05.469 |-INFO  [restartedMain] org.hibernate.cfg.Environment [317] -| HHH000021: Bytecode provider name : javassist
+2016-11-17 14:08:05.500 |-INFO  [restartedMain] org.hibernate.annotations.common.Version [66] -| HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-11-17 14:08:05.610 |-INFO  [restartedMain] org.hibernate.dialect.Dialect [156] -| HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2016-11-17 14:08:05.797 |-INFO  [restartedMain] org.hibernate.tool.hbm2ddl.SchemaExport [400] -| HHH000227: Running hbm2ddl schema export
+2016-11-17 14:08:05.797 |-INFO  [restartedMain] org.hibernate.tool.hbm2ddl.SchemaExport [464] -| HHH000230: Schema export complete
+2016-11-17 14:08:05.828 |-INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [382] -| Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-11-17 14:08:06.078 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [534] -| Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@74838e4: startup date [Thu Nov 17 14:08:02 CST 2016]; root of context hierarchy
+2016-11-17 14:08:06.157 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.chu.controller.IndexController.index()
+2016-11-17 14:08:06.172 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/getMapModel/{MapID}/{MapValue}],methods=[GET]}" onto public java.util.Map com.chu.controller.IndexController.getMapModel(java.lang.String,java.lang.String)
+2016-11-17 14:08:06.172 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/getUserModel/{mapid}/{name}],methods=[GET]}" onto public com.chu.model.User com.chu.controller.IndexController.getUserModel(int,java.lang.String)
+2016-11-17 14:08:06.172 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-11-17 14:08:06.172 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-11-17 14:08:06.188 |-INFO  [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 14:08:06.188 |-INFO  [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 14:08:06.235 |-INFO  [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 14:08:06.266 |-WARN  [restartedMain] org.springframework.boot.autoconfigure.thymeleaf.AbstractTemplateResolverConfiguration [60] -| Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2016-11-17 14:08:06.750 |-INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [58] -| LiveReload server is running on port 35729
+2016-11-17 14:08:06.797 |-INFO  [restartedMain] org.springframework.jmx.export.annotation.AnnotationMBeanExporter [431] -| Registering beans for JMX exposure on startup
+2016-11-17 14:08:06.813 |-INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol [179] -| Initializing ProtocolHandler ["http-nio-9090"]
+2016-11-17 14:08:06.828 |-INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol [179] -| Starting ProtocolHandler [http-nio-9090]
+2016-11-17 14:08:06.844 |-INFO  [restartedMain] org.apache.tomcat.util.net.NioSelectorPool [179] -| Using a shared selector for servlet write/read
+2016-11-17 14:08:06.860 |-INFO  [restartedMain] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [185] -| Tomcat started on port(s): 9090 (http)
+2016-11-17 14:08:06.860 |-INFO  [restartedMain] com.chu.DemoApplication [57] -| Started DemoApplication in 5.131 seconds (JVM running for 5.717)
+2016-11-17 14:08:42.069 |-INFO  [restartedMain] com.chu.DemoApplication [48] -| Starting DemoApplication on LAPTOP-HET34L8E with PID 7824 (C:\Users\P70\Desktop\demo\target\classes started by P70 in C:\Users\P70\Desktop\demo)
+2016-11-17 14:08:42.069 |-INFO  [restartedMain] com.chu.DemoApplication [665] -| The following profiles are active: test
+2016-11-17 14:08:42.318 |-INFO  [background-preinit] org.hibernate.validator.internal.util.Version [30] -| HV000001: Hibernate Validator 5.2.4.Final
+2016-11-17 14:08:42.380 |-INFO  [restartedMain] org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext [582] -| Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@74838e4: startup date [Thu Nov 17 14:08:42 CST 2016]; root of context hierarchy
+2016-11-17 14:08:43.994 |-INFO  [restartedMain] org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker [325] -| Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [class org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$e58d27f5] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2016-11-17 14:08:44.572 |-INFO  [restartedMain] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [87] -| Tomcat initialized with port(s): 8080 (http)
+2016-11-17 14:08:44.572 |-INFO  [restartedMain] org.apache.catalina.core.StandardService [179] -| Starting service Tomcat
+2016-11-17 14:08:44.572 |-INFO  [restartedMain] org.apache.catalina.core.StandardEngine [179] -| Starting Servlet Engine: Apache Tomcat/8.5.6
+2016-11-17 14:08:44.681 |-INFO  [localhost-startStop-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [179] -| Initializing Spring embedded WebApplicationContext
+2016-11-17 14:08:44.681 |-INFO  [localhost-startStop-1] org.springframework.web.context.ContextLoader [276] -| Root WebApplicationContext: initialization completed in 2301 ms
+2016-11-17 14:08:44.869 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean [190] -| Mapping servlet: 'dispatcherServlet' to [/]
+2016-11-17 14:08:44.869 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.ServletRegistrationBean [190] -| Mapping servlet: 'webServlet' to [/h2-console/*]
+2016-11-17 14:08:44.869 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-11-17 14:08:44.869 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-11-17 14:08:44.869 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-11-17 14:08:44.869 |-INFO  [localhost-startStop-1] org.springframework.boot.web.servlet.FilterRegistrationBean [258] -| Mapping filter: 'requestContextFilter' to: [/*]
+2016-11-17 14:08:45.353 |-INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [349] -| Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-11-17 14:08:45.369 |-INFO  [restartedMain] org.hibernate.jpa.internal.util.LogHelper [31] -| HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2016-11-17 14:08:45.431 |-INFO  [restartedMain] org.hibernate.Version [37] -| HHH000412: Hibernate Core {5.0.11.Final}
+2016-11-17 14:08:45.447 |-INFO  [restartedMain] org.hibernate.cfg.Environment [213] -| HHH000206: hibernate.properties not found
+2016-11-17 14:08:45.447 |-INFO  [restartedMain] org.hibernate.cfg.Environment [317] -| HHH000021: Bytecode provider name : javassist
+2016-11-17 14:08:45.478 |-INFO  [restartedMain] org.hibernate.annotations.common.Version [66] -| HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+2016-11-17 14:08:45.572 |-INFO  [restartedMain] org.hibernate.dialect.Dialect [156] -| HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2016-11-17 14:08:45.759 |-INFO  [restartedMain] org.hibernate.tool.hbm2ddl.SchemaExport [400] -| HHH000227: Running hbm2ddl schema export
+2016-11-17 14:08:45.759 |-INFO  [restartedMain] org.hibernate.tool.hbm2ddl.SchemaExport [464] -| HHH000230: Schema export complete
+2016-11-17 14:08:45.791 |-INFO  [restartedMain] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [382] -| Initialized JPA EntityManagerFactory for persistence unit 'default'
+2016-11-17 14:08:46.082 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter [534] -| Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@74838e4: startup date [Thu Nov 17 14:08:42 CST 2016]; root of context hierarchy
+2016-11-17 14:08:46.161 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/index],methods=[GET]}" onto public java.lang.String com.chu.controller.IndexController.index()
+2016-11-17 14:08:46.162 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/getMapModel/{MapID}/{MapValue}],methods=[GET]}" onto public java.util.Map com.chu.controller.IndexController.getMapModel(java.lang.String,java.lang.String)
+2016-11-17 14:08:46.163 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/getUserModel/{mapid}/{name}],methods=[GET]}" onto public com.chu.model.User com.chu.controller.IndexController.getUserModel(int,java.lang.String)
+2016-11-17 14:08:46.165 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
+2016-11-17 14:08:46.166 |-INFO  [restartedMain] org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping [543] -| Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
+2016-11-17 14:08:46.200 |-INFO  [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 14:08:46.200 |-INFO  [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 14:08:46.242 |-INFO  [restartedMain] org.springframework.web.servlet.handler.SimpleUrlHandlerMapping [354] -| Mapped URL path [/**/favicon.ico] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
+2016-11-17 14:08:46.279 |-WARN  [restartedMain] org.springframework.boot.autoconfigure.thymeleaf.AbstractTemplateResolverConfiguration [60] -| Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2016-11-17 14:08:46.776 |-INFO  [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer [58] -| LiveReload server is running on port 35729
+2016-11-17 14:08:46.828 |-INFO  [restartedMain] org.springframework.jmx.export.annotation.AnnotationMBeanExporter [431] -| Registering beans for JMX exposure on startup
+2016-11-17 14:08:46.842 |-INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol [179] -| Initializing ProtocolHandler ["http-nio-8080"]
+2016-11-17 14:08:46.850 |-INFO  [restartedMain] org.apache.coyote.http11.Http11NioProtocol [179] -| Starting ProtocolHandler [http-nio-8080]
+2016-11-17 14:08:46.850 |-INFO  [restartedMain] org.apache.tomcat.util.net.NioSelectorPool [179] -| Using a shared selector for servlet write/read
+2016-11-17 14:08:46.865 |-INFO  [restartedMain] org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainer [185] -| Tomcat started on port(s): 8080 (http)
+2016-11-17 14:08:46.881 |-INFO  [restartedMain] com.chu.DemoApplication [57] -| Started DemoApplication in 5.312 seconds (JVM running for 5.776)
+2016-11-17 14:08:47.629 |-INFO  [http-nio-8080-exec-1] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [179] -| Initializing Spring FrameworkServlet 'dispatcherServlet'
+2016-11-17 14:08:47.630 |-INFO  [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet [489] -| FrameworkServlet 'dispatcherServlet': initialization started
+2016-11-17 14:08:47.646 |-INFO  [http-nio-8080-exec-1] org.springframework.web.servlet.DispatcherServlet [508] -| FrameworkServlet 'dispatcherServlet': initialization completed in 16 ms
