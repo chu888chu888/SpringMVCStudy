@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<!-- saved from url=(0043)http://blog.didispace.com/springbootcache1/ -->
+<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <title>Spring Boot中的缓存支持（一）注解配置与EhCache使用 | 程序猿DD</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="随着时间的积累，应用的使用用户不断增加，数据规模也越来越大，往往数据库查询操作会成为影响用户使用体验的瓶颈，此时使用缓存往往是解决这一问题非常好的手段之一。Spring 3开始提供了强大的基于注解的缓存支持，可以通过注解配置方式低侵入的给原有Spring应用增加缓存功能，提高数据访问性能。
+在Spring Boot中对于缓存的支持，提供了一系列的自动化配置，使我们可以非常方便的使用缓存。下面我们通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot中的缓存支持（一）注解配置与EhCache使用">
+<meta property="og:url" content="http://blog.didispace.com/springbootcache1/index.html">
+<meta property="og:site_name" content="程序猿DD">
+<meta property="og:description" content="随着时间的积累，应用的使用用户不断增加，数据规模也越来越大，往往数据库查询操作会成为影响用户使用体验的瓶颈，此时使用缓存往往是解决这一问题非常好的手段之一。Spring 3开始提供了强大的基于注解的缓存支持，可以通过注解配置方式低侵入的给原有Spring应用增加缓存功能，提高数据访问性能。
+在Spring Boot中对于缓存的支持，提供了一系列的自动化配置，使我们可以非常方便的使用缓存。下面我们通">
+<meta property="og:updated_time" content="2016-06-17T04:39:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot中的缓存支持（一）注解配置与EhCache使用">
+<meta name="twitter:description" content="随着时间的积累，应用的使用用户不断增加，数据规模也越来越大，往往数据库查询操作会成为影响用户使用体验的瓶颈，此时使用缓存往往是解决这一问题非常好的手段之一。Spring 3开始提供了强大的基于注解的缓存支持，可以通过注解配置方式低侵入的给原有Spring应用增加缓存功能，提高数据访问性能。
+在Spring Boot中对于缓存的支持，提供了一系列的自动化配置，使我们可以非常方便的使用缓存。下面我们通">
+    
+
+    
+        <link rel="alternate" href="http://blog.didispace.com/atom.xml" title="程序猿DD" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/font-awesome.min.css">
+    <link rel="stylesheet" href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/styles.css">
+    <link rel="stylesheet" href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/styles(1).css">
+
+    <link rel="stylesheet" href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/style.css">
+
+    <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/push.js"></script><script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/hm.js"></script><script async="" src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/analytics.js"></script><script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lightgallery.min.css">
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83645028-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?3e1cdb5d0a9e409358566f06f89e048d";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+    
+
+
+<script type="text/javascript" async="" src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/embed.js" charset="UTF-8"></script><script type="text/javascript" async="" src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/embed.js" charset="UTF-8"></script><script type="text/javascript" async="" src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/embed.js" charset="UTF-8"></script><link type="text/css" rel="stylesheet" href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/embed.default.css"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="http://blog.didispace.com/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">程序猿DD</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="http://blog.didispace.com/">主页</a>
+                
+                    <a class="main-nav-link" href="http://blog.didispace.com/archives">目录</a>
+                
+                    <a class="main-nav-link" href="http://blog.didispace.com/aboutme">关于我</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/avatar.jpg">
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tbody><tr>
+                
+                    <td><a class="main-nav-link" href="http://blog.didispace.com/">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="http://blog.didispace.com/archives">目录</a></td>
+                
+                    <td><a class="main-nav-link" href="http://blog.didispace.com/aboutme">关于我</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </tbody></table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<style>
+    .my-avatar {
+        margin: 25px auto;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        padding: 4px;
+        line-height: 1.42857143;
+        background-color: #fff;
+        border: 1px solid #ddd;
+    }
+</style>
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/avatar.jpg" class="my-avatar">
+            <h2 id="name">翟永超</h2>
+            <h3 id="title" style="margin: 1.6em 0em">会一些前端，懂一些后端，做过一些管理，弄过一些运维，搞过一些推广，我是一枚爱折腾的团队万金油</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>中国 - 上海</span>
+            <a id="follow" target="_blank" href="https://github.com/dyc87112">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                62
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                52
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tbody><tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/dyc87112" target="_blank" title="github" class="tooltip">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://git.oschina.net/didispace" target="_blank" title="git" class="tooltip">
+                            <i class="fa fa-git"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="mailto:didi@potatomato.club" target="_blank" title="envelope" class="tooltip">
+                            <i class="fa fa-envelope"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/2014605502" target="_blank" title="weibo" class="tooltip">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://blog.didispace.com/atom.xml" target="_blank" title="rss" class="tooltip">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </tbody></table>
+        </div>
+        
+    </div>
+
+    <!--<div class="inner profile-inner">-->
+        <!--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <!--&lt;!&ndash; 自适应广告 &ndash;&gt;-->
+        <!--<ins class="adsbygoogle"-->
+             <!--style="display:block"-->
+             <!--data-ad-client="ca-pub-8254913025324557"-->
+             <!--data-ad-slot="8885020021"-->
+             <!--data-ad-format="auto"></ins>-->
+        <!--<script>-->
+            <!--(adsbygoogle = window.adsbygoogle || []).push({});-->
+        <!--</script>-->
+    <!--</div>-->
+</aside>
+
+            
+            <section id="main"><style>
+    .alert-success {
+        background-color: #f5f5f5;
+        /* border-color: #2FA4E7; */
+        padding: 7px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        /* color: #468847; */
+    }
+
+    .alert {
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+
+    #busuanzi_value_page_pv {
+        color: #009688;
+        font-weight: bold;
+    }
+</style>
+
+<article id="post-springbootcache1" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Spring Boot中的缓存支持（一）注解配置与EhCache使用
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="http://blog.didispace.com/springbootcache1/">
+            <time datetime="2016-06-16T13:54:51.000Z" itemprop="datePublished">2016-06-16</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category" style="text-transform: none;">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="http://blog.didispace.com/categories/Spring-Boot/">Spring Boot</a>
+    </div>
+
+                        <span id="busuanzi_container_page_pv" style="display: inline;">被围观 <span id="busuanzi_value_page_pv">1684</span> 次</span>
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody" lg-uid="lg0">
+        
+            
+            <p>随着时间的积累，应用的使用用户不断增加，数据规模也越来越大，往往数据库查询操作会成为影响用户使用体验的瓶颈，此时使用缓存往往是解决这一问题非常好的手段之一。Spring 3开始提供了强大的基于注解的缓存支持，可以通过注解配置方式低侵入的给原有Spring应用增加缓存功能，提高数据访问性能。</p>
+<p>在Spring Boot中对于缓存的支持，提供了一系列的自动化配置，使我们可以非常方便的使用缓存。下面我们通过一个简单的例子来展示，我们是如何给一个既有应用增加缓存功能的。</p>
+<h2 id="快速入门"><a href="http://blog.didispace.com/springbootcache1/#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><p>首先，下载样例工程<a href="https://git.oschina.net/didispace/SpringBoot-Learning" target="_blank" rel="external">chapter3-2-2</a>。本例通过spring-data-jpa实现了对User用户表的一些操作，若没有这个基础，可以先阅读<a href="http://blog.didispace.com/springbootdata2/">《使用Spring-data-jpa简化数据访问层》</a>一文对数据访问有所基础。</p>
+<h4 id="准备工作"><a href="http://blog.didispace.com/springbootcache1/#准备工作" class="headerlink" title="准备工作"></a>准备工作</h4><p>为了更好的理解缓存，我们先对该工程做一些简单的改造。</p>
+<ul>
+<li><p><code>application.properties</code>文件中新增<code>spring.jpa.properties.hibernate.show_sql=true</code>，开启hibernate对sql语句的打印</p>
+</li>
+<li><p>修改单元测试<code>ApplicationTests</code>，初始化插入User表一条用户名为AAA，年龄为10的数据。并通过findByName函数完成两次查询。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</div><div class="line"><span class="meta">@SpringApplicationConfiguration</span>(Application.class)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ApplicationTests</span> </span>{</div><div class="line"></div><div class="line">	<span class="meta">@Autowired</span></div><div class="line">	<span class="keyword">private</span> UserRepository userRepository;</div><div class="line"></div><div class="line">	<span class="meta">@Before</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>{</div><div class="line">		userRepository.save(<span class="keyword">new</span> User(<span class="string">"AAA"</span>, <span class="number">10</span>));</div><div class="line">	}</div><div class="line"></div><div class="line">	<span class="meta">@Test</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{</div><div class="line">		User u1 = userRepository.findByName(<span class="string">"AAA"</span>);</div><div class="line">		System.out.println(<span class="string">"第一次查询："</span> + u1.getAge());</div><div class="line"></div><div class="line">		User u2 = userRepository.findByName(<span class="string">"AAA"</span>);</div><div class="line">		System.out.println(<span class="string">"第二次查询："</span> + u2.getAge());</div><div class="line">	}</div><div class="line"></div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<ul>
+<li>执行单元测试，我们可以在控制台中看到下面内容。</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Hibernate: insert into user (age, name) values (?, ?)</div><div class="line">Hibernate: select user0_.id as id1_0_, user0_.age as age2_0_, user0_.name as name3_0_ from user user0_ <span class="built_in">where</span> user0_.name=?</div><div class="line">第一次查询：10</div><div class="line">Hibernate: select user0_.id as id1_0_, user0_.age as age2_0_, user0_.name as name3_0_ from user user0_ <span class="built_in">where</span> user0_.name=?</div><div class="line">第二次查询：10</div></pre></td></tr></tbody></table></figure>
+<p>在测试用例执行前，插入了一条User记录。然后每次findByName调用时，都执行了一句select语句来查询用户名为AAA的记录。</p>
+<h4 id="引入缓存"><a href="http://blog.didispace.com/springbootcache1/#引入缓存" class="headerlink" title="引入缓存"></a>引入缓存</h4><ul>
+<li>在<code>pom.xml</code>中引入cache依赖，添加如下内容：</li>
+</ul>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-cache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></tbody></table></figure>
+<ul>
+<li>在Spring Boot主类中增加<code>@EnableCaching</code>注解开启缓存功能，如下：</li>
+</ul>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@SpringBootApplication</span></div><div class="line"><span class="meta">@EnableCaching</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Application</span> </span>{</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</div><div class="line">		SpringApplication.run(Application.class, args);</div><div class="line">	}</div><div class="line"></div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<ul>
+<li>在数据访问接口中，增加缓存配置注解，如：</li>
+</ul>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@CacheConfig</span>(cacheNames = <span class="string">"users"</span>)</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">User</span>, <span class="title">Long</span>&gt; </span>{</div><div class="line"></div><div class="line">    <span class="meta">@Cacheable</span></div><div class="line">    <span class="function">User <span class="title">findByName</span><span class="params">(String name)</span></span>;</div><div class="line"></div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+<ul>
+<li>再来执行以下单元测试，可以在控制台中输出了下面的内容：</li>
+</ul>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Hibernate: insert into user (age, name) values (?, ?)</div><div class="line">Hibernate: select user0_.id as id1_0_, user0_.age as age2_0_, user0_.name as name3_0_ from user user0_ <span class="built_in">where</span> user0_.name=?</div><div class="line">第一次查询：10</div><div class="line">第二次查询：10</div></pre></td></tr></tbody></table></figure>
+<p>到这里，我们可以看到，在调用第二次findByName函数时，没有再执行select语句，也就直接减少了一次数据库的读取操作。</p>
+<p>为了可以更好的观察，缓存的存储，我们可以在单元测试中注入cacheManager。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Autowired</span></div><div class="line"><span class="keyword">private</span> CacheManager cacheManager;</div></pre></td></tr></tbody></table></figure>
+<p>使用debug模式运行单元测试，观察cacheManager中的缓存集users以及其中的User对象的缓存加深理解。</p>
+<h2 id="Cache注解详解"><a href="http://blog.didispace.com/springbootcache1/#Cache注解详解" class="headerlink" title="Cache注解详解"></a>Cache注解详解</h2><p>回过头来我们再来看，这里使用到的两个注解分别作了什么事情。</p>
+<ul>
+<li><p><code>@CacheConfig</code>：主要用于配置该类中会用到的一些共用的缓存配置。在这里<code>@CacheConfig(cacheNames = "users")</code>：配置了该数据访问对象中返回的内容将存储于名为users的缓存对象中，我们也可以不使用该注解，直接通过<code>@Cacheable</code>自己配置缓存集的名字来定义。</p>
+</li>
+<li><p><code>@Cacheable</code>：配置了findByName函数的返回值将被加入缓存。同时在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问。该注解主要有下面几个参数：</p>
+<ul>
+<li><code>value</code>、<code>cacheNames</code>：两个等同的参数（<code>cacheNames</code>为Spring 4新增，作为<code>value</code>的别名），用于指定缓存存储的集合名。由于Spring 4中新增了<code>@CacheConfig</code>，因此在Spring 3中原本必须有的<code>value</code>属性，也成为非必需项了</li>
+<li><code>key</code>：缓存对象存储在Map集合中的key值，非必需，缺省按照函数的所有参数组合作为key值，若自己配置需使用SpEL表达式，比如：<code>@Cacheable(key = "#p0")</code>：使用函数第一个参数作为缓存的key值，更多关于SpEL表达式的详细内容可参考<a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html#cache-spel-context" target="_blank" rel="external">官方文档</a></li>
+<li><code>condition</code>：缓存对象的条件，非必需，也需使用SpEL表达式，只有满足表达式条件的内容才会被缓存，比如：<code>@Cacheable(key = "#p0", condition = "#p0.length() &lt; 3")</code>，表示只有当第一个参数的长度小于3的时候才会被缓存，若做此配置上面的AAA用户就不会被缓存，读者可自行实验尝试。</li>
+<li><code>unless</code>：另外一个缓存条件参数，非必需，需使用SpEL表达式。它不同于<code>condition</code>参数的地方在于它的判断时机，该条件是在函数被调用之后才做判断的，所以它可以通过对result进行判断。</li>
+<li><code>keyGenerator</code>：用于指定key生成器，非必需。若需要指定一个自定义的key生成器，我们需要去实现<code>org.springframework.cache.interceptor.KeyGenerator</code>接口，并使用该参数来指定。需要注意的是：<strong>该参数与<code>key</code>是互斥的</strong></li>
+<li><code>cacheManager</code>：用于指定使用哪个缓存管理器，非必需。只有当有多个时才需要使用</li>
+<li><code>cacheResolver</code>：用于指定使用那个缓存解析器，非必需。需通过<code>org.springframework.cache.interceptor.CacheResolver</code>接口来实现自己的缓存解析器，并用该参数指定。</li>
+</ul>
+</li>
+</ul>
+<p>除了这里用到的两个注解之外，还有下面几个核心注解：</p>
+<ul>
+<li><code>@CachePut</code>：配置于函数上，能够根据参数定义条件来进行缓存，它与<code>@Cacheable</code>不同的是，它每次都会真是调用函数，所以主要用于数据新增和修改操作上。它的参数与<code>@Cacheable</code>类似，具体功能可参考上面对<code>@Cacheable</code>参数的解析</li>
+<li><code>@CacheEvict</code>：配置于函数上，通常用在删除方法上，用来从缓存中移除相应数据。除了同<code>@Cacheable</code>一样的参数之外，它还有下面两个参数：<ul>
+<li><code>allEntries</code>：非必需，默认为false。当为true时，会移除所有数据</li>
+<li><code>beforeInvocation</code>：非必需，默认为false，会在调用方法之后移除数据。当为true时，会在调用方法之前移除数据。</li>
+</ul>
+</li>
+</ul>
+<h2 id="缓存配置"><a href="http://blog.didispace.com/springbootcache1/#缓存配置" class="headerlink" title="缓存配置"></a>缓存配置</h2><p>完成了上面的缓存实验之后，可能大家会问，那我们在Spring Boot中到底使用了什么缓存呢？</p>
+<p>在Spring Boot中通过<code>@EnableCaching</code>注解自动化配置合适的缓存管理器（CacheManager），Spring Boot根据下面的顺序去侦测缓存提供者：</p>
+<ul>
+<li>Generic</li>
+<li>JCache (JSR-107)</li>
+<li>EhCache 2.x</li>
+<li>Hazelcast</li>
+<li>Infinispan</li>
+<li>Redis</li>
+<li>Guava</li>
+<li>Simple</li>
+</ul>
+<p>除了按顺序侦测外，我们也可以通过配置属性<code>spring.cache.type</code>来强制指定。我们可以通过debug调试查看cacheManager对象的实例来判断当前使用了什么缓存。</p>
+<p>本文中不对所有的缓存做详细介绍，下面以常用的EhCache为例，看看如何配置来使用EhCache进行缓存管理。</p>
+<p>在Spring Boot中开启EhCache非常简单，只需要在工程中加入<code>ehcache.xml</code>配置文件并在pom.xml中增加ehcache依赖，框架只要发现该文件，就会创建EhCache的缓存管理器。</p>
+<ul>
+<li>在<code>src/main/resources</code>目录下创建：<code>ehcache.xml</code></li>
+</ul>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">ehcache</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></div><div class="line">         <span class="attr">xsi:noNamespaceSchemaLocation</span>=<span class="string">"ehcache.xsd"</span>&gt;</div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">cache</span> <span class="attr">name</span>=<span class="string">"users"</span></span></div><div class="line">           <span class="attr">maxEntriesLocalHeap</span>=<span class="string">"200"</span></div><div class="line">           <span class="attr">timeToLiveSeconds</span>=<span class="string">"600"</span>&gt;</div><div class="line">    <span class="tag">&lt;/<span class="name">cache</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">ehcache</span>&gt;</span></div></pre></td></tr></tbody></table></figure>
+<ul>
+<li>在<code>pom.xml</code>中加入</li>
+</ul>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sf.ehcache<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>ehcache<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></tbody></table></figure>
+<p>完成上面的配置之后，再通过debug模式运行单元测试，观察此时CacheManager已经是EhCacheManager实例，说明EhCache开启成功了。</p>
+<p>对于EhCache的配置文件也可以通过<code>application.properties</code>文件中使用<code>spring.cache.ehcache.config</code>属性来指定，比如：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">spring.cache.ehcache.config=classpath:config/another-config.xml</div></pre></td></tr></tbody></table></figure>
+<p>完整示例：<a href="https://git.oschina.net/didispace/SpringBoot-Learning" target="_blank" rel="external">Chapter-4-4-1</a></p>
+<p><strong>【转载请注明出处】：<a href="http://blog.didispace.com/springbootcache1/">http://blog.didispace.com/springbootcache1/</a></strong></p>
+
+
+
+            
+                <div class="alert alert-success"><i class="fa fa-lightbulb-o"></i>
+                    本文由 <a href="http://blog.didispace.com/">程序猿DD-翟永超</a> 创作，采用
+                    <a href="http://creativecommons.org/licenses/by/3.0/cn" target="_blank" rel="external">CC BY 3.0 CN协议</a> 进行许可。
+                    可自由转载、引用，但需署名作者且注明文章出处。
+                </div>
+                
+<!-- css -->
+<style type="text/css">
+    .center {
+        text-align: center;
+    }
+    .hidden {
+        display: none;
+    }
+    .donate_bar a.btn_donate{
+        display: inline-block;
+        width: 82px;
+        height: 82px;
+        background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        _background: url("http://7xsl28.com1.z0.glb.clouddn.com/btn_reward.gif") no-repeat;
+        -webkit-transition: background 0s;
+        -moz-transition: background 0s;
+        -o-transition: background 0s;
+        -ms-transition: background 0s;
+        transition: background 0s;
+    }
+
+    .donate_bar a.btn_donate:hover{ background-position: 0px -82px;}
+    .donate_bar .donate_txt {
+        display: block;
+        color: #9d9d9d;
+        font: 14px/2 "Microsoft Yahei";
+    }
+    .bold{ font-weight: bold; }
+</style>
+<!-- /css -->
+
+<!-- Donate Module -->
+<div id="donate_module">
+
+    <!-- btn_donate & tips -->
+    <div id="donate_board" class="donate_bar center">
+        <br>
+        ------------------------------------------------------------------------------------------------------------------------------
+        <br>
+        <a id="btn_donate" class="btn_donate" target="_self" href="javascript:;" title="Donate 打赏"></a>
+    <span class="donate_txt">
+      如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+    </span>
+
+
+    </div>
+    <!-- /btn_donate & tips -->
+
+    <!-- donate guide -->
+
+    <div id="donate_guide" class="donate_bar center hidden">
+        <br>
+        ------------------------------------------------------------------------------------------------------------------------------
+        <br>
+
+        <a href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/zhifubao.png" title="用微信扫一扫哦~" class="fancybox" rel="article0">
+            <a href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/zhifubao.png" title="" class="gallery-item" lg-event-uid="&amp;1"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/zhifubao.png" title="微信打赏 Colin" height="190px" width="auto"></a>
+        </a>
+
+        &nbsp;&nbsp;
+
+        <a href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/weixinzhifu.png" title="用支付宝扫一扫即可~" class="fancybox" rel="article0">
+            <a href="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/weixinzhifu.png" title="" class="gallery-item" lg-event-uid="&amp;2"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/weixinzhifu.png" title="支付宝打赏 Colin" height="190px" width="auto"></a>
+        </a>
+
+    <span class="donate_txt">
+      如您觉得文章不错，对您有所帮助，可以通过“支付宝”或“微信支付”请我喝咖啡。
+    </span>
+
+    </div>
+    <!-- /donate guide -->
+
+    <!-- donate script -->
+    <script type="text/javascript">
+        document.getElementById('btn_donate').onclick = function() {
+            $('#donate_board').addClass('hidden');
+            $('#donate_guide').removeClass('hidden');
+        }
+
+        function donate_on_web(){
+            $('#donate').submit();
+        }
+
+        var original_window_onload = window.onload;
+        window.onload = function () {
+            if (original_window_onload) {
+                original_window_onload();
+            }
+            document.getElementById('donate_board_wdg').className = 'hidden';
+        }
+    </script>
+    <!-- /donate script -->
+</div>
+<!-- /Donate Module -->
+
+            
+
+            
+        </div>
+        <footer class="article-footer">
+            
+    <div class="share-container" style="text-transform: none;">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="http://blog.didispace.com/tags/Cache/">Cache</a>, <a class="tag-link" href="http://blog.didispace.com/tags/EhCache/">EhCache</a>, <a class="tag-link" href="http://blog.didispace.com/tags/Spring-Boot/">Spring Boot</a>
+    </div>
+
+            <!--<div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://blog.didispace.com/springbootcache1/" data-id="civu5uu4300213c21rhq09gfn" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+-->
+            
+    
+        <a href="http://blog.didispace.com/springbootcache1/#comments" class="article-comment-link ds-thread-count" data-thread-key="springbootcache1">2条评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="http://blog.didispace.com/springbootcache2/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Spring Boot中的缓存支持（二）使用Redis做集中式缓存
+                
+            </div>
+        </a>
+    
+    
+        <a href="http://blog.didispace.com/springbootmailsender/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Spring Boot中使用JavaMailSender发送邮件</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="springbootcache1" data-title="Spring Boot中的缓存支持（一）注解配置与EhCache使用" data-url="http://blog.didispace.com/springbootcache1/" id="ds-thread"><div id="ds-reset"><div class="ds-meta" style="display: none;"><a href="javascript:void(0)" class="ds-like-thread-button ds-rounded"><span class="ds-icon ds-icon-heart"></span> <span class="ds-thread-like-text">喜欢</span><span class="ds-thread-cancel-like">取消喜欢</span></a><span class="ds-like-panel"></span></div><div class="ds-comments-info"><div class="ds-sort"><a class="ds-order-desc ds-current">最新</a><a class="ds-order-asc">最早</a><a class="ds-order-hot">最热</a></div><ul class="ds-comments-tabs"><li class="ds-tab"><a class="ds-comments-tab-duoshuo ds-current" href="javascript:void(0);"><span class="ds-highlight">2</span>条评论</a></li>  </ul></div><ul class="ds-comments"><li class="ds-post" data-post-id="6353209330048697089"><div class="ds-post-self" data-post-id="6353209330048697089" data-thread-id="6297013906539807490" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6353209015127786241"><a rel="nofollow author" target="_blank" href="http://t.qq.com/chengkunxf" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6353209015127786241&#39;;" title="程坤"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/50" alt="程坤"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://t.qq.com/chengkunxf" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6353209015127786241&#39;;" rel="nofollow" target="_blank" data-user-id="6353209015127786241">程坤</a></div><p><a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html#cache-spel-context官网声明了。定义了一个规则。" target="_blank" rel="nofollow">http://docs.spring.io/spring/docs/current/spring-framework-reference/html/cache.html#cache-spel-context官网声明了。定义了一个规则。</a><br>
+#p0 或者 #a0 都是第一个参数</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-11-15T22:56:57+08:00" title="2016年11月15日 下午10:56:57">11月15日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li><li class="ds-post" data-post-id="6327845504545719042"><div class="ds-post-self" data-post-id="6327845504545719042" data-thread-id="6297013906539807490" data-root-id="0" data-source="duoshuo"><div class="ds-avatar" data-user-id="6326740697072272130"><a rel="nofollow author" target="_blank" href="http://weibo.com/5648666223" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6326740697072272130&#39;;" title="WWDC2018"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/default_avatar_male_50.gif" alt="WWDC2018"></a></div><div class="ds-comment-body"><div class="ds-comment-header"><a class="ds-user-name ds-highlight" data-qqt-account="" href="http://weibo.com/5648666223" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6326740697072272130&#39;;" rel="nofollow" target="_blank" data-user-id="6326740697072272130">WWDC2018</a></div><p>#p0为什么代表第一个参数？</p><div class="ds-comment-footer ds-comment-actions"><span class="ds-time" datetime="2016-09-08T14:32:21+08:00" title="2016年9月8日 下午2:32:21">9月8日</span><a class="ds-post-reply" href="javascript:void(0);"><span class="ds-icon ds-icon-reply"></span>回复</a><a class="ds-post-likes" href="javascript:void(0);"><span class="ds-icon ds-icon-like"></span>顶</a><a class="ds-post-repost" href="javascript:void(0);"><span class="ds-icon ds-icon-share"></span>转发</a><a class="ds-post-report" href="javascript:void(0);"><span class="ds-icon ds-icon-report"></span>举报</a></div></div></div></li></ul><div class="ds-paginator" style="display: none;"><div class="ds-border"></div><a data-page="1" href="javascript:void(0);" class="ds-current">1</a></div><a name="respond"></a><div class="ds-login-buttons"><p>社交帐号登录:</p><div class="ds-social-links"><ul class="ds-service-list"><li><a href="http://coderdidi.duoshuo.com/login/weixin/" rel="nofollow" class="ds-service-link ds-weixin">微信</a></li><li><a href="http://coderdidi.duoshuo.com/login/weibo/" rel="nofollow" class="ds-service-link ds-weibo">微博</a></li><li><a href="http://coderdidi.duoshuo.com/login/qq/" rel="nofollow" class="ds-service-link ds-qq">QQ</a></li><li><a href="http://coderdidi.duoshuo.com/login/renren/" rel="nofollow" class="ds-service-link ds-renren">人人</a></li><li><a class="ds-more-services" href="javascript:void(0)">更多»</a></li></ul><ul class="ds-service-list ds-additional-services"><li><a href="http://coderdidi.duoshuo.com/login/douban/" rel="nofollow" class="ds-service-link ds-douban">豆瓣</a></li><li><a href="http://coderdidi.duoshuo.com/login/kaixin/" rel="nofollow" class="ds-service-link ds-kaixin">开心</a></li><li><a href="http://coderdidi.duoshuo.com/login/baidu/" rel="nofollow" class="ds-service-link ds-baidu">百度</a></li><li><a href="http://coderdidi.duoshuo.com/login/google/" rel="nofollow" class="ds-service-link ds-google">谷歌</a></li></ul></div></div><div class="ds-replybox"><a class="ds-avatar" href="javascript:void(0);" onclick="return false"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/noavatar_default.png" alt=""></a><form method="post"><input type="hidden" name="thread_id" value="6297013906539807490">
+<input type="hidden" name="parent_id" value="">
+<input type="hidden" name="nonce" value="582ec8e463dbe"><div class="ds-textarea-wrapper ds-rounded-top"><textarea name="message" title="Ctrl+Enter快捷提交" placeholder="说点什么吧…"></textarea><pre class="ds-hidden-text"></pre></div><div class="ds-post-toolbar"><div class="ds-post-options ds-gradient-bg"><span class="ds-sync"></span></div><button class="ds-post-button" type="submit">发布</button><div class="ds-toolbar-buttons"><a class="ds-toolbar-button ds-add-emote" title="插入表情"></a></div></div></form></div><p class="ds-powered-by"><a href="http://duoshuo.com/" target="_blank" rel="nofollow">多说</a></p></div></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        <style>
+    .bg-danger {
+        background-color: #f2dede;
+        padding: 15px;
+        margin: 0px;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    }
+</style>
+
+
+    <div class="widget-wrap">
+        <h3 class="widget-title">公告</h3>
+        <div class="widget">
+            <div class="card-front animated col s12 m12 l8 offset-l2 fadeInUp">
+                <p class="bg-danger">
+                    SpringCloud交流1群：470962790<br>
+                    SpringCloud交流2群：123013854<br>
+                    博主微信：zhaiyongchao1987<br>
+                    欢迎有兴趣的朋友加入分享与交流经验。</p>
+            </div>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="http://blog.didispace.com/categories/Node-js/">Node.js</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="http://blog.didispace.com/categories/Spring-Boot/">Spring Boot</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="http://blog.didispace.com/categories/Spring-Cloud/">Spring Cloud</a><span class="category-list-count">14</span></li><li class="category-list-item"><a class="category-list-link" href="http://blog.didispace.com/categories/%E6%8A%80%E6%9C%AF%E6%9D%82%E8%AE%B0/">技术杂记</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="http://blog.didispace.com/categories/%E6%95%8F%E6%8D%B7%E7%AE%A1%E7%90%86/">敏捷管理</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="http://blog.didispace.com/categories/%E9%9A%8F%E7%AC%94%E6%84%9F%E6%82%9F/">随笔感悟</a><span class="category-list-count">5</span></li></ul>
+        </div>
+    </div>
+
+    
+        <style>
+    .ds-top-threads li {
+        padding-bottom: 10px;
+    }
+</style>
+
+
+    <div class="widget-wrap">
+        <h3 class="widget-title">热评文章</h3>
+        <div class="widget">
+            <!-- 多说热评文章 start -->
+            <div class="ds-top-threads" data-range="monthly" data-num-items="10" id="ds-top-threads"><li><a target="_blank" href="http://blog.didispace.com/springbootweb/" title="Spring Boot开发Web应用">Spring Boot开发Web应用</a></li><li><a target="_blank" href="http://blog.didispace.com/springbootswagger2/" title="Spring Boot中使用Swagger2构建强大的RESTful API文档">Spring Boot中使用Swagger2构建强大的RESTful API文档</a></li><li><a target="_blank" href="http://blog.didispace.com/springcloud1/" title="Spring Cloud构建微服务架构（一）服务注册与发现">Spring Cloud构建微服务架构（一）服务注册与发现</a></li><li><a target="_blank" href="http://blog.didispace.com/springcloud2/" title="Spring Cloud构建微服务架构（二）服务消费者">Spring Cloud构建微服务架构（二）服务消费者</a></li><li><a target="_blank" href="http://blog.didispace.com/springbootmybatis/" title="Spring Boot整合MyBatis">Spring Boot整合MyBatis</a></li><li><a target="_blank" href="http://blog.didispace.com/springcloud3/" title="Spring Cloud构建微服务架构（三）断路器">Spring Cloud构建微服务架构（三）断路器</a></li><li><a target="_blank" href="http://blog.didispace.com/microservice-framework/" title="微服务架构的基础框架选择：Spring Cloud还是Dubbo？">微服务架构的基础框架选择：Spring Cloud还是Dubbo？</a></li><li><a target="_blank" href="http://localhost:2368/aboutme/" title="关于我">关于我</a></li><li><a target="_blank" href="http://blog.didispace.com/springcloud6/" title="Spring Cloud构建微服务架构（六）高可用服务注册中心">Spring Cloud构建微服务架构（六）高可用服务注册中心</a></li><li><a target="_blank" href="http://blog.didispace.com/springcloud-sourcecode-ribbon/" title="Spring Cloud源码分析（二）Ribbon">Spring Cloud源码分析（二）Ribbon</a></li></div>
+            <!-- 多说热评文章 end -->
+            <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+            <script type="text/javascript">
+                var duoshuoQuery = {short_name:"coderdidi"};
+                (function() {
+                    var ds = document.createElement('script');
+                    ds.type = 'text/javascript';ds.async = true;
+                    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                    ds.charset = 'UTF-8';
+                    (document.getElementsByTagName('head')[0]
+                    || document.getElementsByTagName('body')[0]).appendChild(ds);
+                })();
+            </script>
+            <!-- 多说公共JS代码 end -->
+        </div>
+    </div>
+
+    
+        
+<div class="widget-wrap">
+    <h3 class="widget-title">最近评论</h3>
+    <div class="widget">
+        <!-- 多说最新评论 start -->
+        <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70" id="ds-recent-comments"><li class="ds-comment ds-show-avatars" data-post-id="6359407387928953601"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/forrestgump90" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6359405967775367937&#39;;" title="歩景"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/50(1)" alt="歩景" style="width:32px;height:32px"></a></div><div class="ds-meta"><a rel="nofollow author" target="_blank" href="http://t.qq.com/forrestgump90">歩景</a><span class="ds-time" datetime="2016-12-02T15:48:35+08:00" title="2016年12月2日 下午3:48:35">59分钟前</span></div><div class="ds-thread-title">在 <a href="http://blog.didispace.com/microservice-framework/#comments">微服务架构的基础框架选择：Spring Cloud还是Dubbo？</a> 中评论</div><div class="ds-excerpt">dubbo更新频率低，说明已经非常稳定了，很多技术决策者更喜欢稳定可靠的技术，而不是还在发展中的技术，所以这并不能算是一种劣势。</div></li><li class="ds-comment ds-show-avatars" data-post-id="6359406022439731970"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/forrestgump90" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6359405967775367937&#39;;" title="歩景"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/50(1)" alt="歩景" style="width:32px;height:32px"></a></div><div class="ds-meta"><a rel="nofollow author" target="_blank" href="http://t.qq.com/forrestgump90">歩景</a><span class="ds-time" datetime="2016-12-02T15:43:17+08:00" title="2016年12月2日 下午3:43:17">1小时前</span></div><div class="ds-thread-title">在 <a href="http://blog.didispace.com/microservice-framework/#comments">微服务架构的基础框架选择：Spring Cloud还是Dubbo？</a> 中评论</div><div class="ds-excerpt">阿里的dubbo，服务提供者可以只有几台机器，服务调用者可以有几千台，很显然这是为了高并发的目标设计的。所以初创公司可以选择使用spring-cloud，等…</div></li><li class="ds-comment ds-show-avatars" data-post-id="6359388309961048833"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/Ganjianwei666" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6260306284235457281&#39;;" title="干剑伟"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/50(2)" alt="干剑伟" style="width:32px;height:32px"></a></div><div class="ds-meta"><a rel="nofollow author" target="_blank" href="http://t.qq.com/Ganjianwei666">干剑伟</a><span class="ds-time" datetime="2016-12-02T14:34:33+08:00" title="2016年12月2日 下午2:34:33">2小时前</span></div><div class="ds-thread-title">在 <a href="http://blog.didispace.com/mybatisinfo/#comments">Spring Boot中使用MyBatis注解配置详解</a> 中评论</div><div class="ds-excerpt">感恩博主</div></li><li class="ds-comment ds-show-avatars" data-post-id="6359387278317454081"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/Ganjianwei666" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6260306284235457281&#39;;" title="干剑伟"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/50(2)" alt="干剑伟" style="width:32px;height:32px"></a></div><div class="ds-meta"><a rel="nofollow author" target="_blank" href="http://t.qq.com/Ganjianwei666">干剑伟</a><span class="ds-time" datetime="2016-12-02T14:30:33+08:00" title="2016年12月2日 下午2:30:33">2小时前</span></div><div class="ds-thread-title">在 <a href="http://blog.didispace.com/springbootmybatis/#comments">Spring Boot整合MyBatis</a> 中评论</div><div class="ds-excerpt">对对对 感谢楼主</div></li><li class="ds-comment ds-show-avatars" data-post-id="6359387167160009473"><div class="ds-avatar"><a rel="nofollow author" target="_blank" href="http://t.qq.com/Ganjianwei666" onclick="this.href=&#39;http://coderdidi.duoshuo.com/user-url/?user_id=6260306284235457281&#39;;" title="干剑伟"><img src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/50(2)" alt="干剑伟" style="width:32px;height:32px"></a></div><div class="ds-meta"><a rel="nofollow author" target="_blank" href="http://t.qq.com/Ganjianwei666">干剑伟</a><span class="ds-time" datetime="2016-12-02T14:30:07+08:00" title="2016年12月2日 下午2:30:07">2小时前</span></div><div class="ds-thread-title">在 <a href="http://blog.didispace.com/springbootmybatis/#comments">Spring Boot整合MyBatis</a> 中评论</div><div class="ds-excerpt">同一个问题 我也是没有回滚成功</div></li></div>
+        <!-- 多说最新评论 end -->
+        <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+        <script type="text/javascript">
+            var duoshuoQuery = {short_name:"coderdidi"};
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';ds.async = true;
+                ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                (document.getElementsByTagName('head')[0]
+                || document.getElementsByTagName('body')[0]).appendChild(ds);
+            })();
+        </script>
+        <!-- 多说公共JS代码 end -->
+    </div>
+</div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="http://blog.didispace.com/tags/AOP/" style="font-size: 10px;">AOP</a> <a href="http://blog.didispace.com/tags/Bamboo/" style="font-size: 10px;">Bamboo</a> <a href="http://blog.didispace.com/tags/Cache/" style="font-size: 11.67px;">Cache</a> <a href="http://blog.didispace.com/tags/Confluence/" style="font-size: 13.33px;">Confluence</a> <a href="http://blog.didispace.com/tags/Dubbo/" style="font-size: 10px;">Dubbo</a> <a href="http://blog.didispace.com/tags/EhCache/" style="font-size: 10px;">EhCache</a> <a href="http://blog.didispace.com/tags/Eureka/" style="font-size: 15px;">Eureka</a> <a href="http://blog.didispace.com/tags/Feign/" style="font-size: 10px;">Feign</a> <a href="http://blog.didispace.com/tags/Ghost/" style="font-size: 11.67px;">Ghost</a> <a href="http://blog.didispace.com/tags/Hystrix/" style="font-size: 10px;">Hystrix</a> <a href="http://blog.didispace.com/tags/JIRA/" style="font-size: 11.67px;">JIRA</a> <a href="http://blog.didispace.com/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="http://blog.didispace.com/tags/Java/" style="font-size: 10px;">Java</a> <a href="http://blog.didispace.com/tags/JdbcTemplate/" style="font-size: 10px;">JdbcTemplate</a> <a href="http://blog.didispace.com/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="http://blog.didispace.com/tags/MongoDB/" style="font-size: 13.33px;">MongoDB</a> <a href="http://blog.didispace.com/tags/Mongodb/" style="font-size: 10px;">Mongodb</a> <a href="http://blog.didispace.com/tags/MyBatis/" style="font-size: 11.67px;">MyBatis</a> <a href="http://blog.didispace.com/tags/Netflix/" style="font-size: 15px;">Netflix</a> <a href="http://blog.didispace.com/tags/Node-js/" style="font-size: 15px;">Node.js</a> <a href="http://blog.didispace.com/tags/OpenFire/" style="font-size: 11.67px;">OpenFire</a> <a href="http://blog.didispace.com/tags/RESTful-Api/" style="font-size: 10px;">RESTful Api</a> <a href="http://blog.didispace.com/tags/RabbitMQ/" style="font-size: 11.67px;">RabbitMQ</a> <a href="http://blog.didispace.com/tags/Redis/" style="font-size: 11.67px;">Redis</a> <a href="http://blog.didispace.com/tags/Ribbon/" style="font-size: 11.67px;">Ribbon</a> <a href="http://blog.didispace.com/tags/Spark/" style="font-size: 10px;">Spark</a> <a href="http://blog.didispace.com/tags/Spring-Boot/" style="font-size: 20px;">Spring Boot</a> <a href="http://blog.didispace.com/tags/Spring-Cloud/" style="font-size: 18.33px;">Spring Cloud</a> <a href="http://blog.didispace.com/tags/Spring-Cloud-Bus/" style="font-size: 11.67px;">Spring Cloud Bus</a> <a href="http://blog.didispace.com/tags/Spring-Cloud-Config/" style="font-size: 11.67px;">Spring Cloud Config</a> <a href="http://blog.didispace.com/tags/Spring-Security/" style="font-size: 10px;">Spring Security</a> <a href="http://blog.didispace.com/tags/Spring-Data-JPA/" style="font-size: 10px;">Spring-Data-JPA</a> <a href="http://blog.didispace.com/tags/Swagger/" style="font-size: 11.67px;">Swagger</a> <a href="http://blog.didispace.com/tags/Transactional/" style="font-size: 10px;">Transactional</a> <a href="http://blog.didispace.com/tags/Zuul/" style="font-size: 10px;">Zuul</a> <a href="http://blog.didispace.com/tags/fastjson/" style="font-size: 10px;">fastjson</a> <a href="http://blog.didispace.com/tags/log4j/" style="font-size: 11.67px;">log4j</a> <a href="http://blog.didispace.com/tags/mongodb/" style="font-size: 10px;">mongodb</a> <a href="http://blog.didispace.com/tags/redis/" style="font-size: 10px;">redis</a> <a href="http://blog.didispace.com/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 10px;">事务</a> <a href="http://blog.didispace.com/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">云服务</a> <a href="http://blog.didispace.com/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="http://blog.didispace.com/tags/%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1/" style="font-size: 10px;">定时任务</a> <a href="http://blog.didispace.com/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" style="font-size: 10px;">异常处理</a> <a href="http://blog.didispace.com/tags/%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8/" style="font-size: 10px;">异步调用</a> <a href="http://blog.didispace.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 13.33px;">微服务</a> <a href="http://blog.didispace.com/tags/%E6%8C%81%E7%BB%AD%E4%BA%A4%E4%BB%98/" style="font-size: 10px;">持续交付</a> <a href="http://blog.didispace.com/tags/%E6%95%8F%E6%8D%B7%E7%AE%A1%E7%90%86/" style="font-size: 16.67px;">敏捷管理</a> <a href="http://blog.didispace.com/tags/%E6%97%A5%E5%BF%97/" style="font-size: 16.67px;">日志</a> <a href="http://blog.didispace.com/tags/%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" style="font-size: 11.67px;">源码分析</a> <a href="http://blog.didispace.com/tags/%E7%88%AC%E8%99%AB/" style="font-size: 11.67px;">爬虫</a> <a href="http://blog.didispace.com/tags/%E9%82%AE%E4%BB%B6/" style="font-size: 10px;">邮件</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">友情链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://bbs.springcloud.com.cn/">Spring Cloud中文社区</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.baimaozixun.com/">白猫计划资讯站</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://itmuch.com/">周立|Spring Cloud</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.bysocket.com/">泥瓦匠BYSocket的博客</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://xujin.org/">许进|沉思录</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        
+<style>
+.foot-count {
+    color: #009688;
+    font-weight: bold;
+    padding: 0px 5px;
+    font-size: 1.3em;
+}
+</style>
+
+<footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            © 2016 程序猿DD - 翟永超
+            <br>
+            <span id="busuanzi_container_site_pv" style="display: inline;">访问量<span class="foot-count" id="busuanzi_value_site_pv">221251</span>次</span>
+            <span id="busuanzi_container_site_uv" style="display: inline;">访客数<span class="foot-count" id="busuanzi_value_site_uv">53838</span>人次</span>
+            <br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+        </div>
+    </div>
+</footer>
+
+<script async="" src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/busuanzi.pure.mini.js"></script>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'coderdidi'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lightgallery.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-thumbnail.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-pager.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-autoplay.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-fullscreen.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-zoom.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-hash.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-share.min.js"></script>
+        <script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/lg-video.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="./22-Spring Boot中的缓存支持（一）注解配置与EhCache使用 _ 程序猿DD_files/main.js"></script>
+
+    </div><div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"><section class="ins-section"><header class="ins-section-header">文章</header><div class="ins-selectable ins-search-item" data-url="/springbootlog4j/"><header><i class="fa fa-file"></i>Spring boot中使用log4j记录日志</header><p class="ins-search-preview">之前在Spring Boot日志管理 一文中主要介绍了Spring Boot中默认日志工具（logback）的基本配置内容。对于很多习惯使用log4j的开发者，Spring Boot依然可以很好的支持，只是需要做一些小小的配置功能。 引入log4j依赖在创建Spring Boot工程时，我们引入了s</p></div><div class="ins-selectable ins-search-item" data-url="/springcloud-sourcecode-ribbon/"><header><i class="fa fa-file"></i>Spring Cloud源码分析（二）Ribbon</header><p class="ins-search-preview">断断续续看Ribbon的源码差不多也有7-8天了，总算告一段落。本文记录了这些天对源码的阅读过程与一些分析理解，如有不对还请指出。 友情提示：本文较长，请选择一个较为舒适的姿势来阅读在之前介绍使用Ribbon进行服务消费的时候，我们用到了RestTemplate，但是熟悉Spring的同学们是否产生</p></div><div class="ins-selectable ins-search-item" data-url="/springcloud7/"><header><i class="fa fa-file"></i>Spring Cloud构建微服务架构（七）消息总线</header><p class="ins-search-preview">先回顾一下，在之前的Spring Cloud Config的介绍中，我们还留了一个悬念：如何实现对配置信息的实时更新。虽然，我们已经能够通过/refresh接口和Git仓库的Web Hook来实现Git仓库中的内容修改触发应用程序的属性更新。但是，若所有触发操作均需要我们手工去维护Web Hook中</p></div><div class="ins-selectable ins-search-item" data-url="/springcloud4-2/"><header><i class="fa fa-file"></i>Spring Cloud构建微服务架构（四）分布式配置中心（续）</header><p class="ins-search-preview">本文接之前的《Spring Cloud构建微服务架构（四）分布式配置中心》，继续来说说Spring Cloud Config的使用。 先来回顾一下，在前文中我们完成了什么： 构建了config-server，连接到Git仓库 在Git上创建了一个config-repo目录，用来存储配置信息 构建了c</p></div><div class="ins-selectable ins-search-item" data-url="/spring-boot-rabbitmq/"><header><i class="fa fa-file"></i>Spring Boot中使用RabbitMQ</header><p class="ins-search-preview">很久没有写Spring Boot的内容了，正好最近在写Spring Cloud Bus的内容，因为内容会有一些相关性，所以先补一篇关于AMQP的整合。 Message Broker与AMQP简介Message Broker是一种消息验证、传输、路由的架构模式，其设计目标主要应用于下面这些场景： 消息</p></div></section><section class="ins-section"><header class="ins-section-header">页面</header><div class="ins-selectable ins-search-item" data-url="/aboutme/index.html"><header><i class="fa fa-file"></i>翟永超</header><p class="ins-search-preview">生于1987年，上海人，毕业于东华大学，硕士研究生，曾任职于工商银行、土豆网，现就职于永辉云创，从事后端研发工作。 从小学开始接触编程相关知识，业余热衷于研究与实践新技术，对全栈开发的各方面技术均有不同程度的理解与实践。由于平时想法较多，曾独立开发或组织团队创办过一些小众应用与站点。通过这些业余的研</p></div><div class="ins-selectable ins-search-item" data-url="/categories/index.html"><header><i class="fa fa-file"></i>categories</header></div><div class="ins-selectable ins-search-item" data-url="/tags/index.html"><header><i class="fa fa-file"></i>tags</header></div></section><section class="ins-section"><header class="ins-section-header">分类</header><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/categories/Spring-Cloud/"><header><i class="fa fa-folder"></i>Spring Cloud<span class="ins-slug">Spring-Cloud</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/categories/Spring-Boot/"><header><i class="fa fa-folder"></i>Spring Boot<span class="ins-slug">Spring-Boot</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/categories/技术杂记/"><header><i class="fa fa-folder"></i>技术杂记<span class="ins-slug">技术杂记</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/categories/随笔感悟/"><header><i class="fa fa-folder"></i>随笔感悟<span class="ins-slug">随笔感悟</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/categories/敏捷管理/"><header><i class="fa fa-folder"></i>敏捷管理<span class="ins-slug">敏捷管理</span></header></div></section><section class="ins-section"><header class="ins-section-header">标签</header><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/tags/Transactional/"><header><i class="fa fa-tag"></i>Transactional<span class="ins-slug">Transactional</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/tags/Spring-Cloud/"><header><i class="fa fa-tag"></i>Spring Cloud<span class="ins-slug">Spring-Cloud</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/tags/Ribbon/"><header><i class="fa fa-tag"></i>Ribbon<span class="ins-slug">Ribbon</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/tags/源码分析/"><header><i class="fa fa-tag"></i>源码分析<span class="ins-slug">源码分析</span></header></div><div class="ins-selectable ins-search-item" data-url="http://blog.didispace.com/tags/Spring-Cloud-Bus/"><header><i class="fa fa-tag"></i>Spring Cloud Bus<span class="ins-slug">Spring-Cloud-Bus</span></header></div></section></div>
+        </div>
+    </div>
+</div>
+
+</body></html>

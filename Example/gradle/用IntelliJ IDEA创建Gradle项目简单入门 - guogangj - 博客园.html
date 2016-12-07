@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cnblogs.com/guogangj/p/5465740.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/bundle-SimpleBlue.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/bundle-SimpleBlue-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/guogangj/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/guogangj/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/guogangj/wlwmanifest.xml">
+<script type="text/javascript" src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/encoder.js"></script><script src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'guogangj', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+		
+<!--done-->
+<div class="title"><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/guogangj/">蒋国纲的技术博客</a></div>
+<div class="subtitle">技术为解决问题而生</div>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li id="nav_sitehome"><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li id="nav_myhome"><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/guogangj/">首页</a></li>
+<li id="nav_newpost"><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li id="nav_contact"><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/guogangj">联系</a></li>
+<li id="nav_rss"><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/guogangj/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/guogangj/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li id="nav_admin"><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<!--done-->
+随笔-109&nbsp;
+文章-0&nbsp;
+评论-413&nbsp;
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/guogangj/p/5465740.html">用IntelliJ IDEA创建Gradle项目简单入门</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p>Gradle和Maven一样，是Java用得最多的构建工具之一，在Maven之前，解决jar包引用的问题真是令人抓狂，有了Maven后日子就好过起来了，而现在又有了Gradle，Maven有的功能它都有，且看起来更漂亮，咱么就用起来吧。</p>
+<p>装好Intellij IDEA之后，Gradle也就默认装好了，现在我们仅需直接创建工程：</p>
+<p><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/379997-20160506145848013-1777959207.png" alt=""></p>
+<p>当然选择Java了，Next：</p>
+<p><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/379997-20160506145914576-213039445.png" alt=""></p>
+<p>GroupId，ArtifactId和Version，咋看起来和Maven一样？其实就是一样，后面我们还继续使用Maven的仓库呢。Next：</p>
+<p><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/379997-20160506150020607-1527419195.png" alt=""></p>
+<p>Use auto-import和Create directories for empty content roots automatically这两个选项勾上，Next：</p>
+<p><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/379997-20160506150158044-1051930143.png" alt=""></p>
+<p>填入项目名称，位置，OK，Finish。我们来看看项目的目录结构：</p>
+<p><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/379997-20160506150605544-1224080287.png" alt=""></p>
+<ul>
+<li>.gradle，gradle的相关支持文件，不用管</li>
+<li>.idea，IntelliJ IDEA的相关文件，不用管</li>
+<li>build，构建生成物，存放项目构建中生成的class和jar包</li>
+<li>gradle，一个gradle的包装程序，貌似直接用gradle不太好，得再包一层，这个其实我们也不用管</li>
+<li>src，我们写代码的地方，不用说了吧</li>
+<li>build.gradle，gradle的构建配置，这是我们要关心的，相当于Maven的pom.xml</li>
+<li>GradleLearn.iml，IntelliJ IDEA的项目文件</li>
+<li>gradlew，一段gradle wrapper的运行脚本，For *nix</li>
+<li>gradlew.bat，一段gradle wrapper的运行脚本，For Windows</li>
+</ul>
+<p>我用上一篇文章提供的小程序为例子(<a href="http://www.cnblogs.com/guogangj/p/5462594.html" target="_blank">Java的异步HttpClient</a>)，看看如何引入httpasyncclient，打开我们新的“pom.xml”(build.gradle)：</p>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre>group 'com.gornix'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = <span style="color: #ff0000;">1.8</span>
+
+repositories {<br>    <span style="color: #ff0000;">mavenLocal()</span>
+    mavenCentral()
+}<br><br></pre>
+<pre><span style="color: #ff0000;">tasks.withType(JavaCompile) {</span><br><span style="color: #ff0000;">    options.encoding = "UTF-8"</span><br><span style="color: #ff0000;">}</span></pre>
+<pre>dependencies {
+    <span style="color: #ff0000;">compile group: 'org.apache.httpcomponents', name:'httpasyncclient', version:'4.1.1'</span>
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>红色字体部分是我修改过的，看看build.gradle是不是比pom.xml好看多了，相当简练对吧。</p>
+<p>其中mavenCentral()句话的意思是使用Maven的容器获取依赖，而加上mavenLocal()这句话之后，Gradle会尝试先从本地Maven缓存中获取jar包，这样会更快一些，下面的dependencies则是各种依赖包了，compile表示编译时依赖，而testCompile表示执行单元测试时的编译的依赖。task.withType()这段表示使用UTF-8编码，为了避免编译的问题，我们全部使用UTF-8编码即可，嗯，是全部文本文件！</p>
+<p>OK，点一下Gradle工具窗口中的刷新：</p>
+<p><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/379997-20160506172506951-1697780700.png" alt=""></p>
+<p>这时候你展开Project窗口中的External Libraries查看的话，应该就能看到相关的包被引用进来了。</p>
+<p>别的好像没什么差别了，这篇文章仅仅是一篇“简单入门”文章，所以没太多内容，我们仍然看不到Gradle比Maven强去哪里，仅仅是配置文件好看了点，等以后如有时间，我再来整理整理了。</p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/guogangj/tag/Java/">Java</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5465740,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;0eac2bf0-c261-e111-aa3f-842b2b196315&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/guogangj/" target="_blank"><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/u379997.jpg" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/guogangj/">guogangj</a><br>
+            <a href="http://home.cnblogs.com/u/guogangj/followees">关注 - 2</a><br>
+            <a href="http://home.cnblogs.com/u/guogangj/followers">粉丝 - 261</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;0eac2bf0-c261-e111-aa3f-842b2b196315&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5465740,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5465740,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/guogangj/p/5462594.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/guogangj/p/5462594.html" title="发布于2016-05-05 17:12">Java的异步HttpClient</a><br><a href="http://www.cnblogs.com/guogangj/p/5505228.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/guogangj/p/5505228.html" title="发布于2016-05-18 17:07">用Maven部署war包到远程Tomcat服务器</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-05-06 15:26</span> <a href="http://www.cnblogs.com/guogangj/">guogangj</a> 阅读(<span id="post_view_count">8419</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5465740" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/guogangj/p/5465740.html#" onclick="AddToWz(5465740);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=110005,cb_entryId=5465740,cb_blogApp=currentBlogApp,cb_blogUserGuid='0eac2bf0-c261-e111-aa3f-842b2b196315',cb_entryCreatedDate='2016/5/6 15:26:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/guogangj/p/5465740.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/guogangj/p/5465740.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/558330/" target="_blank">成本过高成桎梏，直播可能是生鲜电商高效营销的好姿势</a><br> ·  <a href="http://news.cnblogs.com/n/558329/" target="_blank">光纤切忌折弯 你家的网速受影响了吗？</a><br> ·  <a href="http://news.cnblogs.com/n/558328/" target="_blank">9月起余额宝7日年化收益率节节蹿升：每日收益大涨10%</a><br> ·  <a href="http://news.cnblogs.com/n/558327/" target="_blank">强制捆绑还是没人用！Win10 Edge份额创新低：微软泪飚</a><br> ·  <a href="http://news.cnblogs.com/n/558326/" target="_blank">前海人寿：没有参与格力电器日常经营管理的计划</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br> ·  <a href="http://kb.cnblogs.com/page/551422/" target="_blank">没那么难，谈CSS的设计模式</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><img src="./用IntelliJ IDEA创建Gradle项目简单入门 - guogangj - 博客园_files/a379997.jpg" alt="" border="0">
+<p>
+蒋国纲(Guogang Jiang) 
+</p>
+<p>
+热能与动力工程专业毕业，曾从事过金融、游戏、信息安全、工业控制、仪器仪表、移动应用及车联网等领域的软件开发工作，曾在Windows，Windows Mobile，Linux等平台从事过大量C++编程工作，如今在.net，java，objective c，javascript等开发技术里均有涉猎。目前主要从事企业管理类软件开发。工作之余喜欢写写总结，写写博客。
+</p><p>
+</p><p>
+旧博客地址：
+</p><ul>
+<li>2006-2009&nbsp;<a href="http://blog.csdn.net/guogangj/" target="_blank">CSDN.com</a></li>
+<li>2009-2011&nbsp;<a href="http://www.cppblog.com/guogangj" target="_blank">CppBlog.com</a></li>
+</ul>
+<p></p><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/guogangj/">guogangj</a><br>园龄：<a href="http://home.cnblogs.com/u/guogangj/" title="入园时间：2012-02-28">4年9个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/guogangj/followers/">261</a><br>关注：<a href="http://home.cnblogs.com/u/guogangj/followees/">2</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;0eac2bf0-c261-e111-aa3f-842b2b196315&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_recentposts" class="sidebar-block">
+<div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/guogangj/p/5744715.html">1. 再见Windows C++</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5505228.html">2. 用Maven部署war包到远程Tomcat服务器</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5465740.html">3. 用IntelliJ IDEA创建Gradle项目简单入门</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5462594.html">4. Java的异步HttpClient</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5457959.html">5. 高性能的关键：Spring MVC的异步模式</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5455500.html">6. .net的简易多线程处理</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5421990.html">7. 快速了解必要的网络知识</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5319131.html">8. SSH免密码登录</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5315203.html">9. 用SSH访问内网主机的方法</a></li><li><a href="http://www.cnblogs.com/guogangj/p/5311536.html">10. MongoDB与PostgresQL无责任初步测试</a></li>
+</ul>
+</div>
+</div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/guogangj/tag/dotNet/">dotNet</a>(13)</li><li><a href="http://www.cnblogs.com/guogangj/tag/IT%E6%8A%80%E5%B7%A7/">IT技巧</a>(13)</li><li><a href="http://www.cnblogs.com/guogangj/tag/%E5%BC%80%E5%8F%91%E7%9A%84%E6%95%85%E4%BA%8B/">开发的故事</a>(11)</li><li><a href="http://www.cnblogs.com/guogangj/tag/JavaWeb/">JavaWeb</a>(11)</li><li><a href="http://www.cnblogs.com/guogangj/tag/Web%20API/">Web API</a>(8)</li><li><a href="http://www.cnblogs.com/guogangj/tag/%E8%81%8C%E4%B8%9A%E6%84%9F%E6%82%9F/">职业感悟</a>(8)</li><li><a href="http://www.cnblogs.com/guogangj/tag/WPF/">WPF</a>(7)</li><li><a href="http://www.cnblogs.com/guogangj/tag/%E5%85%B6%E5%AE%83/">其它</a>(6)</li><li><a href="http://www.cnblogs.com/guogangj/tag/ASP.net%2FMVC/">ASP.net/MVC</a>(6)</li><li><a href="http://www.cnblogs.com/guogangj/tag/Unix%2FLinux/">Unix/Linux</a>(6)</li><li><a href="http://www.cnblogs.com/guogangj/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div class="catListPostArchive">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/guogangj/archive/2016/08.html">2016年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/guogangj/archive/2016/05.html">2016年5月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/guogangj/archive/2016/04.html">2016年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_3" href="http://www.cnblogs.com/guogangj/archive/2016/03.html">2016年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_4" href="http://www.cnblogs.com/guogangj/archive/2016/02.html">2016年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_5" href="http://www.cnblogs.com/guogangj/archive/2016/01.html">2016年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_6" href="http://www.cnblogs.com/guogangj/archive/2015/11.html">2015年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_7" href="http://www.cnblogs.com/guogangj/archive/2015/07.html">2015年7月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_8" href="http://www.cnblogs.com/guogangj/archive/2015/01.html">2015年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_9" href="http://www.cnblogs.com/guogangj/archive/2014/11.html">2014年11月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_10" href="http://www.cnblogs.com/guogangj/archive/2014/10.html">2014年10月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_11" href="http://www.cnblogs.com/guogangj/archive/2014/09.html">2014年9月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_12" href="http://www.cnblogs.com/guogangj/archive/2014/08.html">2014年8月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_13" href="http://www.cnblogs.com/guogangj/archive/2014/05.html">2014年5月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_14" href="http://www.cnblogs.com/guogangj/archive/2014/04.html">2014年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_15" href="http://www.cnblogs.com/guogangj/archive/2014/03.html">2014年3月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_16" href="http://www.cnblogs.com/guogangj/archive/2014/02.html">2014年2月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_17" href="http://www.cnblogs.com/guogangj/archive/2014/01.html">2014年1月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_18" href="http://www.cnblogs.com/guogangj/archive/2013/12.html">2013年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_19" href="http://www.cnblogs.com/guogangj/archive/2013/10.html">2013年10月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_20" href="http://www.cnblogs.com/guogangj/archive/2013/08.html">2013年8月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_21" href="http://www.cnblogs.com/guogangj/archive/2013/07.html">2013年7月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_22" href="http://www.cnblogs.com/guogangj/archive/2013/06.html">2013年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_23" href="http://www.cnblogs.com/guogangj/archive/2013/05.html">2013年5月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_24" href="http://www.cnblogs.com/guogangj/archive/2013/04.html">2013年4月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_25" href="http://www.cnblogs.com/guogangj/archive/2013/03.html">2013年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_26" href="http://www.cnblogs.com/guogangj/archive/2013/02.html">2013年2月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_27" href="http://www.cnblogs.com/guogangj/archive/2013/01.html">2013年1月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_28" href="http://www.cnblogs.com/guogangj/archive/2012/12.html">2012年12月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_29" href="http://www.cnblogs.com/guogangj/archive/2012/11.html">2012年11月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_30" href="http://www.cnblogs.com/guogangj/archive/2012/10.html">2012年10月 (4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_31" href="http://www.cnblogs.com/guogangj/archive/2012/09.html">2012年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_32" href="http://www.cnblogs.com/guogangj/archive/2012/08.html">2012年8月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_33" href="http://www.cnblogs.com/guogangj/archive/2012/07.html">2012年7月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_34" href="http://www.cnblogs.com/guogangj/archive/2012/06.html">2012年6月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_35" href="http://www.cnblogs.com/guogangj/archive/2012/04.html">2012年4月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_36" href="http://www.cnblogs.com/guogangj/archive/2012/03.html">2012年3月 (8)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_37" href="http://www.cnblogs.com/guogangj/archive/2012/02.html">2012年2月 (2)</a> </li>
+
+</ul>
+
+</div>
+
+<div class="catList相关博客">
+<h3 class="catListTitle">相关博客</h3>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/guogangj/p/4676836.html#3569155">1. Re:搞个这样的APP要多久？</a></li>
+        <li class="recent_comment_body">@zhuli19901106引用"google就是个框，看起来也不怎么复杂吧~~"说得好...</li>
+        <li class="recent_comment_author">--纸牌</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/guogangj/p/5457959.html#3555455">2. Re:高性能的关键：Spring MVC的异步模式</a></li>
+        <li class="recent_comment_body">用 rxjava 吧</li>
+        <li class="recent_comment_author">--筱龙缘</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/guogangj/p/5209330.html#3554575">3. Re:Netty5使用自签证书实现SSL安全连接</a></li>
+        <li class="recent_comment_body">1、netty源码剖析简介2、Netty服务器的构建3、Netty客户端的构建4、Netty客户端短连接实现接服务器收响应数据5、Netty线程模型6、Netty ServerBootstrap启动的......</li>
+        <li class="recent_comment_author">--smart152819</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/guogangj/p/5457959.html#3547488">4. Re:高性能的关键：Spring MVC的异步模式</a></li>
+        <li class="recent_comment_body">@up-up我记得是用Visio画的...</li>
+        <li class="recent_comment_author">--guogangj</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/guogangj/p/3725371.html#3547486">5. Re:Mac OS X上IntelliJ IDEA 13与Tomcat 8的Java Web开发环境搭建</a></li>
+        <li class="recent_comment_body">@Troland1，必须是war包2，你观察webapp目录下有没跟war包同名的目录，加载前tomcat会解开war包到这个目录下的3，如果没有，你回头看看tomcat到底有没在运行，按默认配置会解......</li>
+        <li class="recent_comment_author">--guogangj</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/guogangj/p/3235703.html">1. Chrome插件（Extensions）开发攻略(60019)</a></li><li><a href="http://www.cnblogs.com/guogangj/p/4676836.html">2. 搞个这样的APP要多久？(26391)</a></li><li><a href="http://www.cnblogs.com/guogangj/p/3725371.html">3. Mac OS X上IntelliJ IDEA 13与Tomcat 8的Java Web开发环境搭建(12909)</a></li><li><a href="http://www.cnblogs.com/guogangj/archive/2013/01/18/2866537.html">4. 如何实现RESTful Web API的身份验证(12268)</a></li><li><a href="http://www.cnblogs.com/guogangj/archive/2012/03/05/2381117.html">5. 用RSA加密实现Web登录密码加密传输(11568)</a></li></ul></div>
+</div>
+</div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 guogangj
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>
