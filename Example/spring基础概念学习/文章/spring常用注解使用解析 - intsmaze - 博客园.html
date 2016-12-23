@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)http://www.cnblogs.com/intsmaze/p/5224661.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>spring常用注解使用解析 - intsmaze - 博客园</title>
+<link type="text/css" rel="stylesheet" href="./spring常用注解使用解析 - intsmaze - 博客园_files/blog-common.css">
+<link id="MainCss" type="text/css" rel="stylesheet" href="./spring常用注解使用解析 - intsmaze - 博客园_files/bundle-CodingLife.css">
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="./spring常用注解使用解析 - intsmaze - 博客园_files/bundle-CodingLife-mobile.css">
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/intsmaze/rss">
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/intsmaze/rsd.xml">
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/intsmaze/wlwmanifest.xml">
+<script type="text/javascript" src="./spring常用注解使用解析 - intsmaze - 博客园_files/encoder.js"></script><script src="./spring常用注解使用解析 - intsmaze - 博客园_files/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'intsmaze', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="./spring常用注解使用解析 - intsmaze - 博客园_files/blog-common.js" type="text/javascript"></script>
+</head>
+<body youdao="bind">
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/intsmaze/"><img id="blogLogo" src="./spring常用注解使用解析 - intsmaze - 博客园_files/logo.gif" alt="返回主页"></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/intsmaze/">intsmaze</a></h1>
+<h2>洋洋哥，本科，软件工程专业，国家软考：程序员，软件设计师，软件架构师。
+从事java服务端开发，大数据开发。</h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/intsmaze/">首页</a></li>
+<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+<li><a id="blog_nav_contact" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/intsmaze">联系</a></li>
+<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/intsmaze/rss">订阅</a>
+<!--<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/intsmaze/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a>--></li>
+<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+</ul>
+		<div class="blogStats">
+			
+			<div id="blog_stats">
+<span id="stats_post_count">随笔 - 27&nbsp; </span>
+<span id="stats_article_count">文章 - 0&nbsp; </span>
+<span id="stats-comment_count">评论 - 67</span>
+</div>
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class="post">
+		<h1 class="postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/intsmaze/p/5224661.html">spring常用注解使用解析</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><span data-wiz-span="data-wiz-span"><span data-wiz-span="data-wiz-span">spring没有采用约定优于配置的策略，spring要求显示指定搜索哪些路径下的Java文件。spring将会把合适的java类全部注册成spring Bean。</span></span></p>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">问题：spring怎么知道把哪些Java类当初bean类处理？</span></div>
+<div><span data-wiz-span="data-wiz-span">这就需要使用annotation，spring使用一些特殊的annotation来标注bean类。</span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">@Component:标准一个普通的spring Bean类。</span></div>
+<div><span data-wiz-span="data-wiz-span">@Controller:标注一个控制器组件类。</span></div>
+<div><span data-wiz-span="data-wiz-span">@Service:标注一个业务逻辑组件类。</span></div>
+<div><span data-wiz-span="data-wiz-span">@Repository:标注一个DAO组件类。</span></div>
+<div>&nbsp;</div>
+<div><span style="color: #ff0000;"><strong>Bean实例的名称默认是Bean类的首字母小写，其他部分不变。</strong></span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">在spring未来的版本中，<span data-wiz-span="data-wiz-span">@Controller，<span data-wiz-span="data-wiz-span">@Service，<span data-wiz-span="data-wiz-span">@Repository会携带更多语义。尽量考虑使用<span data-wiz-span="data-wiz-span">@Controller，<span data-wiz-span="data-wiz-span">@Service，<span data-wiz-span="data-wiz-span">@Repository代替通用的<span data-wiz-span="data-wiz-span">@Component。</span></span></span></span></span></span></span></span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">指定了某些类可作为Spring Bean类使用后，最好还需要让spring搜索指定路径，此时需要在spring配置文件中导入context Schema，并指定一个简单的搜索路径。</span>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #0000ff;">&lt;</span><span style="color: #800000;">beans </span><span style="color: #ff0000;">xmlns</span><span style="color: #0000ff;">="http://www.springframework.org/schema/beans"</span><span style="color: #ff0000;">
+xmlns:xsi</span><span style="color: #0000ff;">="http://www.w3.org/2001/XMLSchema-instance"</span><span style="color: #ff0000;">
+xmlns:context</span><span style="color: #0000ff;">="http://www.springframework.org/schema/context"</span><span style="color: #ff0000;">
+xsi:schemaLocation</span><span style="color: #0000ff;">="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> 自动扫描指定包及其子包下的所有Bean类 </span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">context:component-scan
+</span><span style="color: #ff0000;">base-package</span><span style="color: #0000ff;">="org.crazyit.app.service"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">beans</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</div>
+<div><span data-wiz-span="data-wiz-span">我们可以通过为<span data-wiz-span="data-wiz-span">&lt;context:component-scan&gt;<span data-wiz-span="data-wiz-span">添加<span data-wiz-span="data-wiz-span">&lt;include-filter...&gt;或<span data-wiz-span="data-wiz-span"><span style="color: #000088;"><span data-wiz-span="data-wiz-span">&lt;exclude-filter...&gt;</span></span><span data-wiz-span="data-wiz-span">子元素来指定spring bean类，只要位于指定路径下的java类满足这种规则，即使这些java类没有使用任何annotation标注，spring一样会将他们当初bean类来处理。</span></span></span></span></span></span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span"><span style="color: #000088;"><span data-wiz-span="data-wiz-span">&lt;include-filter...&gt;</span></span><span data-wiz-span="data-wiz-span">：满足该规则的java类会被当初bean类处理。<br></span></span></div>
+<div><span data-wiz-span="data-wiz-span"><span style="color: #000088;"><span data-wiz-span="data-wiz-span">&lt;exclude-filter...&gt;</span></span><span data-wiz-span="data-wiz-span">：指定满足该规则的java类不会被当初bean类处理。<br></span></span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">这两个子元素有两个属性：</span></div>
+<div><span data-wiz-span="data-wiz-span">type:指定过滤器类型。</span></div>
+<div><span data-wiz-span="data-wiz-span">expression：指定过滤器所需要的表达式。</span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">spring内建支持如下四种过滤器：</span></div>
+<div><span data-wiz-span="data-wiz-span">annotation：该过滤器要指定一个annotation名，如lee.AnnotationTest。</span></div>
+<div><span data-wiz-span="data-wiz-span">assignable：类名过滤器，该过滤器直接指定一个java类。</span></div>
+<div><span data-wiz-span="data-wiz-span">regex:正则表达式过滤器，该过滤器指定一个正则表达式，匹配该正则表达式的java类将满足该过滤规则，如org\.example\.default.*。</span></div>
+<div><span data-wiz-span="data-wiz-span">aspectj:如org.example..*service+。</span></div>
+<div>&nbsp;
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> 自动扫描指定包及其子包下的所有Bean类 </span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">context:component-scan
+</span><span style="color: #ff0000;">base-package</span><span style="color: #0000ff;">="org.crazyit.app.service"</span><span style="color: #0000ff;">&gt;</span>
+<span style="color: #008000;">&lt;!--</span><span style="color: #008000;"> 只将以Chinese、Axe结尾的类当成Spring容器中的Bean </span><span style="color: #008000;">--&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">context:include-filter </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="regex"</span><span style="color: #ff0000;">
+expression</span><span style="color: #0000ff;">=".*Chinese"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;</span><span style="color: #800000;">context:include-filter </span><span style="color: #ff0000;">type</span><span style="color: #0000ff;">="regex"</span><span style="color: #ff0000;">
+expression</span><span style="color: #0000ff;">=".*Axe"</span><span style="color: #0000ff;">/&gt;</span>
+<span style="color: #0000ff;">&lt;/</span><span style="color: #800000;">context:component-scan</span><span style="color: #0000ff;">&gt;</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</div>
+<div><span data-wiz-span="data-wiz-span">@Resource位于java.annotation包下，来自于java EE规范的一个annotation。使用该annotation为目标bean指定协作者Bean。</span></div>
+<div><span data-wiz-span="data-wiz-span">@Resource详细用法见经典javaEE企业应用实战。<br></span></div>
+<div><span data-wiz-span="data-wiz-span">@Resource有一个name属性，在默认情况下，spring将这个值解释为需要被注入的Bean实例的名字。<br></span></div>
+<div>
+<div>
+<div class="linenums">
+<div class="L0"><code class="language-java">&nbsp;</code>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@Controller
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> demo {
+@Resource(name</span>="user"<span style="color: #000000;">)
+</span><span style="color: #0000ff;">private</span><span style="color: #000000;"> User user;
+@Resource(name</span>="user"<span style="color: #000000;">)
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> setUser(User user) {
+</span><span style="color: #0000ff;">this</span>.user =<span style="color: #000000;"> user;
+}
+</span><span style="color: #0000ff;">public</span><span style="color: #000000;"> User getUser() {
+</span><span style="color: #0000ff;">return</span><span style="color: #000000;"> user;
+}
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div><span data-wiz-span="data-wiz-span">@Resource也可以直接修饰Filed,<br></span></div>
+
+</div>
+<div><span data-wiz-span="data-wiz-span">如果<span data-wiz-span="data-wiz-span">@Resource修饰Field，这时候连该属性的setter方法就不需要了。</span></span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">使用<span data-wiz-span="data-wiz-span">@Resource可以省略name属性。<br></span></span></div>
+<div><span data-wiz-span="data-wiz-span">修饰方法时，省略name属性，则该name值是该setter方法去掉前面的set字符串，首字母小写后得到的子串。</span></div>
+<div><span data-wiz-span="data-wiz-span">修饰Field时，省略name属性，则该name与该Field同名。</span></div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">指定Bean实例的作用域。</span></div>
+<div><span data-wiz-span="data-wiz-span">@Scope：<span data-wiz-span="data-wiz-span">注解也可以指定Bean实例的作用域。</span></span>
+<div class="cnblogs_code">
+<pre>@Controller("demo"<span style="color: #000000;">)
+@Scope(</span>"prototype"<span style="color: #000000;">)
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> demo {
+ 
+}</span></pre>
+</div>
+</div>
+<div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">作用范围就那4中填写，不知道的等我博客，最近在回顾spring知识。</span></div>
+</div>
+<div>&nbsp;</div>
+<div><span data-wiz-span="data-wiz-span">@PostConstruct和@PreDestory位于java.annotation包下。</span></div>
+<div><span data-wiz-span="data-wiz-span">在spring中用于定制spring容器中bean的生命周期行为。</span></div>
+<div><span data-wiz-span="data-wiz-span">@PostConstruct修饰的方法是bean的初始化之前的方法。<br></span></div>
+<div><span data-wiz-span="data-wiz-span">@PreDestory修饰的方法是bean销毁之前的方法。</span></div>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<div><strong><span data-wiz-span="data-wiz-span">深刻理解<span data-wiz-span="data-wiz-span">该类使用了<span data-wiz-span="data-wiz-span">@PostConstruct修饰init方法，那么spring就会在该bean的依赖关系注入完成之后回调该方法。</span></span></span></strong></div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@Component
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> SteelAxe
+{
+</span><span style="color: #0000ff;">public</span><span style="color: #000000;"> SteelAxe()
+{
+System.out.println(</span>"创建SteelAxe类对象实例..."<span style="color: #000000;">);
+}
+}
+ </span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div>
+<div>demo1：</div>
+<div>
+<div>
+<div class="linenums">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@Component
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Chinese
+{
+</span><span style="color: #008000;">//</span><span style="color: #008000;"> 执行Field注入</span>
+@Resource(name="steelAxe"<span style="color: #000000;">)
+</span><span style="color: #0000ff;">private</span><span style="color: #000000;"> SteelAxe steeAxe;
+ 
+</span><span style="color: #0000ff;">public</span><span style="color: #000000;"> Chinese() {
+    </span><span style="color: #0000ff;">super</span><span style="color: #000000;">();
+System.out.println(</span>"创建Chinese类对象实例..."<span style="color: #000000;">);
+}
+@PostConstruct
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> init()
+{
+System.out.println(</span>"正在执行初始化的init方法..."<span style="color: #000000;">);
+}
+@PreDestroy
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> close()
+{
+System.out.println(</span>"正在执行销毁之前的close方法..."<span style="color: #000000;">);
+}
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre> 
+<span style="color: #008000;">//</span><span style="color: #008000;"> 创建Spring容器</span>
+AbstractApplicationContext ctx = <span style="color: #0000ff;">new</span><span style="color: #000000;">
+ClassPathXmlApplicationContext(</span>"beans.xml"<span style="color: #000000;">);
+</span><span style="color: #008000;">//</span><span style="color: #008000;"> 注册关闭钩子</span>
+ctx.registerShutdownHook();</pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</div>
+打印：</div>
+</div>
+</div>
+<div>
+<div>
+<div class="linenums">
+<div class="L0"><code class="language-java"><span class="pun">创建<span class="typ">Chinese<span class="pun">类对象实例...</span></span></span></code></div>
+<div class="L1"><code class="language-java"><span class="pun">创建<span class="typ">SteelAxe<span class="pun">类对象实例...</span></span></span></code></div>
+<div class="L2"><code class="language-java"><span class="pun">正在执行初始化的<span class="pln">init<span class="pun">方法...</span></span></span></code></div>
+<div class="L3"><code class="language-java"><span class="pun">正在执行销毁之前的<span class="pln">close<span class="pun">方法...</span></span></span></code></div>
+</div>
+</div>
+<div>&nbsp;</div>
+</div>
+<div>如果注释掉chinese的依赖注入，那么结果如下：</div>
+<div>
+<div>
+<div class="linenums">
+<div class="cnblogs_code"><div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div>
+<pre><span style="color: #000000;">@Component
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span><span style="color: #000000;"> Chinese
+{
+</span><span style="color: #008000;">//</span><span style="color: #008000;"> 执行Field注入
+</span><span style="color: #008000;">//</span><span style="color: #008000;">@Resource(name="steelAxe")
+</span><span style="color: #008000;">//</span><span style="color: #008000;">private SteelAxe steeAxe;    </span>
+<span style="color: #0000ff;">public</span><span style="color: #000000;"> Chinese() {
+</span><span style="color: #0000ff;">super</span><span style="color: #000000;">();
+System.out.println(</span>"创建Chinese类对象实例..."<span style="color: #000000;">);
+}
+@PostConstruct
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> init()
+{
+System.out.println(</span>"正在执行初始化的init方法..."<span style="color: #000000;">);
+}
+@PreDestroy
+</span><span style="color: #0000ff;">public</span> <span style="color: #0000ff;">void</span><span style="color: #000000;"> close()
+{
+System.out.println(</span>"正在执行销毁之前的close方法..."<span style="color: #000000;">);
+}
+}</span></pre>
+<div class="cnblogs_code_toolbar"><span class="cnblogs_code_copy"><a href="javascript:void(0);" onclick="copyCnblogsCode(this)" title="复制代码"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/copycode.gif" alt="复制代码"></a></span></div></div>
+</div>
+</div>
+</div>
+<div>打印：</div>
+<div>
+<div>
+<div class="linenums">
+<div class="L0"><code class="language-java"><span class="pun">创建<span class="typ">Chinese<span class="pun">类对象实例...</span></span></span></code></div>
+<div class="L1"><code class="language-java"><span class="pun">正在执行初始化的<span class="pln">init<span class="pun">方法...</span></span></span></code></div>
+<div class="L2"><code class="language-java"><span class="pun">创建<span class="typ">SteelAxe<span class="pun">类对象实例...</span></span></span></code></div>
+<div class="L3"><code class="language-java"><span class="pun">正在执行销毁之前的<span class="pln">close<span class="pun">方法...</span></span></span></code></div>
+</div>
+</div>
+</div></div><div id="MySignature" style="display: block;">* 假设的你几行代码可以完成某个功能，抽取成一个方法
+ * 假设在某个业务逻辑层可以共用，往上抽取，
+ * 假设在多个业务层可以共用，提炼成工具类。
+ * 假设你的这个业务方法在多个系统需要被使用,发布成一个服务.</div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag">标签: <a href="http://www.cnblogs.com/intsmaze/tag/Spring/">Spring</a></div>
+<div id="blog_post_info"><div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(5224661,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+            <a id="green_channel_follow" onclick="follow(&#39;c76ff970-36fc-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/intsmaze/" target="_blank"><img src="./spring常用注解使用解析 - intsmaze - 博客园_files/20161010214740.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="http://home.cnblogs.com/u/intsmaze/">intsmaze</a><br>
+            <a href="http://home.cnblogs.com/u/intsmaze/followees">关注 - 4</a><br>
+            <a href="http://home.cnblogs.com/u/intsmaze/followers">粉丝 - 19</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;c76ff970-36fc-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(5224661,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(5224661,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"><a href="http://www.cnblogs.com/intsmaze/p/5206584.html" class="p_n_p_prefix">« </a> 上一篇：<a href="http://www.cnblogs.com/intsmaze/p/5206584.html" title="发布于2016-02-22 11:29">Spring AOP不拦截从对象内部调用的方法原因</a><br><a href="http://www.cnblogs.com/intsmaze/p/5243326.html" class="p_n_p_prefix">» </a> 下一篇：<a href="http://www.cnblogs.com/intsmaze/p/5243326.html" title="发布于2016-03-04 20:22">springMVC参数绑定</a><br></div>
+</div>
+
+
+		</div>
+		<div class="postDesc">posted @ <span id="post-date">2016-02-28 14:04</span> <a href="http://www.cnblogs.com/intsmaze/">intsmaze</a> 阅读(<span id="post_view_count">1552</span>) 评论(<span id="post_comment_count">0</span>)  <a href="https://i.cnblogs.com/EditPosts.aspx?postid=5224661" rel="nofollow">编辑</a> <a href="http://www.cnblogs.com/intsmaze/p/5224661.html#" onclick="AddToWz(5224661);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=252059,cb_entryId=5224661,cb_blogApp=currentBlogApp,cb_blogUserGuid='c76ff970-36fc-e411-b908-9dcfd8948a71',cb_entryCreatedDate='2016/2/28 14:04:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id="comment_form" class="commentform">
+<a name="commentform"></a>
+<div id="divCommentShow"></div>
+<div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="http://www.cnblogs.com/intsmaze/p/5224661.html#" onclick="return RefreshPage();">刷新页面</a><a href="http://www.cnblogs.com/intsmaze/p/5224661.html#top">返回顶部</a></div>
+<div id="comment_form_container"><div class="login_tips">注册用户登录后才能发表评论，请 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a> 或 <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，<a href="http://www.cnblogs.com/">访问</a>网站首页。</div></div>
+<div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+<div id="ad_t2"></div>
+<div id="opt_under_post"></div>
+<div id="ad_c1" class="c_ad_block"></div>
+<div id="under_post_news"><div class="itnews c_ad_block"><b>最新IT新闻</b>:<br> ·  <a href="http://news.cnblogs.com/n/559291/" target="_blank">乐视困局的根本原因在于，她的“生态”并非真生态</a><br> ·  <a href="http://news.cnblogs.com/n/559290/" target="_blank">黑莓宣布成立研发中心，全力进军无人车市场</a><br> ·  <a href="http://news.cnblogs.com/n/559289/" target="_blank">十个有关代码审查和质量的事实</a><br> ·  <a href="http://news.cnblogs.com/n/559288/" target="_blank">微信正式发布动态视觉组件库，传递出了怎样的信号？</a><br> ·  <a href="http://news.cnblogs.com/n/559287/" target="_blank">新科技如何变革我们的生活？看看这7件事</a><br>» <a href="http://news.cnblogs.com/" title="IT新闻" target="_blank">更多新闻...</a></div></div>
+<div id="ad_c2" class="c_ad_block"></div>
+<div id="under_post_kb"><div class="itnews c_ad_block" id="kb_block"><b>最新知识库文章</b>:<br><div id="kb_recent"> ·  <a href="http://kb.cnblogs.com/page/556770/" target="_blank">写给未来的程序媛</a><br> ·  <a href="http://kb.cnblogs.com/page/558087/" target="_blank">高质量的工程代码为什么难写</a><br> ·  <a href="http://kb.cnblogs.com/page/555750/" target="_blank">循序渐进地代码重构</a><br> ·  <a href="http://kb.cnblogs.com/page/554496/" target="_blank">技术的正宗与野路子</a><br> ·  <a href="http://kb.cnblogs.com/page/553682/" target="_blank">陈皓：什么是工程师文化？</a><br></div>» <a href="http://kb.cnblogs.com/" target="_blank">更多知识库文章...</a></div></div>
+<div id="HistoryToday" class="c_ad_block"></div>
+<script type="text/javascript">
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"><div id="profile_block">昵称：<a href="http://home.cnblogs.com/u/intsmaze/">intsmaze</a><br>园龄：<a href="http://home.cnblogs.com/u/intsmaze/" title="入园时间：2015-05-17">1年7个月</a><br>粉丝：<a href="http://home.cnblogs.com/u/intsmaze/followers/">19</a><br>关注：<a href="http://home.cnblogs.com/u/intsmaze/followees/">4</a><div id="p_b_follow"><a href="javascript:void(0);" onclick="follow(&#39;c76ff970-36fc-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div></div></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="blog-calendar"><table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar">
+	<tbody><tr><td colspan="7"><table class="CalTitle" cellspacing="0">
+		<tbody><tr><td class="CalNextPrev"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2016/11/01&#39;);return false;">&lt;</a></td><td align="center">2016年12月</td><td class="CalNextPrev" align="right"><a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2017/01/01&#39;);return false;">&gt;</a></td></tr>
+	</tbody></table></td></tr><tr><th class="CalDayHeader" align="center" abbr="日" scope="col">日</th><th class="CalDayHeader" align="center" abbr="一" scope="col">一</th><th class="CalDayHeader" align="center" abbr="二" scope="col">二</th><th class="CalDayHeader" align="center" abbr="三" scope="col">三</th><th class="CalDayHeader" align="center" abbr="四" scope="col">四</th><th class="CalDayHeader" align="center" abbr="五" scope="col">五</th><th class="CalDayHeader" align="center" abbr="六" scope="col">六</th></tr><tr><td class="CalOtherMonthDay" align="center">27</td><td class="CalOtherMonthDay" align="center">28</td><td class="CalOtherMonthDay" align="center">29</td><td class="CalOtherMonthDay" align="center">30</td><td align="center">1</td><td align="center">2</td><td class="CalWeekendDay" align="center">3</td></tr><tr><td class="CalWeekendDay" align="center">4</td><td align="center">5</td><td align="center">6</td><td align="center">7</td><td align="center">8</td><td align="center">9</td><td class="CalWeekendDay" align="center">10</td></tr><tr><td class="CalWeekendDay" align="center">11</td><td align="center">12</td><td align="center">13</td><td align="center">14</td><td align="center">15</td><td align="center">16</td><td class="CalWeekendDay" align="center">17</td></tr><tr><td class="CalWeekendDay" align="center">18</td><td class="CalTodayDay" align="center">19</td><td align="center">20</td><td align="center">21</td><td align="center">22</td><td align="center">23</td><td class="CalWeekendDay" align="center">24</td></tr><tr><td class="CalWeekendDay" align="center">25</td><td align="center">26</td><td align="center">27</td><td align="center">28</td><td align="center">29</td><td align="center">30</td><td class="CalWeekendDay" align="center">31</td></tr><tr><td class="CalOtherMonthDay" align="center">1</td><td class="CalOtherMonthDay" align="center">2</td><td class="CalOtherMonthDay" align="center">3</td><td class="CalOtherMonthDay" align="center">4</td><td class="CalOtherMonthDay" align="center">5</td><td class="CalOtherMonthDay" align="center">6</td><td class="CalOtherMonthDay" align="center">7</td></tr>
+</tbody></table></div><script type="text/javascript">loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn"><div id="sidebar_search" class="sidebar-block">
+<div id="sidebar_search" class="mySearch">
+<h3 class="catListTitle">搜索</h3>
+<div id="sidebar_search_box">
+<div id="widget_my_zzk" class="div_my_zzk"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="input_my_zzk">&nbsp;<input onclick="zzk_go()" type="button" value="找找看" id="btnZzk" class="btn_my_zzk"></div>
+<div id="widget_my_google" class="div_my_zzk"><input type="text" name="google_q" id="google_q" onkeydown="return google_go_enter(event)" class="input_my_zzk">&nbsp;<input onclick="google_go()" type="button" value="谷歌搜索" class="btn_my_zzk"></div>
+</div>
+</div>
+
+</div><div id="sidebar_shortcut" class="sidebar-block">
+<div class="catListLink">
+<h3 class="catListTitle">常用链接</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/intsmaze/p/" title="我的博客的随笔列表">我的随笔</a></li><li><a href="http://www.cnblogs.com/intsmaze/MyComments.html" title="我发表过的评论列表">我的评论</a></li><li><a href="http://www.cnblogs.com/intsmaze/OtherPosts.html" title="我评论过的随笔列表">我的参与</a></li><li><a href="http://www.cnblogs.com/intsmaze/RecentComments.html" title="我的博客的评论列表">最新评论</a></li><li><a href="http://www.cnblogs.com/intsmaze/tag/" title="我的博客的标签列表">我的标签</a></li>
+</ul>
+<div id="itemListLin_con" style="display:none;">
+<ul>
+
+</ul>
+</div>
+</div></div><div id="sidebar_toptags" class="sidebar-block">
+<div class="catListTag">
+<h3 class="catListTitle">我的标签</h3>
+<ul>
+<li><a href="http://www.cnblogs.com/intsmaze/tag/java/">java</a>(5)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>(3)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/RPC/">RPC</a>(2)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/Spring/">Spring</a>(2)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/SP%E8%84%9A%E6%9C%AC%E8%A1%A8%E8%BE%BE%E5%BC%8F/">SP脚本表达式</a>(1)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/SQL%E6%A0%87%E5%87%86/">SQL标准</a>(1)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/storm/">storm</a>(1)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/webservice/">webservice</a>(1)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/%E7%99%BB%E5%BD%95%E5%AE%89%E5%85%A8/">登录安全</a>(1)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86/">动态代理</a>(1)</li><li><a href="http://www.cnblogs.com/intsmaze/tag/">更多</a></li>
+</ul>
+</div></div><div id="sidebar_categories">
+<div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+<h3 class="catListTitle">随笔分类</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_0_Link_0" href="http://www.cnblogs.com/intsmaze/category/763147.html">javaSE(4)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_1" href="http://www.cnblogs.com/intsmaze/category/894524.html">kafka0.10.0翻译(1)</a> </li>
+
+<li><a id="CatList_LinkList_0_Link_2" href="http://www.cnblogs.com/intsmaze/category/763150.html">Servlet/JSP</a> </li>
+
+</ul>
+
+</div>
+
+<div id="sidebar_postarchive" class="catListPostArchive sidebar-block">
+<h3 class="catListTitle">随笔档案</h3>
+
+<ul>
+
+<li><a id="CatList_LinkList_1_Link_0" href="http://www.cnblogs.com/intsmaze/archive/2016/11.html">2016年11月 (3)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_1" href="http://www.cnblogs.com/intsmaze/archive/2016/10.html">2016年10月 (7)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_2" href="http://www.cnblogs.com/intsmaze/archive/2016/09.html">2016年9月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_3" href="http://www.cnblogs.com/intsmaze/archive/2016/06.html">2016年6月 (2)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_4" href="http://www.cnblogs.com/intsmaze/archive/2016/04.html">2016年4月 (1)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_5" href="http://www.cnblogs.com/intsmaze/archive/2016/03.html">2016年3月 (5)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_6" href="http://www.cnblogs.com/intsmaze/archive/2016/02.html">2016年2月 (6)</a> </li>
+
+<li><a id="CatList_LinkList_1_Link_7" href="http://www.cnblogs.com/intsmaze/archive/2015/11.html">2015年11月 (1)</a> </li>
+
+</ul>
+
+</div>
+
+</div><div id="sidebar_recentcomments" class="sidebar-block"><div id="recent_comments_wrap">
+<div class="catListComment">
+<h3 class="catListTitle">最新评论</h3>
+
+	<div id="RecentCommentsBlock"><ul>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/intsmaze/p/6055684.html#3556029">1. Re:java接口调用——webservice就是一个RPC而已</a></li>
+        <li class="recent_comment_body">@intsmaze哈哈，说不那就不转载了嘛~会注明来源的，谢谢博主~...</li>
+        <li class="recent_comment_author">--小不了</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/intsmaze/p/6058765.html#3555671">2. Re:RPC原来就是Socket——RPC框架到dubbo的服务动态注册，服务路由，负载均衡演化</a></li>
+        <li class="recent_comment_body">@kofkyo哥，你看后面纯文字描述部分，我又写，服务集群注册到zookeeper中即可。...</li>
+        <li class="recent_comment_author">--intsmaze</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/intsmaze/p/6055684.html#3555641">3. Re:java接口调用——webservice就是一个RPC而已</a></li>
+        <li class="recent_comment_body">@小不了我说不又能怎么样....谢谢你注明来源。...</li>
+        <li class="recent_comment_author">--intsmaze</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/intsmaze/p/6055684.html#3555383">4. Re:java接口调用——webservice就是一个RPC而已</a></li>
+        <li class="recent_comment_body">请问楼主能转载吗？会注明来源的~</li>
+        <li class="recent_comment_author">--小不了</li>
+        <li class="recent_comment_title"><a href="http://www.cnblogs.com/intsmaze/p/6058765.html#3555246">5. Re:RPC原来就是Socket——RPC框架到dubbo的服务动态注册，服务路由，负载均衡演化</a></li>
+        <li class="recent_comment_body">如果某个服务的请求量过大，一台服务器不能处理呢？</li>
+        <li class="recent_comment_author">--kofkyo</li>
+</ul>
+</div>
+</div>
+</div></div><div id="sidebar_topviewedposts" class="sidebar-block"><div id="topview_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock"><ul><li><a href="http://www.cnblogs.com/intsmaze/p/6009648.html">1. HTTP协议下保证密码不被获取更健壮方式(1668)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/5224661.html">2. spring常用注解使用解析(1552)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/5243326.html">3. springMVC参数绑定(1231)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/5206584.html">4. Spring AOP不拦截从对象内部调用的方法原因(1186)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/6031894.html">5. 如何遍历文件夹下上亿文件而不栈溢出(966)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topcommentedposts" class="sidebar-block"><div id="topfeedback_posts_wrap">
+<div class="catListFeedback">
+<h3 class="catListTitle">评论排行榜</h3>
+	<div id="TopFeedbackPostsBlock"><ul><li><a href="http://www.cnblogs.com/intsmaze/p/6009648.html">1. HTTP协议下保证密码不被获取更健壮方式(34)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/6058765.html">2. RPC原来就是Socket——RPC框架到dubbo的服务动态注册，服务路由，负载均衡演化(8)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/6055684.html">3. java接口调用——webservice就是一个RPC而已(7)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/6031894.html">4. 如何遍历文件夹下上亿文件而不栈溢出(7)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/5206584.html">5. Spring AOP不拦截从对象内部调用的方法原因(3)</a></li></ul></div>
+</div>
+</div></div><div id="sidebar_topdiggedposts" class="sidebar-block"><div id="topdigg_posts_wrap">
+<div class="catListView">
+<h3 class="catListTitle">推荐排行榜</h3>
+<div id="TopDiggPostsBlock"><ul><li><a href="http://www.cnblogs.com/intsmaze/p/6009648.html">1. HTTP协议下保证密码不被获取更健壮方式(21)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/6031894.html">2. 如何遍历文件夹下上亿文件而不栈溢出(4)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/6013461.html">3. java代理模式之静态代理(3)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/6055684.html">4. java接口调用——webservice就是一个RPC而已(3)</a></li><li><a href="http://www.cnblogs.com/intsmaze/p/5206584.html">5. Spring AOP不拦截从对象内部调用的方法原因(1)</a></li></ul></div>
+</div></div></div></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright ©2016 intsmaze
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+</body></html>
