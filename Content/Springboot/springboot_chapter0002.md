@@ -260,3 +260,160 @@ public class PersonController {
 ![](../../images/springboot/0013.png)
 
 代码[下载地址：](https://github.com/chu888chu888/SpringMVCStudy/raw/master/source/springboot/SpringBoot-2.zip)
+
+
+
+## 2 Bean值的替换
+
+* Controller
+
+```java
+package com.chu.controller;
+
+import com.chu.model.Product;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * Created by P70 on 2016/12/23.
+ */
+@Controller
+public class HelloController {
+    @RequestMapping("/thymeleafviewdemo2")
+    public String index2(ModelMap map) {
+        Product product=new Product("P50","12000","大连");
+
+        // 加入一个属性，用来在模板中读取
+        map.addAttribute("product", product);
+        // return模板文件的名称，对应src/main/resources/templates/thymeleafviewdemo2.html
+        return "thymeleafviewdemo2";
+    }
+
+}
+
+```
+
+
+
+
+
+* Model
+
+```java
+package com.chu.model;
+
+/**
+ * Created by P70 on 2016/12/27.
+ */
+public class Product {
+    private String description;
+    private String price;
+    private String availableFrom;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getAvailableFrom() {
+        return availableFrom;
+    }
+
+    public void setAvailableFrom(String availableFrom) {
+        this.availableFrom = availableFrom;
+    }
+}
+
+```
+
+
+
+* View
+
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title></title>
+</head>
+<body>
+<h1>Thymeleaf tutorial - Answer for exercise 1: bean values</h1>
+<h2>Product information</h2>
+<dl>
+    <dt>Product name</dt>
+    <dd th:text="${product.description}">Red Chair</dd>
+
+    <dt>Product price</dt>
+    <dd th:text="${product.price}">350</dd>
+
+    <dt>Product available from</dt>
+    <dd th:text="${product.availableFrom}">2014-12-01</dd>
+</dl>
+</body>
+</html>
+```
+
+![](../../images/springboot/0014.png)
+
+## 3 资源文件乱码问题
+
+#### 问题描述
+
+当在`.properties`的配置文件中有中文时，读取出来的总是乱码。比如我的`application.properties`配置文件的内容如下：
+
+```yaml
+server.port=9090
+test.msg=你好：Springboot
+```
+
+当在程序中读取`test.msg`值时总是会得到乱码，默认是以`ISO-8859-1`的字符编码读取，尝试的方法有：
+
+
+
+1. 添加配置
+
+```yaml
+banner.charset=UTF-8
+server.tomcat.uri-encoding=UTF-8
+spring.http.encoding.charset=UTF-8
+spring.http.encoding.enabled=true
+spring.http.encoding.force=true
+spring.messages.encoding=UTF-8
+```
+
+
+
+2. 设置文件类型
+
+将`application.properites`的文件类型修改为`UTF-8`的编码类型。
+
+通过以上方法测试获取出来的值还是乱码。
+
+### · 解决办法
+
+设置 `File Encodings`的`Transparent native-to-ascii conversion`为`true`，具体步骤如下：依次点击
+
+File -> Settings -> Editor -> File Encodings
+
+将`Properties Files (*.properties)`下的`Default encoding for properties files`设置为`UTF-8`，将`Transparent native-to-ascii conversion`前的勾选上。
+
+
+
+## 4 Thymeleaf模板使用
+
+
+
